@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Shouye from './views/shouye.vue'
 import Booklist from './views/booklist'
 import Category from './views/Category'
+import BookListDetails from './views/bookListDetails'
 
 Vue.use(Router)
 //实例化路由对象
@@ -30,6 +31,11 @@ export default new Router({
       path: '/booklist',
       name: 'booklist',
       component: Booklist
+    },
+    {
+      path:'/bookListDetails',
+      name:'bookListDetails',
+      component:BookListDetails    
     }
   ],
   linkActiveClass:'h'

@@ -3,11 +3,11 @@
         <div class="categoryCenter">
             <div class="leftCategory">  
                 <div v-for="tab in this.tabs" :key="tab.gender"  
-                    :class="{istab:gender === tab.gender}"
+                    :class="{istab:$route.query.gender === tab.gender,}"
                     class="leftCategoryList" 
-                    @click="gender = tab.gender;changeGender1(tab.gender,tab.defaultmajor);changeGender2()">  
+                    @click="gender = tab.gender;changeGender2();changeGender1(tab.defaultmajor)">  
                     {{tab.name}}
-                </div>      
+                </div>  
             </div>
             <div class="rightCategory">               
                 <div class="rightCategoryTitle">
@@ -22,7 +22,7 @@
                                 <li v-for="list in maleMajors" 
                                 :key="list.major" 
                                 :class="{istab:major === list.major}"
-                                @click="major = list.major;changeMajor1(list.major,list.minor,list.minor);changeMajor2()">{{list.major}}</li>
+                                @click="major = list.major;changeMajor1(list.minor);changeMajor2()">{{list.major}}</li>
                             </ul>
                         </div> 
                         <div class="majorSort" v-if="gender == 'female'">
@@ -30,7 +30,7 @@
                                 <li v-for="list in femaleMajors" 
                                 :key="list.major" 
                                 :class="{istab:major === list.major}"
-                                @click="major = list.major;changeMajor1(list.major,list.minor,list.minor);changeMajor2()">
+                                @click="major = list.major;changeMajor1(list.minor);changeMajor2()">
                                 {{list.major}}       
                                 </li>
                             </ul>
@@ -40,11 +40,10 @@
                                 <li v-for="list in pressMajors" 
                                 :key="list.major" 
                                 :class="{istab:major === list.major}"
-                                @click="major = list.major;changeMajor1(list.major,list.minor,list.minor);changeMajor2()">{{list.major}}</li>
+                                @click="major = list.major;changeMajor1(list.minor);changeMajor2()">{{list.major}}</li>
                             </ul>
                         </div>             
                     </div>
-
                     <div class="moreSort" v-if="defaultMoreSort.length !== 0">
                         <span>具体类型</span>
                         <ul>
@@ -57,7 +56,23 @@
                         </ul>
                     </div>
                 </div>
+                <div>
+                    <div class="bookList">
+                        <div class="book" v-for="list in categorylist.books" :key="list._id">
+                            <div class="bookImg">
+                                <img :src="'http://statics.zhuishushenqi.com' + list.cover">
+                            </div>
+                            <div class="bookinfo">
+                                <p class="bookname">{{list.title}}</p>
+                                <p class="author">{{list.author}}</p>
+                                <p class="brief">{{list.shortIntro}}</p>
+                                <p class="popular">{{list.latelyFollower}}人气  |  {{list.retentionRatio}}%作者存留</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -132,17 +147,25 @@ export default {
             },
             watch:{
                 '$route'(){
-                    //参数改变后的操作
-                    this.$axios.get('https://novel.juhe.im/category-info?gender=' + this.gender + '&type=' + this.type + '&major=' + this.major + '&minor=' + this.minor)
-                    .then((response) => {
-                    this.categorylist = response.data;
-                    })
+                    if(this.minor == '全部'){
+                        //参数改变后的操作
+                        this.$axios.get('https://novel.juhe.im/category-info?gender=' + this.gender + '&type=' + this.type + '&major=' + this.major)
+                        .then((response) => {
+                        this.categorylist = response.data;
+                        })
+                    }else{
+                        //参数改变后的操作
+                        this.$axios.get('https://novel.juhe.im/category-info?gender=' + this.gender + '&type=' + this.type + '&major=' + this.major + '&minor=' + this.minor)
+                        .then((response) => {
+                        this.categorylist = response.data;
+                        })
+                    }
+                    
                 }
             },
             methods:{
                 //点击gender按钮，
-                changeGender1:function(a,b){                
-                    this.gender = a,
+                changeGender1:function(b){                
                     this.major = b,
                     this.minor = '全部'
                     if(this.gender == 'female'){
@@ -163,11 +186,9 @@ export default {
                     })
                 },
                 //更换$route.query参数
-                changeMajor1:function(a,b,c){
-                    this.major = a,
-                    this.moreSort = b
-                    this.defaultMoreSort = c
+                changeMajor1:function(b){
                     this.minor = '全部'
+                    this.defaultMoreSort = b         
                 },
                 //改变url参数
                 changeMajor2:function(){
@@ -176,7 +197,7 @@ export default {
                         query:{
                             gender:this.gender,
                             major:this.major,
-                            minor:'全部'
+                            // minor:'全部'
                         }
                     })
                 },
@@ -195,7 +216,13 @@ export default {
                 }
             },
             mounted() {
-                this.$axios.get('https://novel.juhe.im/category-info?gender=' + this.gender + '&type=' + this.type + '&major=' + this.major + '&minor=' + this.minor)
+                this.$router.push({
+                    path:'/category-info',
+                    query:{
+                        gender:this.gender
+                    }
+                })
+                this.$axios.get('https://novel.juhe.im/category-info?gender=' + this.gender + '&type=' + this.type + '&major=' + this.major)
                 .then((response) => {
                     this.categorylist = response.data;
                 })
@@ -282,5 +309,50 @@ body{
     color: #666;
     cursor: pointer;
 }
+.book{
+    box-sizing: border-box;
+    width: 410px;
+    display: inline-block;
+    padding: 15px;
+}
+.bookImg{
+    float: left;
+    height: 120px;
+    width: 90px;
+}
+.bookImg img{
+    width: 100%;
+    height: 100%;
+}
 
+.bookinfo{
+    height: 120px;
+    margin-left: 15px;
+    float: left;
+    width: 275px;
+}
+.bookname{
+    color: #333;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 22px;
+}
+.author,.brief,.popular{
+    font-size: 12px;
+    color: #999;
+}
+.author{
+    line-height: 28px;
+}
+.brief{
+    height: 40px;
+    line-height: 20px;
+    margin: 5px 0;
+    box-orient: vertical;
+    line-clamp: 2;
+    overflow: hidden;
+}
+.popular{
+    line-height: 20px;
+}
 </style>

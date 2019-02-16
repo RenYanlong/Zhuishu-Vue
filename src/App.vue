@@ -24,4 +24,8 @@ export default {
 
 <style>
 
+#app{
+  background-color: #fbfaf8;
+}
+
 </style>
