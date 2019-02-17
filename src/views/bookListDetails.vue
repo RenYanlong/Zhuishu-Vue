@@ -3,8 +3,12 @@
         <Breadcrumb :breadcrumbInfo = 'bookListInfo'></Breadcrumb>
         <div class="bookListMain">
             <BookListTitle :bookListinfo = 'bookListInfo'></BookListTitle>
-            <div class="books" >
-                <Book v-for="list in bookListInfo.bookList.books" :key="list._id" :bookInfo = list></Book>
+            <div class="books" > 
+                <div v-for="list in bookListInfo.bookList.books" :key="list._id" >
+                    <router-link :to="{path:'/book',query:{id:list.book._id}}">
+                        <Book :bookInfo = list></Book>  
+                    </router-link>             
+                </div>        
             </div>
         </div>
     </div>

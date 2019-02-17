@@ -63,13 +63,23 @@ h4{
     margin-top: 50px;
 }
 .comment{
+    position: relative;
     margin: 0px 0px 20px 120px;
-    padding-left: 10px;
-    height: 55px;
-    line-height: 55px;
+    padding: 15px 10px;
+    line-height: 25px;
     background-color: #f4f2ef;
     color: #999;
     font-size: 14px;
+}
+.comment:before{
+    content: '';
+    position: absolute;
+    left: -15px;
+    top: 15px;
+    /* ceshi  */
+    border-top: 15px solid #f4f2ef;
+    border-left: 15px solid #fff;
+    
 }
 
 

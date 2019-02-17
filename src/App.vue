@@ -28,4 +28,8 @@ export default {
   background-color: #fbfaf8;
 }
 
+a{
+  text-decoration: none;
+}
+
 </style>

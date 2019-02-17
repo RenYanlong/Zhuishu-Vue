@@ -68,17 +68,17 @@ export default {
       //监控$route.query参数
       this.desort = this.$route.query.sort,
       this.deduration = this.$route.query.duration,
-      this.destart = this.$route.query.start,
-      this.$axios.get('https://novel.juhe.im/booklists?sort='+ this.desort + '&duration=' + this.deduration)
-      .then((response) => {
-      this.categorylist = response.data.bookLists;
-      })  
+      this.destart = this.$route.query.start
+      // this.$axios.get('https://novel.juhe.im/booklists?sort='+ this.desort + '&duration=' + this.deduration)
+      // .then((response) => {
+      // this.categorylist = response.data.bookLists;
+      // })  
     }
   },
   mounted(){
     this.$axios.get('https://novel.juhe.im/booklists?sort=collectorCount&duration=last-seven-days&start=0')
     .then((response) => {
-      this.categorylist = response.data.bookLists;
+    this.categorylist = response.data.bookLists;
     })
   }
 }
