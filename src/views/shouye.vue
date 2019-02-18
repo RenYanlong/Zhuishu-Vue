@@ -9,7 +9,6 @@
         <sharts></sharts>
       </div>
       <div class="Content-right">
-        <banner></banner>
       </div>  
     </div>
   </div>
@@ -20,7 +19,6 @@
 // 引入helloworld组件,相当于局部引用
 // import HelloWorld from '@/components/HelloWorld.vue'
 import category from '@/components/shouye/category.vue'
-import banner from '@/components/shouye/banner.vue'
 import sharts from '@/components/shouye/charts.vue'
 
 export default {
@@ -40,7 +38,6 @@ export default {
   },
   components: {
     category,
-    banner,
     sharts
   },
   mounted(){

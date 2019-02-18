@@ -33,14 +33,16 @@ export default {
         }
     },
     mounted () {
-        this.$axios.get("https://novel.juhe.im/book-info/" + this.bookId)
+        this.$axios.get('https://novel.juhe.im/book-info/' + this.bookId)
         .then((info) => {
             this.bookInfo = info.data
         })
+
         this.$axios.get("https://novel.juhe.im/recommend/" + this.bookId)
         .then((section) => {
             this.bookSection = section.data
         })
+
     }
 }
 </script>
@@ -58,6 +60,7 @@ export default {
 .left{
     float: left;
     width: 690px;
+    background-color: bisque;
 }
 .right{
     float: right;

@@ -8,6 +8,12 @@
                 <p>作者</p>
                 <p>更新日期</p>
                 <div>开始阅读</div>
+                <el-breadcrumb separator-class="el-icon-arrow-right">
+                    <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动管理</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动列表</el-breadcrumb-item>
+                    <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+                </el-breadcrumb>
             </div>
         </div>
         <div class="bookdata"></div>
@@ -16,6 +22,11 @@
 
 <script>
 export default {
+    data () {
+        return {
+            input:''
+        }
+    },
     props:[
         'bookinfo'
     ]
@@ -26,7 +37,14 @@ export default {
 .bookTitle{
     width: 680px;
 }
+
 .bookimg{
     display: inline-block;
+}
+img{
+    float: left;
+}
+.info{
+    float: left;
 }
 </style>
