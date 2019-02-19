@@ -5,8 +5,7 @@
           <div class="customerCenter">
               <span>+关注</span>
               <span class="interval">|</span>
-              <span>联系客服</span>  
-              {{$route.path}}         
+              <span>联系客服</span>    
           </div>
       </div>
       <div class="search">
@@ -14,7 +13,8 @@
             <img src="../../assets/logo.png" alt="">
           </h1>
           <div class="input">
-            <el-input v-model="input" placeholder="请输入内容"></el-input>
+            <input type="text" placeholder="请输入内容">
+            <div class="search-but"></div>
           </div>
       </div>
       <div class="nav">
@@ -24,8 +24,7 @@
                 text-color='#f0bdbd'
                 background-color="#d82626"
                 active-text-color='#fff'  
-                router="true"  
-                @select="handleSelect">
+                router="true">
           <el-menu-item index='/'>首页</el-menu-item>
           <el-menu-item index="category-info">分类</el-menu-item>
           <el-menu-item index="booklist">书单</el-menu-item>
@@ -41,13 +40,8 @@ export default {
   data () {
     return {
       input:'',
-      activeIndex: '/',
+      activeIndex: this.$route.name,
     }
-  },
-  methods:{
-    handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      }
   }
 }
 </script>
@@ -84,10 +78,30 @@ export default {
     }
   }
   .input{
+    position: relative;
     float: right;
-    width: 260px;
-    height: 40px;
     margin-top: 30px;
+    input{
+      box-sizing: border-box;
+      width: 260px;
+      height: 40px;
+      padding: 0px 40px 0px 10px;
+      border: 2px solid #cab389;
+    }
+    input:focus{
+      outline: none;
+    }
+    .search-but{
+      display: inline-block;
+      position: absolute;
+      right: 0px;
+      width: 40px;
+      height: 40px;
+      background-color: #cab389;
+      background-image: url('./../../assets/search.png');
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
   }
 }
 .nav{

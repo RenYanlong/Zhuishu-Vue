@@ -26,8 +26,7 @@ export default {
 
 <style scoped>
 .category{
-    width: 250px;
-    float: left;  
+    width: 250px; 
     box-sizing: border-box;
 }
 .category,.ranktab{

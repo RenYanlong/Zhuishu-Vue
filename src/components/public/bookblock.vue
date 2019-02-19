@@ -1,7 +1,7 @@
 <template>
     <div class="bookblock">
         <div class="bookImg">
-            <img :src="'http://statics.zhuishushenqi.com' + book.cover">
+            <img :src="`http://statics.zhuishushenqi.com${book.cover}`">
         </div>
         <div class="bookinfo">
             <p class="bookname">{{book.title}}</p>

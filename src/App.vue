@@ -29,9 +29,10 @@ a{
 a:link,a:hover,a:active,a:visited{
   color: #f0bdbd;
 }
-.myApp{
+body{
   background-color: @backgroundColor;
   font-family: PingFangSC-Regular,HelveticaNeue-Light,'Helvetica Neue Light','Microsoft YaHei',sans-serif;
 }
+
 </style>
 

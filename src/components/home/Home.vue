@@ -1,25 +1,19 @@
 <template>
   <div class="home">
-    <div class="shouyecenter">
-      <div class="Content-left">
+      <div class="homeLeft">
         <category v-bind:sextype='nansheng' v-bind:type="typemale" v-bind:sex="nan"></category>
         <category v-bind:sextype='nvsheng' v-bind:type="typefemale" v-bind:sex="nv"></category>
         <category v-bind:sextype='press' v-bind:type="typepress" v-bind:sex="pre"></category>
         <sharts></sharts>
       </div>
-      <div class="Content-right">
+        <div class="homeRight">
       </div>  
-    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// 引入helloworld组件,相当于局部引用
-// import HelloWorld from '@/components/HelloWorld.vue'
 import category from '@/components/home/category.vue'
 import sharts from '@/components/home/charts.vue'
-
 
 export default {
   data () {
@@ -51,25 +45,25 @@ export default {
   }
 }
 </script>
-
-<style scoped>
+<style lang="less" scoped>
 .home{
-  padding-top: 10px;
-}
-.shouyecenter{
   width: 1200px;
   margin: 0 auto;
+  .homeLeft{
+    
+    width: 250px;
+  }
+  .homeRight{
+    width: 940px;
+    margin-left: 10px;
+  }
 }
-.Content-left{
-  float: left;
-  width: 250px;
-}
+</style>
 
-.Content-right{
-  width: 940px;
-  float: right;
-  margin-left: 10px;
-}
+<style scoped>
+
+
+
 
 </style>
 
