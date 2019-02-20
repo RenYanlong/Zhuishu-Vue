@@ -1,29 +1,22 @@
 <template>
     <div class="chartsmale">
         <ul>
-            <li 
-            v-for="(list,index) in info" 
-            v-bind:key="list._id" 
-            class="chartsmalelist">
-                <!-- 排行序号 -->
+            <li v-for="(list,index) in info" :key="index" class="chartsmalelist">
                 <div class="chartsnum">
                     <p class="one" v-if="index == 0">{{(index + 1)}}</p>
                     <p class="two" v-else-if="index == 1">{{(index + 1)}}</p>
                     <p class="san" v-else-if="index == 2">{{(index + 1)}}</p>
                     <p class="other" v-else>{{(index + 1) + '.'}}</p>
-                    <img :src="'http://statics.zhuishushenqi.com' + list.cover" v-if="index == 0">  
+                    <img :src='`http://statics.zhuishushenqi.com${list.cover}`' v-if="index == 0">  
                 </div>
-                <!-- 排行名字 -->
                 <div class="chartstext">
                     <p class="chartstitle">{{list.title}}</p>
                     <p class="chartsfollower">{{(list.latelyFollower/10000).toFixed(2)}} 万人气</p>   
                 </div>               
             </li>
         </ul>
-    </div>
-    
+    </div>  
 </template>
-
 <script>
 export default {
     name:'chartsmale',
@@ -41,8 +34,7 @@ export default {
     }  
 }
 </script>
-
-<style scoped>
+<style lang="less" scoped>
 .chartsmale ul{
     margin: 0;
     padding: 0;
@@ -54,7 +46,6 @@ export default {
     font-size: 14px;
     margin-bottom: 13px;
 }
-/* 排行序号 */
 .chartsnum{
     float: left;
 }
@@ -78,7 +69,6 @@ export default {
     margin-top: 2px;
     background-color: #fd5d32;
     color: #fff;
-
 }
 .chartsnum .san{
     position: relative;
@@ -94,8 +84,6 @@ export default {
     width: 70px;
     height: 85px;
 }
-
-/* 排行名字 */
 .chartstext{
     float: left;
     margin-left: 10px;
@@ -113,5 +101,4 @@ export default {
     line-height: 20px;
     font-size: 12px;
 }
-
 </style>

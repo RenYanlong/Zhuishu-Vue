@@ -1,4 +1,3 @@
-// 分类模块
 <template>
     <div class="category">
         <div class="title">
@@ -14,17 +13,16 @@
     </div>  
 </template>
 <script>
-export default {
-    name:'category',
-    props:[
-        'type',
-        'sextype',
-        'sex'
-    ]
-}
+    export default {
+        name:'category',
+        props:[
+            'type',
+            'sextype',
+            'sex'
+        ]
+    }
 </script>
-
-<style scoped>
+<style lamg='less' scoped>
 .category{
     width: 250px; 
     box-sizing: border-box;
@@ -81,4 +79,3 @@ a:link,a:visited,a:hover,a:active{
     margin: 0;
 }
 </style>
-

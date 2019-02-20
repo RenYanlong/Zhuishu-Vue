@@ -34,18 +34,16 @@
       </div>
   </div>
 </template>
-
 <script>
-export default {
-  data () {
-    return {
-      input:'',
-      activeIndex: this.$route.name,
+  export default {
+    data () {
+      return {
+        input:'',
+        activeIndex: this.$route.name,
+      }
     }
   }
-}
 </script>
-
 <style lang="less" scoped>
 .customer{
   background-color: @backgroundColor1;

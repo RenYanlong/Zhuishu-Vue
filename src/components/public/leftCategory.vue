@@ -5,7 +5,6 @@
         </div>      
     </div>
 </template>
-
 <script>
 export default {
     props: [
@@ -13,11 +12,8 @@ export default {
     ]
 }
 </script>
-
-<style scoped>
-
+<style lang='less' scoped>
 .isclick{
     color: red;
 }
-
 </style>

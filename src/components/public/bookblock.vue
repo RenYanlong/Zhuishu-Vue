@@ -11,7 +11,6 @@
         </div>
     </div>
 </template>
-
 <script>
 export default {
     props:[
@@ -19,8 +18,7 @@ export default {
     ]
 }
 </script>
-
-<style scoped>
+<style lang='less' scoped>
 *{
   margin: 0;
   padding: 0;
@@ -41,7 +39,6 @@ export default {
     width: 100%;
     height: 100%;
 }
-
 .bookinfo{
     height: 120px;
     margin-left: 15px;

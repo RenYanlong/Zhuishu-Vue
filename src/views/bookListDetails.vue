@@ -13,7 +13,6 @@
         </div>
     </div>
 </template>
-
 <script>
 import Breadcrumb from '@/components/booklist/breadcrumb.vue'
 import BookListTitle from '@/components/booklist/bookListTitle.vue'
@@ -43,13 +42,10 @@ export default {
     }
 }
 </script>
-
-<style scoped>
+<style lang='less' scoped>
 .bookListMain{
     width: 1200px;
     margin: 0 auto;
     background-color: #fff;
 }
-
-
 </style>

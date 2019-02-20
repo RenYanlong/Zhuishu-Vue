@@ -4,11 +4,8 @@
     <router-view/>
   </div>
 </template>
-
 <script>
-//注册和导入组件
 import Head from './components/public/head'
-//实例化
 export default {
     name:'app',
     components:{
@@ -16,8 +13,6 @@ export default {
     }
 }
 </script>
-
-
 <style lang="less">
 *{
   padding: 0;
@@ -33,6 +28,5 @@ body{
   background-color: @backgroundColor;
   font-family: PingFangSC-Regular,HelveticaNeue-Light,'Helvetica Neue Light','Microsoft YaHei',sans-serif;
 }
-
 </style>
 

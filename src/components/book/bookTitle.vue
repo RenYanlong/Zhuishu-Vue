@@ -19,25 +19,22 @@
         <div class="bookdata"></div>
     </div>
 </template>
-
 <script>
-export default {
-    data () {
-        return {
-            input:''
-        }
-    },
-    props:[
-        'bookinfo'
-    ]
-}
+    export default {
+        data () {
+            return {
+                input:''
+            }
+        },
+        props:[
+            'bookinfo'
+        ]
+    }
 </script>
-
-<style scoped>
+<style lang='less' scoped>
 .bookTitle{
     width: 680px;
 }
-
 .bookimg{
     display: inline-block;
 }

@@ -14,20 +14,14 @@
                     class="rankinglist">{{tab.name}}</div>
             </div>
             <keep-alive>
-                <component :is="componentTab">
-
-                </component>
+                <component :is="componentTab"></component>
             </keep-alive>
         </div>
-    </div>
-    
-    
+    </div>    
 </template>
-
-
 <script>
-// import maletab from '@/components/home/chartsmale.vue'
-// import femaletab from '@/components/home/chartsfemale.vue'
+import maletab from '@/components/home/chartsmale.vue'
+import femaletab from '@/components/home/chartsfemale.vue'
 export default {
     name:'charts',
     data () {
@@ -44,8 +38,8 @@ export default {
         }
     },
     components:{
-        // maletab,
-        // femaletab
+        maletab,
+        femaletab
     },
     computed:{
         componentTab:function(){
@@ -54,9 +48,7 @@ export default {
     }
 }
 </script>
-
 <style lang="less" scoped>
-
 .charts{
     width: 250px;
     float: left;
@@ -81,13 +73,11 @@ export default {
     color: #999;
     font-size: 12px;
 }
-
 .ranking-nav{
     display: inline-block;
     text-align: center;
     width: 100%;
-    margin-bottom: 13px;
-    
+    margin-bottom: 13px;  
 }
 .rankinglist{
     display: inline;
@@ -100,5 +90,4 @@ export default {
     color: #d82626;
     text-decoration: underline;
 }
-
 </style>

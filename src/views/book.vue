@@ -17,7 +17,6 @@
         </div>
     </div>
 </template>
-
 <script>
 import BookTitle from '@/components/book/bookTitle.vue'
 export default {
@@ -42,12 +41,10 @@ export default {
         .then((section) => {
             this.bookSection = section.data
         })
-
     }
 }
 </script>
-
-<style scoped>
+<style lang='less' scoped>
 .book{
     margin: 0 auto;
     width: 1200px;

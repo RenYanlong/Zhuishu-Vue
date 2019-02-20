@@ -229,8 +229,7 @@ export default {
             }  
 }
 </script>
-
-<style scoped>
+<style lang='less' scoped>
 *{
     margin: 0;
     padding: 0;
@@ -238,7 +237,6 @@ export default {
 body{
     background-color: #fbfaf8;
 }
-
 .categoryCenter{
     width: 1200px;
     margin: 0 auto;
@@ -278,7 +276,6 @@ body{
     font-weight: 700;
     color: #cab389;
 }
-
 .majorSort li{
     list-style: none;
     float: left;

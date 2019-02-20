@@ -23,16 +23,10 @@
         </div>
       </div>
     </div>
-    <!-- 调用helloworld组件 -->
   </div>
 </template>
-
 <script>
-// @ is an alias to /src
-// 引入helloworld组件,相当于局部引用
-// import HelloWorld from '@/components/HelloWorld.vue'
 import book from '@/components/public/bookblock.vue'
-
 export default {
   name: 'booklist',
   data(){
@@ -69,10 +63,6 @@ export default {
       this.desort = this.$route.query.sort,
       this.deduration = this.$route.query.duration,
       this.destart = this.$route.query.start
-      // this.$axios.get('https://novel.juhe.im/booklists?sort='+ this.desort + '&duration=' + this.deduration)
-      // .then((response) => {
-      // this.categorylist = response.data.bookLists;
-      // })  
     }
   },
   mounted(){
@@ -83,10 +73,7 @@ export default {
   }
 }
 </script>
-
-
-<style scoped>
-
+<style lang='less' scoped>
 *{
   margin: 0;
   padding: 0;
@@ -101,18 +88,15 @@ export default {
     padding: 15px;
     cursor: pointer;
 }
-
 .booklistcenter{
   width: 1200px;
   margin: 0 auto;
 }
-
 .listleft{
   float: left;
   width: 240px;
   border-top: 5px #cab389 solid;
 }
-
 .listleft li{
   list-style: none;
   height: 60px;
@@ -125,7 +109,6 @@ export default {
   box-sizing: border-box;
   cursor: pointer;
 }
-
 .listright{
   float: right;
   width: 880px;
@@ -139,7 +122,6 @@ export default {
     font-weight: 700;
     color: #cab389;
 }
-
 .listrighttitle{
   width: 100%;
   line-height: 60px;
@@ -151,4 +133,3 @@ export default {
   color: red;
 }
 </style>
-

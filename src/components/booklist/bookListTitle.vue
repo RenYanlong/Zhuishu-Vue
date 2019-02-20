@@ -3,9 +3,9 @@
         <div class="introduce">
             <div class="introduceInfo">
                 <div class="cover">
-                    <img :src="'http://statics.zhuishushenqi.com' + bookListinfo.bookList.books[0].book.cover" alt="" class="img1">
-                    <img :src="'http://statics.zhuishushenqi.com' + bookListinfo.bookList.books[1].book.cover" alt="" class="img2">
-                    <img :src="'http://statics.zhuishushenqi.com' + bookListinfo.bookList.books[2].book.cover" alt="" class="img3">
+                    <img :src='`http://statics.zhuishushenqi.com${bookListinfo.bookList.books[0].book.cover}`' class="img1">
+                    <img :src='`http://statics.zhuishushenqi.com${bookListinfo.bookList.books[1].book.cover}`' class="img2">
+                    <img :src='`http://statics.zhuishushenqi.com${bookListinfo.bookList.books[2].book.cover}`' class="img3">
                 </div>
                 <div class="bookListInfo">
                     <div class="title">{{bookListinfo.bookList.title}}</div>
@@ -20,16 +20,14 @@
         </div>
     </div>
 </template>
-
 <script>
-export default {
-    props:[
-        'bookListinfo'
-    ]
-}
+    export default {
+        props:[
+            'bookListinfo'
+        ]
+    }
 </script>
-
-<style scoped>
+<style lang='less' scoped>
 .bookListTitle{
     margin: 0 auto;
     width: 1200px;

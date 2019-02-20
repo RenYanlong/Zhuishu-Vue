@@ -1,7 +1,7 @@
 <template>
     <div class="book">
         <div class="bookInfo">
-            <img class="cover" :src="'http://statics.zhuishushenqi.com' + bookInfo.book.cover">
+            <img class="cover" :src='`http://statics.zhuishushenqi.com${bookInfo.book.cover}`'>
             <div class="info">
                 <h4>{{bookInfo.book.title}}</h4>
                 <p class="zuozhe">{{bookInfo.book.author}}-{{bookInfo.book.cat}}</p>
@@ -13,16 +13,14 @@
         </div>
     </div>
 </template>
-
 <script>
-export default {
-    props:[
-        'bookInfo'
-    ]
-}
+    export default {
+        props:[
+            'bookInfo'
+        ]
+    }
 </script>
-
-<style scoped>
+<style lang='less' scoped>
 *{
     margin: 0;
     padding: 0;
@@ -78,9 +76,6 @@ h4{
     top: 15px;
     /* ceshi  */
     border-top: 15px solid #f4f2ef;
-    border-left: 15px solid #fff;
-    
+    border-left: 15px solid #fff;  
 }
-
-
 </style>
