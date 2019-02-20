@@ -66,7 +66,7 @@
                                 <p class="bookname">{{list.title}}</p>
                                 <p class="author">{{list.author}}</p>
                                 <p class="brief">{{list.shortIntro}}</p>
-                                <p class="popular">{{list.latelyFollower}}人气  |  {{list.retentionRatio}}%作者存留</p>
+                                <p class="popular">{{list.latelyFollower}}人气{{list.retentionRatio}}%作者存留</p>
                             </div>
                         </div>
                     </div>
@@ -76,13 +76,12 @@
         </div>
     </div>
 </template>
-
 <script>
 export default {     
             data () {
                 return {
-                    gender:'male',
-                    major:'玄幻',
+                    gender:this.$route.query.gender,
+                    major:this.$route.query.major,
                     type:'hot',
                     minor:'全部', 
                     defaultMoreSort:['全部','东方玄幻','异界大陆','异界争霸','远古神话'],

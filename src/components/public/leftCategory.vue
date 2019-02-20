@@ -6,11 +6,11 @@
     </div>
 </template>
 <script>
-export default {
-    props: [
-        'categorys'
-    ]
-}
+    export default {
+        props: [
+            'categorys'
+        ]
+    }
 </script>
 <style lang='less' scoped>
 .isclick{

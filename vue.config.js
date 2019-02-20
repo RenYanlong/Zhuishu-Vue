@@ -7,5 +7,6 @@ module.exports = {
       ],
       preProcessor: 'less'
     }
-  }
+  },
+  lintOnSave: undefined
 }

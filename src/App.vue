@@ -7,7 +7,7 @@
 <script>
 import Head from './components/public/head'
 export default {
-    name:'app',
+    name:'myApp',
     components:{
       Head
     }
@@ -22,11 +22,14 @@ a{
   text-decoration:none;
 }
 a:link,a:hover,a:active,a:visited{
-  color: #f0bdbd;
+  color: @fontColor1;
 }
 body{
+  font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
   background-color: @backgroundColor;
-  font-family: PingFangSC-Regular,HelveticaNeue-Light,'Helvetica Neue Light','Microsoft YaHei',sans-serif;
+  color: #333;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>
 

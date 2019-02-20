@@ -1,16 +1,15 @@
 <template>
-    <!-- head公共组件 -->
-   <div class="head">
-      <div class='customer'>
-          <div class="customerCenter">
-              <span>+关注</span>
-              <span class="interval">|</span>
-              <span>联系客服</span>    
-          </div>
+  <div class="head">
+    <div class='customer'>
+        <div class="customerCenter">
+          <span>+关注</span>
+          <span class="interval">|</span>
+          <span>联系客服</span>    
+        </div>
       </div>
       <div class="search">
           <h1>
-            <img src="../../assets/logo.png" alt="">
+            <img src="../../assets/logo.png">
           </h1>
           <div class="input">
             <input type="text" placeholder="请输入内容">
@@ -24,7 +23,7 @@
                 text-color='#f0bdbd'
                 background-color="#d82626"
                 active-text-color='#fff'  
-                router="true">
+                :router="true">
           <el-menu-item index='/'>首页</el-menu-item>
           <el-menu-item index="category-info">分类</el-menu-item>
           <el-menu-item index="booklist">书单</el-menu-item>
@@ -84,7 +83,7 @@
       width: 260px;
       height: 40px;
       padding: 0px 40px 0px 10px;
-      border: 2px solid #cab389;
+      border: 2px solid #d82626;
     }
     input:focus{
       outline: none;
@@ -95,7 +94,7 @@
       right: 0px;
       width: 40px;
       height: 40px;
-      background-color: #cab389;
+      background-color: #d82626;
       background-image: url('./../../assets/search.png');
       background-repeat: no-repeat;
       background-position: center center;

@@ -8,15 +8,13 @@
         <p class="booklistname">{{breadcrumbInfo.bookList.title}}</p>
     </div>  
 </template>
-
 <script>
-export default {
-    props:[
-        'breadcrumbInfo'
-    ]
-}
+    export default {
+        props:[
+            'breadcrumbInfo'
+        ]
+    }
 </script>
-
 <style lang='less' scoped>
 *{
     margin: 0;

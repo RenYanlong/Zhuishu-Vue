@@ -36,7 +36,6 @@ export default {
         .then((info) => {
             this.bookInfo = info.data
         })
-
         this.$axios.get("https://novel.juhe.im/recommend/" + this.bookId)
         .then((section) => {
             this.bookSection = section.data

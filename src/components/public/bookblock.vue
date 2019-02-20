@@ -12,11 +12,11 @@
     </div>
 </template>
 <script>
-export default {
-    props:[
-        'book'
-    ]
-}
+    export default {
+        props:[
+            'book'
+        ]
+    }
 </script>
 <style lang='less' scoped>
 *{
