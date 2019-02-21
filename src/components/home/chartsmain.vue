@@ -26,6 +26,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.chartsmain{
+  padding: 13px 0;
+}
 .chartsmale ul {
   margin: 0;
   padding: 0;

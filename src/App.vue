@@ -5,30 +5,34 @@
   </div>
 </template>
 <script>
-import Head from './components/public/head'
+import Head from "./components/public/head";
 export default {
-    name:'myApp',
-    components:{
-      Head
-    }
-}
+  name: "myApp",
+  components: {
+    Head
+  }
+};
 </script>
 <style lang="less">
-*{
+* {
   padding: 0;
   margin: 0;
 }
-a{
-  text-decoration:none;
+a {
+  text-decoration: none;
 }
-a:link,a:hover,a:active,a:visited{
+a:link,
+a:hover,
+a:active,
+a:visited {
   color: @fontColor1;
 }
-body{
-  font-family: "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei",
+    "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
   background-color: @backgroundColor;
   color: #333;
-  -webkit-font-smoothing:antialiased;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 </style>

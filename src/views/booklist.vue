@@ -1,13 +1,13 @@
 <template>
-  <div class="booklist">  
+  <div class="booklist">
     <div class="booklistcenter">
       <div class="listleft">
         <ul>
-          <li v-for="list in sortList" 
-              @click="defaultSort = list.name;clickhot(list.sort,list.duration,list.start)"
-              :key="list.name">
-              {{list.name}}
-          </li>        
+          <li
+            v-for="list in sortList"
+            @click="defaultSort = list.name;clickhot(list.sort,list.duration,list.start)"
+            :key="list.name"
+          >{{list.name}}</li>
         </ul>
       </div>
       <div class="listright">
@@ -15,89 +15,98 @@
           <p>{{defaultSort}}</p>
           <ul>
             <li v-for="list in categorylist" :key="list.name" class="bookb">
-              <router-link :to="{path:'/bookListDetails',query:{id:list._id}}" >
-                <book :book='list'></book>
-              </router-link>  
+              <router-link :to="{path:'/bookListDetails',query:{id:list._id}}">
+                <book :book="list"></book>
+              </router-link>
             </li>
-          </ul>     
+          </ul>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
-import book from '@/components/public/bookblock.vue'
+import book from "@/components/public/bookblock.vue";
 export default {
-  name: 'booklist',
-  data(){
+  name: "booklist",
+  data() {
     return {
-      desort:'',
-      deduration:'',
-      destart:'',
-      categorylist:'',
-      defaultSort:'按本周热度',
-      sortList:[{name:'按本周热度',sort:'collectorCount',duration:'last-seven-days',start:'0'},
-                {name:'按发布时间',sort:'created',duration:'all'},
-                {name:'按收藏数量',sort:'collectorCount',duration:'all'}
-                ]
-    }
+      desort: "",
+      deduration: "",
+      destart: "",
+      categorylist: "",
+      defaultSort: "按本周热度",
+      sortList: [
+        {
+          name: "按本周热度",
+          sort: "collectorCount",
+          duration: "last-seven-days",
+          start: "0"
+        },
+        { name: "按发布时间", sort: "created", duration: "all" },
+        { name: "按收藏数量", sort: "collectorCount", duration: "all" }
+      ]
+    };
   },
   components: {
-      book
+    book
   },
-  methods:{
-    clickhot:function(a,b,c){
+  methods: {
+    clickhot: function(a, b, c) {
       this.$router.push({
-        push:'/booklist',
-        query:{
-          sort:a,
-          duration:b,
-          start:c
+        push: "/booklist",
+        query: {
+          sort: a,
+          duration: b,
+          start: c
         }
-      })
+      });
     }
   },
-  watch:{
-    '$route'(){  
+  watch: {
+    $route() {
       //监控$route.query参数
-      this.desort = this.$route.query.sort,
-      this.deduration = this.$route.query.duration,
-      this.destart = this.$route.query.start
+      (this.desort = this.$route.query.sort),
+        (this.deduration = this.$route.query.duration),
+        (this.destart = this.$route.query.start);
     }
   },
-  mounted(){
-    this.$axios.get('https://novel.juhe.im/booklists?sort=collectorCount&duration=last-seven-days&start=0')
-    .then((response) => {
-    this.categorylist = response.data.bookLists;
-    })
+  mounted() {
+    this.$axios
+      .get(
+        "https://novel.juhe.im/booklists?sort=collectorCount&duration=last-seven-days&start=0"
+      )
+      .then(response => {
+        this.categorylist = response.data.bookLists;
+      });
   }
-}
+};
 </script>
 <style lang='less' scoped>
-*{
+* {
   margin: 0;
   padding: 0;
 }
-.booklist{
+.booklist {
   padding: 15px 0;
 }
-.bookb{
-    box-sizing: border-box;
-    width: 410px;
-    display: inline-block;
-    padding: 15px;
-    cursor: pointer;
+.bookb {
+  box-sizing: border-box;
+  width: 410px;
+  display: inline-block;
+  padding: 15px;
+  cursor: pointer;
 }
-.booklistcenter{
+.booklistcenter {
   width: 1200px;
   margin: 0 auto;
 }
-.listleft{
+.listleft {
   float: left;
   width: 240px;
   border-top: 5px #cab389 solid;
 }
-.listleft li{
+.listleft li {
   list-style: none;
   height: 60px;
   line-height: 60px;
@@ -109,27 +118,27 @@ export default {
   box-sizing: border-box;
   cursor: pointer;
 }
-.listright{
+.listright {
   float: right;
   width: 880px;
   padding: 0 15px;
 }
-.listghtmain p{
-    width: 100%;
-    height: 60px;
-    line-height: 60px;
-    font-size: 22px;
-    font-weight: 700;
-    color: #cab389;
+.listghtmain p {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  font-size: 22px;
+  font-weight: 700;
+  color: #cab389;
 }
-.listrighttitle{
+.listrighttitle {
   width: 100%;
   line-height: 60px;
   font-size: 22px;
   font-weight: 700;
   color: #cab389;
 }
-.listleft .istab{
+.listleft .istab {
   color: red;
 }
 </style>
