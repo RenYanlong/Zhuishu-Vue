@@ -2,9 +2,9 @@ import Vue from "vue";
 import Router from "vue-router";
 //定义路由组件
 import Home from "./components/home/Home.vue";
-import Booklist from "./views/booklist";
+import Booklist from "./components/booklist/booklist.vue";
 import Category from "./components/category/Category.vue";
-import BookListDetails from "./views/bookListDetails";
+import BookListDetails from "./components/booklistmain/bookListDetails.vue";
 import Book from "./views/book";
 
 Vue.use(Router);

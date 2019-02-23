@@ -7,7 +7,7 @@
             v-for="(item,index) in subCategories"
             :key="index"
             @click="gender = index,major = item[0].major,changeGender()"
-            :class="[gender == index? 'isbut':'']"
+            :class="[gender == index ? 'isbut':'']"
           >
             <span v-if="index == 'male'">男生</span>
             <span v-else-if="index == 'female'">女生</span>
@@ -28,7 +28,7 @@
             v-for="(list,index) in subCategories[gender]"
             :key="index"
             @click="major = list.major,changeMajor()"
-            :class="[newmaj == list.major ? 'majorbut' : '']"
+            :class="[major == list.major ? 'majorbut' : '']"
           >{{list.major}}</li>
         </ul>
       </div>
@@ -57,7 +57,6 @@
 export default {
   data() {
     return {
-      isshow: "",
       gender: this.$route.query.gender ? this.$route.query.gender : "male",
       major: this.$route.query.major ? this.$route.query.major : "",
       category: "",
@@ -66,11 +65,18 @@ export default {
     };
   },
   computed: {
-    newmaj: function() {
-      if (this.major != "") {
+    //用于重置
+    maj: function() {
+      if (this.$route.query.major) {
         return this.$route.query.major;
       } else {
-        return this.subCategories[this.gender][0].major;
+        if (this.gender == "male") {
+          return "玄幻";
+        } else if (this.gender == "female") {
+          return "古代言情";
+        } else {
+          return "出版小说";
+        }
       }
     }
   },
@@ -81,8 +87,7 @@ export default {
       this.$router.push({
         path: "/category",
         query: {
-          gender: this.gender,
-          major: this.subCategories[this.gender][0].major
+          gender: this.gender
         }
       });
     },
@@ -116,12 +121,18 @@ export default {
       delete sub.data.picture;
       delete sub.data.ok;
       this.subCategories = sub.data;
+      if(this.$route.query.major){
+        this.major = this.$route.query.major
+      }else{
+        this.major = sub.data[this.gender][0].major;
+      }
+      
     });
     this.$axios
       .get(
         `https://novel.juhe.im/category-info?type=hot&gender=${
           this.gender
-        }&major=${this.major}`
+        }&major=${this.maj}`
       )
       .then(response => {
         this.categorylist = response.data;
