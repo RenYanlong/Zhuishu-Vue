@@ -2,17 +2,30 @@
   <div class="bookListDetails">
     <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
       <el-breadcrumb-item :to="{ path: '/booklist' }">书单</el-breadcrumb-item>
-      <el-breadcrumb-item>{{bookListInfo.bookList.title}}</el-breadcrumb-item>
+      <el-breadcrumb-item>{{bookListInfo.title}}</el-breadcrumb-item>
     </el-breadcrumb>
 
     <div class="main">
-      <div class="center">
-        <BookListTitle :bookListinfo="bookListInfo"></BookListTitle>
-        <div class="books" v-for="list in bookListInfo.bookList.books" :key="list._id">
+      <div class="center" v-if="bookListInfo">
+        <BookListTitle :info="bookListInfo"></BookListTitle>
+        <div
+          class="books"
+          v-for="(list,index) in bookListInfo.books.slice(
+        (currentPage - 1) * pagesize,
+        currentPage * pagesize
+      )"
+          :key="index"
+        >
           <router-link :to="{path:'/book',query:{id:list.book._id}}">
             <Book :bookInfo="list"></Book>
           </router-link>
         </div>
+        <el-pagination
+          :current-page.sync="currentPage"
+          :page-size="20"
+          layout="prev, pager, next, jumper"
+          :total="bookListInfo.books.length"
+        ></el-pagination>
       </div>
     </div>
   </div>
@@ -23,6 +36,8 @@ import Book from "@/components/booklistmain/book.vue";
 export default {
   data() {
     return {
+      currentPage: 1,
+      pagesize: 20,
       bookListInfo: "",
       bookId: this.$route.query.id
     };
@@ -38,9 +53,9 @@ export default {
   },
   mounted() {
     this.$axios
-      .get("https://novel.juhe.im/booklists/" + this.bookId)
+      .get(`https://novel.juhe.im/booklists/${this.bookId}`)
       .then(response => {
-        this.bookListInfo = response.data;
+        this.bookListInfo = response.data.bookList;
       });
   }
 };
@@ -60,5 +75,9 @@ export default {
 .center {
   width: 930px;
   margin: 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: left;
+  align-items: center;
 }
 </style>

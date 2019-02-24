@@ -1,46 +1,46 @@
 <template>
   <div class="title">
     <div class="introduceInfo">
-      <div class="cover">
+      <div class="cover" v-if="info">
         <img
-          :src="`http://statics.zhuishushenqi.com${bookListinfo.bookList.books[0].book.cover}`"
+          :src="`http://statics.zhuishushenqi.com${info.books[0].book.cover}`"
           class="img1"
         >
         <img
-          :src="`http://statics.zhuishushenqi.com${bookListinfo.bookList.books[1].book.cover}`"
+          :src="`http://statics.zhuishushenqi.com${info.books[1].book.cover}`"
           class="img2"
         >
         <img
-          :src="`http://statics.zhuishushenqi.com${bookListinfo.bookList.books[2].book.cover}`"
+          :src="`http://statics.zhuishushenqi.com${info.books[2].book.cover}`"
           class="img3"
         >
       </div>
       <div class="bookListInfo">
-        <div class="name">{{bookListinfo.bookList.title}}</div>
+        <div class="name">{{info.title}}</div>
         <div class="booksNum">
           <p>共
-            <span>{{bookListinfo.bookList.books.length}}</span>本书
+            <span>{{info.books.length}}</span>本书
           </p>
           <p>
-            <span>{{bookListinfo.bookList.collectorCount}}</span>人收藏
+            <span>{{info.collectorCount}}</span>人收藏
           </p>
         </div>
-        <div class="desc">{{bookListinfo.bookList.desc}}</div>
+        <div class="desc">{{info.desc}}</div>
       </div>
     </div>
     <div class="author">
       <img
         class="avatar"
-        :src="'http://statics.zhuishushenqi.com' + bookListinfo.bookList.author.avatar"
+        :src="`http://statics.zhuishushenqi.com${info.author.avatar}`"
       >
-      <div class="nickname">作者：{{bookListinfo.bookList.author.nickname}}</div>
+      <div class="nikckname">作者：{{info.author.nickname}}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ["bookListinfo"]
+  props: ["info"]
 };
 </script>
 

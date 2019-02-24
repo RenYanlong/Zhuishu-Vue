@@ -6,6 +6,7 @@ import Booklist from "./components/booklist/booklist.vue";
 import Category from "./components/category/Category.vue";
 import BookListDetails from "./components/booklistmain/bookListDetails.vue";
 import Book from "./views/book";
+import Ranking from './components/ranking/ranking.vue'
 
 Vue.use(Router);
 //实例化路由对象
@@ -38,6 +39,11 @@ export default new Router({
       path: "/book",
       name: "book",
       component: Book
+    },
+    {
+      path: '/ranking',
+      name: 'ranking',
+      component: Ranking
     }
   ]
 });
