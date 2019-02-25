@@ -5,7 +5,7 @@ import Home from "./components/home/Home.vue";
 import Booklist from "./components/booklist/booklist.vue";
 import Category from "./components/category/Category.vue";
 import BookListDetails from "./components/booklistmain/bookListDetails.vue";
-import Book from "./views/book";
+import Book from "./components/book/book.vue";
 import Ranking from './components/ranking/ranking.vue'
 
 Vue.use(Router);

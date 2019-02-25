@@ -19,19 +19,21 @@
           :key="index"
           class="book"
         >
-          <div class="bookImg">
-            <img :src="`http://statics.zhuishushenqi.com${item.cover}`">
-          </div>
-          <div class="bookinfo">
-            <p class="bookname">{{item.title}}</p>
-            <p class="author">{{item.author}}</p>
-            <p class="brief">{{item.shortIntro}}</p>
-            <p class="popular">
-              <span>{{item.latelyFollower}}</span>人气
-              <span class="shu">|</span>
-              <span>{{item.retentionRatio}}%</span>读者存留
-            </p>
-          </div>
+          <router-link tag="a" target="_blank" :to="{path:'/book',query:{id:item._id}}">
+            <div class="bookImg">
+              <img :src="`http://statics.zhuishushenqi.com${item.cover}`">
+            </div>
+            <div class="bookinfo">
+              <p class="bookname">{{item.title}}</p>
+              <p class="author">{{item.author}}</p>
+              <p class="brief">{{item.shortIntro}}</p>
+              <p class="popular">
+                <span>{{item.latelyFollower}}</span>人气
+                <span class="shu">|</span>
+                <span>{{item.retentionRatio}}%</span>读者存留
+              </p>
+            </div>
+          </router-link>
         </div>
       </div>
       <el-pagination
@@ -132,7 +134,7 @@ export default {
       color: #cab389;
       padding-left: 15px;
     }
-    .pagination{
+    .pagination {
       margin: 20px 0;
     }
   }
