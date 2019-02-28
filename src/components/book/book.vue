@@ -6,15 +6,49 @@
       <el-breadcrumb-item>{{bookInfo.title}}</el-breadcrumb-item>
     </el-breadcrumb>
     <div class="left">
-      {{bookId}}
-      {{chapters}}
       <BookTitle :bookinfo="bookInfo"></BookTitle>
       <div class="bookSection">
-        <div class="bookIntroduce"></div>
-        <div class="booknew"></div>
-        <div class="bookall"></div>
+        <div class="bookIntroduce">
+          <h3>《{{bookInfo.title}}》简介：</h3>
+          <p>{{bookInfo.longIntro}}</p>
+        </div>
+        <div class="booknew">
+          <h3>《{{bookInfo.title}}》最新章节</h3>
+          <div>
+            <ul v-if="chapterslist">
+              <li
+                v-for="(item,index) in chapterslist.chapters.slice(chapterslist.chapters.length - 6)"
+                :key="index"
+              >{{item.title}}</li>
+            </ul>
+          </div>
+        </div>
+        <div class="bookall">
+          <h3>《{{bookInfo.title}}》目录</h3>
+          <div @click="isbut" class="all">显示全部</div>
+          <div :class="{isheigth:is}">
+            <ul>
+              <li v-for="(item,index) in chapterslist.chapters" :key="index">{{item.title}}</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      <div class="bookReviews"></div>
+      <div class="bookReviews">
+        <h3>《{{bookInfo.title}}》热门书评:</h3>
+        <div class="shuping">
+          <div v-for="(item,index) in short.docs" :key="index" class="shupinglist">
+            <img :src="`https://statics.zhuishushenqi.com${item.author.avatar}`">
+            <div class="shortright">
+              <p>
+                <span>{{item.author.nickname}}</span>
+                <span>{{item.updated.slice(0,10)}}</span>
+              </p>
+              <el-rate v-model="item.rating" disabled text-color="#ff9900"></el-rate>
+              <p class="content">{{item.content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="right">
       <div class="newApp"></div>
@@ -45,8 +79,16 @@ export default {
       bookInfo: "",
       bookSection: "",
       chapters: "",
-      like: ""
+      chapterslist: "",
+      like: "",
+      short: "",
+      is: true
     };
+  },
+  methods: {
+    isbut: function() {
+      this.is = !this.is;
+    }
   },
   mounted() {
     this.$axios
@@ -60,9 +102,21 @@ export default {
         this.bookSection = section.data;
       });
     this.$axios
-      .get('https://novel.juhe.im/book-chapters/55eef8b27445ad27755670b9')
+      .get(`https://novel.juhe.im/book/short-reviews?book=${this.bookId}`)
+      .then(shorts => {
+        this.short = shorts.data;
+      });
+    this.$axios
+      .get(
+        `https://novel.juhe.im/book-sources?view=summary&book=${this.bookId}`
+      )
       .then(cha => {
-        this.chapters = cha.data;
+        this.chapters = cha.data[0]._id;
+        this.$axios
+          .get(`https://novel.juhe.im/book-chapters/${this.chapters}`)
+          .then(cha => {
+            this.chapterslist = cha.data;
+          });
       });
   },
   watch: {
@@ -79,15 +133,43 @@ export default {
           this.bookSection = section.data;
         });
       this.$axios
-        .get('https://novel.juhe.im/book-chapters/55eef8b27445ad27755670b9')
+        .get(`https://novel.juhe.im/book/short-reviews?book=${this.bookId}`)
+        .then(shorts => {
+          this.short = shorts.data;
+        });
+      this.$axios
+        .get(
+          `https://novel.juhe.im/book-sources?view=summary&book=${this.bookId}`
+        )
         .then(cha => {
-          this.chapters = cha.data;
+          this.chapters = cha.data[0]._id;
+          this.$axios
+            .get(`https://novel.juhe.im/book-chapters/${this.chapters}`)
+            .then(cha => {
+              this.chapterslist = cha.data;
+            });
         });
     }
   }
 };
 </script>
 <style lang='less' scoped>
+.isheigth {
+  overflow: hidden;
+  height: 400px;
+}
+.bookall {
+  position: relative;
+}
+.all {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  font-size: 14px;
+  height: 24px;
+  line-height: 24px;
+  cursor: pointer;
+}
 .book {
   position: relative;
   display: flex;
@@ -106,7 +188,66 @@ export default {
 .left {
   width: 690px;
   margin-right: 20px;
+  .bookSection > div {
+    margin-bottom: 40px;
+  }
+  h3 {
+    font-size: 16px;
+    color: #666;
+    border-left: 3px solid #cab389;
+    padding-left: 5px;
+    margin-bottom: 20px;
+  }
+  p,
+  li {
+    font-size: 12px;
+    color: #666;
+    line-height: 20px;
+    list-style: none;
+    padding-left: 40px;
+    box-sizing: border-box;
+  }
+  li {
+    line-height: 40px;
+    height: 40px;
+    display: inline-block;
+    width: 50%;
+    border-bottom: 1px solid #eee;
+    padding-left: 40px;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .shupinglist {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-bottom: 40px;
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    div {
+      padding: 0 10px;
+      p {
+        padding: 0;
+      }
+      .content {
+        height: 20px;
+        line-height: 20px;
+        padding-left: 10px;
+        margin: 5px 0;
+      }
+    }
+  }
+  span {
+    display: inline-block;
+    padding: 0 10px;
+  }
 }
+
 .right {
   width: 220px;
   h4 {

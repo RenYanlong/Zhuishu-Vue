@@ -50,6 +50,7 @@ export default {
 </script>
 <style lang='less' scoped>
 .bookTitle {
+  margin-bottom: 20px;
   margin-top: 70px;
   .bookinfo {
     display: flex;

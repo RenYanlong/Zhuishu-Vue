@@ -1,7 +1,8 @@
 <template>
   <div class="bookblock">
     <div class="bookImg">
-      <img :src="`http://statics.zhuishushenqi.com${book.cover}`">
+      <img :src="`http://statics.zhuishushenqi.com${book.cover}`" v-if="book.cover != ''">
+      <img src="../../../src/assets/img-bk.png" v-else>
     </div>
     <div class="bookinfo">
       <p class="bookname">{{book.title}}</p>

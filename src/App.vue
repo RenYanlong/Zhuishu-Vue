@@ -35,5 +35,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.el-rate__icon{
+  font-size:12px !important;
+  margin-right: 2px !important;
+}
 </style>
 
