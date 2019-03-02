@@ -19,7 +19,11 @@
               <li
                 v-for="(item,index) in chapterslist.chapters.slice(chapterslist.chapters.length - 6)"
                 :key="index"
-              >{{item.title}}</li>
+              >
+                <router-link
+                  :to="{path:'/chapters',query:{id:bookId,zhang:item.order}}"
+                >{{item.title}}</router-link>
+              </li>
             </ul>
           </div>
         </div>
@@ -28,7 +32,11 @@
           <div @click="isbut" class="all">显示全部</div>
           <div :class="{isheigth:is}">
             <ul>
-              <li v-for="(item,index) in chapterslist.chapters" :key="index">{{item.title}}</li>
+              <li v-for="(item,index) in chapterslist.chapters" :key="index">
+                <router-link
+                  :to="{path:'/chapters',query:{id:bookId,zhang:item.order}}"
+                >{{item.title}}</router-link>
+              </li>
             </ul>
           </div>
         </div>

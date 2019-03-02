@@ -30,7 +30,7 @@
         <el-menu-item index="Category">分类</el-menu-item>
         <el-menu-item index="booklist">书单</el-menu-item>
         <el-menu-item index="ranking">排行榜</el-menu-item>
-        <el-menu-item index="client">客户端</el-menu-item>
+        <el-menu-item index="">客户端</el-menu-item>
       </el-menu>
     </div>
   </div>
