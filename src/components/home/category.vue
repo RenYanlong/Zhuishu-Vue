@@ -1,7 +1,10 @@
 <template>
-  <div class="category">
+  <div class="category" @mouseenter="isshow = true" @mouseleave="isshow = false">
     <div class="title">
-      <span>{{sex.CName}}</span>
+      <h3>{{sex.CName}}</h3>
+      <router-link :to="{path:'/category'}" v-show="isshow">
+        <span>更多</span>
+      </router-link>
     </div>
     <div class="cetegoryList">
       <div v-for="(List,index) in data" :key="index">
@@ -16,7 +19,12 @@
 <script>
 export default {
   name: "category",
-  props: ["data", "sex"]
+  props: ["data", "sex"],
+  data() {
+    return {
+      isshow: false
+    };
+  }
 };
 </script>
 <style lang='less' scoped>
@@ -27,32 +35,37 @@ export default {
   border: @broderC2 1px solid;
   padding: 0 15px;
   margin-bottom: 10px;
-  .title {
-    line-height: 50px;
-    font-size: 18px;
-    font-weight: 700;
-    border-bottom: 1px solid @broderC2;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid @broderC2;
+  height: 50px;
+  a {
+    font-size: 12px;
+    color: @fontColor1;
   }
-  .cetegoryList {
-    font-size: 13px;
-    padding: 12px 0;
-    display: inline-block;
-    div {
-      float: left;
-      width: 33.3%;
-      padding: 2px 0;
-      box-sizing: border-box;
-      line-height: 18px;
-      .bookCount {
-        font-size: 12px;
-      }
-      a:hover {
-        color: @fontColor3;
-      }
+}
+.cetegoryList {
+  font-size: 13px;
+  padding: 12px 0;
+  display: inline-block;
+  div {
+    float: left;
+    width: 33.3%;
+    padding: 2px 0;
+    box-sizing: border-box;
+    line-height: 18px;
+    .bookCount {
+      font-size: 12px;
     }
-    div:hover {
+    a:hover {
       color: @fontColor3;
     }
+  }
+  div:hover {
+    color: @fontColor3;
   }
 }
 </style>

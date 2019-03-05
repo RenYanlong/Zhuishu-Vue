@@ -117,16 +117,15 @@ export default {
     }
   },
   mounted() {
+    if (this.$route.query.major) {
+      this.major = this.$route.query.major;
+    } else {
+      this.major = sub.data[this.gender][0].major;
+    }
     this.$axios.get(`https://novel.juhe.im/sub-categories`).then(sub => {
       delete sub.data.picture;
       delete sub.data.ok;
       this.subCategories = sub.data;
-      if(this.$route.query.major){
-        this.major = this.$route.query.major
-      }else{
-        this.major = sub.data[this.gender][0].major;
-      }
-      
     });
     this.$axios
       .get(

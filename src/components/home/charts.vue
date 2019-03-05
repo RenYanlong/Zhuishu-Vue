@@ -74,33 +74,33 @@ export default {
   border: 1px solid #eee;
   padding: 0 15px;
   box-sizing: border-box;
-  .chartsHead {
-    box-sizing: border-box;
-    height: 50px;
-    line-height: 50px;
-    border-bottom: 1px solid #eee;
-    .chartsName {
-      float: left;
-      font-size: 18px;
-      color: #333;
-      font-weight: 700;
-    }
+}
+.chartsHead {
+  box-sizing: border-box;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #eee;
+  .chartsName {
+    float: left;
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
   }
-  .chartsMain {
-    .rankingNav {
-      height: 30px;
-      text-align: center;
-      span {
-        line-height: 30px;
-        cursor: pointer;
-      }
-      .interval {
-        margin: 0 15px;
-      }
-      .istab {
-        color: red;
-        text-decoration: underline;
-      }
+}
+.chartsMain {
+  .rankingNav {
+    height: 30px;
+    text-align: center;
+    span {
+      line-height: 30px;
+      cursor: pointer;
+    }
+    .interval {
+      margin: 0 15px;
+    }
+    .istab {
+      color: red;
+      text-decoration: underline;
     }
   }
 }

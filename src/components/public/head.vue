@@ -1,37 +1,60 @@
 <template>
   <div class="head">
+    <!-- customer -->
     <div class="customer">
-      <div class="customerCenter">
-        <span>+关注</span>
+      <div class="center">
+        <div class="follow" @mouseenter="showguanzhu = true" @mouseleave="showguanzhu = false">
+          <span>+关注</span>
+          <div class="followinterface" v-show="showguanzhu">
+            <div class="ground followpos"></div>
+            <div class="cover followpos"></div>
+            <div>
+              <img src="../../assets/images/fuwuhao.png">
+              <p>微信</p>
+            </div>
+            <div>
+              <img src="../../assets/images/weibo.png">
+              <p>微博</p>
+            </div>
+          </div>
+        </div>
         <span class="interval">|</span>
-        <span>联系客服</span>
+        <div
+          class="contact"
+          @mouseenter="showContactInterface = true"
+          @mouseleave="showContactInterface = false"
+        >
+          <span>联系客服</span>
+          <div class="contactInterface" v-show="showContactInterface">
+            <div class="ground contactpos"></div>
+            <div class="cover contactpos"></div>
+            <div>
+              <img src="../../assets/images/fuwuhao.png">
+              <p>微信联系客服</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- search -->
     <div class="search">
-      <h1>
-        <img src="../../assets/logo.png">
-      </h1>
+      <router-link :to="{path:'/'}">
+        <h1></h1>
+      </router-link>
       <div class="input">
         <input type="text" placeholder="请输入内容">
         <div class="search-but"></div>
       </div>
     </div>
+    <!-- nav -->
     <div class="nav">
-      <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        text-color="#f0bdbd"
-        background-color="#d82626"
-        active-text-color="#fff"
-        :router="true"
-      >
-        <el-menu-item index="/">首页</el-menu-item>
-        <el-menu-item index="Category">分类</el-menu-item>
-        <el-menu-item index="booklist">书单</el-menu-item>
-        <el-menu-item index="ranking">排行榜</el-menu-item>
-        <el-menu-item index="">客户端</el-menu-item>
-      </el-menu>
+      <div class="center">
+        <router-link :to="{path:'/'}" :class="[this.$route.path === '/'? 'clicka':'']">首页</router-link>
+        <router-link :to="{path:'/category'}" :class="[this.$route.path === '/category'? 'clicka':'']">分类</router-link>
+        <router-link :to="{path:'/booklist'}" :class="[this.$route.path === '/booklist'? 'clicka':'']">书单</router-link>
+        <router-link :to="{path:'/ranking'}" :class="[this.$route.path === '/ranking'? 'clicka':'']">排行榜</router-link>
+        <router-link :to="{path:'/'}">客户端</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -39,6 +62,8 @@
 export default {
   data() {
     return {
+      showContactInterface: false,
+      showguanzhu: false,
       input: "",
       activeIndex: this.$route.name
     };
@@ -48,19 +73,64 @@ export default {
 <style lang="less" scoped>
 .customer {
   background-color: @backgroundColor1;
-  .customerCenter {
+  .center {
+    position: relative;
     width: 1200px;
     margin: 0 auto;
     line-height: 40px;
     text-align: right;
-    span {
+    color: @fontColor1;
+    font-size: @fontSize14;
+    font-weight: 400;
+    .follow,
+    .contact {
       display: inline-block;
-      color: @fontColor1;
-      font-size: @fontSize14;
-      font-weight: @fontw3;
     }
     .interval {
       padding: 0 16px;
+    }
+    .followpos {
+      position: absolute;
+      right: 87px;
+    }
+    .contactpos {
+      position: absolute;
+      right: 14px;
+    }
+    .ground {
+      top: -15px;
+      border-bottom: 15px solid @backgroundColor3;
+      border-right: 15px solid transparent;
+      border-left: 15px solid transparent;
+    }
+    .cover {
+      top: -12px;
+      border-bottom: 15px solid @backgroundColor4;
+      border-right: 15px solid transparent;
+      border-left: 15px solid transparent;
+    }
+    .followinterface,
+    .contactInterface {
+      position: absolute;
+      display: flex;
+      justify-content: space-around;
+      right: 0px;
+      z-index: 200;
+      padding: 20px 10px;
+      margin-top: 13px;
+      border: 2px solid @backgroundColor3;
+      background-color: @backgroundColor4;
+      text-align: center;
+      img {
+        vertical-align: top;
+        width: 110px;
+        height: 110px;
+        margin: 0 10px;
+      }
+      p {
+        height: 30px;
+        line-height: 30px;
+      }
     }
   }
 }
@@ -69,12 +139,12 @@ export default {
   width: 1200px;
   height: 100px;
   h1 {
+    width: 175px;
+    height: 60px;
+    background-image: url("../../assets/logo.png");
+    background-size: 175px 60px;
     display: inline-block;
     margin-top: 20px;
-    img {
-      width: 175px;
-      height: 60px;
-    }
   }
   .input {
     position: relative;
@@ -105,15 +175,28 @@ export default {
 }
 .nav {
   background-color: @backgroundColor3;
-  height: 60px;
-  box-sizing: border-box;
-  .el-menu-demo {
+  .center {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     width: 1200px;
+    height: 60px;
     margin: 0 auto;
-    li {
+    a {
       width: 20%;
+      height: 60px;
       line-height: 60px;
       text-align: center;
+      color: @fontColor6;
+      font-weight: 500;
+    }
+    a:hover {
+      background-color: @backgroundColor6;
+      color: @fontColor5;
+    }
+    .clicka{
+      background-color: @backgroundColor6;
+      color: @fontColor5;
     }
   }
 }

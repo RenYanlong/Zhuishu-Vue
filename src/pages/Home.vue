@@ -10,7 +10,7 @@
       <div class="block">
         <el-carousel height="240px" class="banner">
           <el-carousel-item v-for="(item,index) in bannerInfo" :key="index">
-            <router-link :to="{path:'/book',query:{id:item._id}}">
+            <router-link :to="{path:'/book',query:{id:item.link}}">
               <img :src="item.img">
             </router-link>
           </el-carousel-item>
@@ -66,7 +66,7 @@ export default {
       this.femaleData = response.data.female.slice(0, 9);
       this.pressData = response.data.press.slice(0, 9);
     });
-    this.$axios.get("http://www.zhuishushenqi.com/spread").then(spread => {
+    this.$axios.get("https://www.zhuishushenqi.com/spread").then(spread => {
       this.bannerInfo = spread.data.data;
     });
     this.$axios.get("https://novel.juhe.im/hot-books").then(hot => {
