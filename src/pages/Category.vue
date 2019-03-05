@@ -32,23 +32,44 @@
           >{{list.major}}</li>
         </ul>
       </div>
+      <div class="minorSort" v-if="minorlist != ''">
+        <span>具体类型：</span>
+        <ul>
+          <li
+            v-for="(item,index) in minorlist"
+            :key="index"
+            @click="minor = item,changeMinor()"
+            :class="[minor == item ? 'majorbut' : '']"
+          >{{item}}</li>
+        </ul>
+      </div>
 
       <div class="bookList">
         <div class="book" v-for="list in categorylist.books" :key="list._id">
-          <div class="bookImg">
-            <img :src="`http://statics.zhuishushenqi.com${list.cover}`">
-          </div>
-          <div class="bookinfo">
-            <p class="bookname">{{list.title}}</p>
-            <p class="author">{{list.author}}</p>
-            <p class="brief">{{list.shortIntro}}</p>
-            <p class="popular">
-              <span>{{list.latelyFollower}}</span>人气
-              <span class="shu">|</span>
-              <span>{{list.retentionRatio}}%</span>读者存留
-            </p>
-          </div>
+          <router-link :to="{path:'/book',query:{id:list._id}}">
+            <div class="bookImg">
+              <img :src="`http://statics.zhuishushenqi.com${list.cover}`" v-if="list.cover">
+              <img src="../assets/img-bk.png" v-else>
+            </div>
+            <div class="bookinfo">
+              <p class="bookname">{{list.title}}</p>
+              <p class="author">{{list.author}}</p>
+              <p class="brief">{{list.shortIntro}}</p>
+              <p class="popular">
+                <span>{{list.latelyFollower}}</span>人气
+                <span class="shu">|</span>
+                <span>{{list.retentionRatio}}%</span>读者存留
+              </p>
+            </div>
+          </router-link>
         </div>
+        <el-pagination
+          background
+          :current-page.sync="currentPage"
+          :page-size="28"
+          layout="total, prev, pager, next,jumper"
+          :total="categorylist.total"
+        ></el-pagination>
       </div>
     </div>
   </div>
@@ -57,30 +78,17 @@
 export default {
   data() {
     return {
-      gender: this.$route.query.gender ? this.$route.query.gender : "male",
-      major: this.$route.query.major ? this.$route.query.major : "",
+      currentPage: 1,
+      gender: "",
+      majorlist: "",
+      major: "",
+      minorlist: "",
+      minor: "",
       category: "",
       subCategories: "",
       categorylist: ""
     };
   },
-  computed: {
-    //用于重置
-    maj: function() {
-      if (this.$route.query.major) {
-        return this.$route.query.major;
-      } else {
-        if (this.gender == "male") {
-          return "玄幻";
-        } else if (this.gender == "female") {
-          return "古代言情";
-        } else {
-          return "出版小说";
-        }
-      }
-    }
-  },
-  components: {},
   methods: {
     //改变url参数
     changeGender: function() {
@@ -100,16 +108,69 @@ export default {
           major: this.major
         }
       });
+    },
+    changeMinor: function() {
+      this.$router.push({
+        path: "/category",
+        query: {
+          gender: this.gender,
+          major: this.major,
+          minor: this.minor
+        }
+      });
+    },
+    //改变ajax请求参数
+    getcanshu: function() {
+      if (this.$route.query.gender) {
+        this.gender = this.$route.query.gender;
+        this.majorlist = this.subCategories[this.gender];
+      } else {
+        this.gender = "male";
+        this.majorlist = this.subCategories["male"];
+      }
+
+      if (this.$route.query.major) {
+        this.major = this.$route.query.major;
+      } else {
+        this.major = this.subCategories[this.gender][0].major;
+      }
+
+      for (const key in this.majorlist) {
+        if (this.majorlist[key].major == this.major) {
+          this.minorlist = this.majorlist[key].mins;
+        }
+      }
+
+      if (this.$route.query.minor) {
+        this.minor = this.$route.query.minor;
+      } else {
+        this.minor = "";
+      }
     }
   },
   watch: {
     $route() {
+      this.getcanshu();
       //参数改变后的操作
       this.$axios
         .get(
-          `https://novel.juhe.im/category-info?type=hot&gender=${
+          `https://novel.juhe.im/category-info?type=hot&limit=19&gender=${
             this.gender
-          }&major=${this.major}`
+          }&major=${this.major}&minor=${this.minor}&start=${this.currentPage}`
+        )
+        .then(response => {
+          this.categorylist = response.data;
+        });
+    },
+    currentPage() {
+      console.log(111);
+      this.getcanshu();
+      //参数改变后的操作
+      this.$axios
+        .get(
+          `https://novel.juhe.im/category-info?type=hot&limit=19&gender=${
+            this.gender
+          }&major=${this.major}&minor=${this.minor}&start=${this.currentPage}`
         )
         .then(response => {
           this.categorylist = response.data;
@@ -117,25 +178,21 @@ export default {
     }
   },
   mounted() {
-    if (this.$route.query.major) {
-      this.major = this.$route.query.major;
-    } else {
-      this.major = sub.data[this.gender][0].major;
-    }
     this.$axios.get(`https://novel.juhe.im/sub-categories`).then(sub => {
       delete sub.data.picture;
       delete sub.data.ok;
       this.subCategories = sub.data;
+      this.getcanshu();
+      this.$axios
+        .get(
+          `https://novel.juhe.im/category-info?type=hot&limit=19&gender=${
+            this.gender
+          }&major=${this.major}&minor=${this.minor}&start=${this.currentPage}`
+        )
+        .then(response => {
+          this.categorylist = response.data;
+        });
     });
-    this.$axios
-      .get(
-        `https://novel.juhe.im/category-info?type=hot&gender=${
-          this.gender
-        }&major=${this.maj}`
-      )
-      .then(response => {
-        this.categorylist = response.data;
-      });
   }
 };
 </script>
@@ -183,18 +240,55 @@ export default {
       font-weight: 700;
       color: #cab389;
     }
+
     .majorSort {
       width: 100%;
       height: 30px;
       margin-bottom: 10px;
+      font-weight: 400;
+      .majorbut {
+        background-color: @backgroundColor3;
+        color: @fontColor5;
+        border-radius: 2px;
+      }
       li {
-        list-style: none;
         float: left;
+        list-style: none;
         padding: 0 10px;
         line-height: 30px;
         font-size: 14px;
         color: #666;
         cursor: pointer;
+      }
+      li:hover{
+        color:@fontColor3;
+      }
+    }
+    .minorSort {
+      width: 100%;
+      height: 30px;
+      padding: 15px;
+      background-color: @backgroundColor7;
+      .majorbut {
+        background-color: @backgroundColor3;
+        color: @fontColor5;
+        border-radius: 2px;
+      }
+      li,
+      span {
+        float: left;
+        list-style: none;
+        padding: 0 10px;
+        line-height: 30px;
+        font-size: 14px;
+        color: #666;
+        cursor: pointer;
+      }
+      li:hover{
+        color:@fontColor3;
+      }
+      span {
+        padding: 0;
       }
     }
   }
@@ -251,10 +345,5 @@ export default {
       }
     }
   }
-}
-.majorbut {
-  background-color: @backgroundColor3;
-  color: @fontColor5;
-  border-radius: 2px;
 }
 </style>
