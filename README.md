@@ -1,29 +1,23 @@
-# vue3
+# zhuishu-Vue
 
-## Project setup
-```
-npm install
-```
+### 说明
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### 技术栈
 
-### Compiles and minifies for production
-```
-npm run build
-```
+vue2 + vue-router + vuex + es6 + axiox
 
-### Run your tests
-```
-npm run test
-```
+#### 接口
 
-### Lints and fixes files
-```
-npm run lint
-```
+api来自[追书神器接口](https://github.com/xiadd/zhuishushenqi)，感谢[@xiadd](https://github.com/xiadd)的提供。
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### 项目结构
+
+
+
+
+
+
+
+
+
+
