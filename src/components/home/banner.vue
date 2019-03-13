@@ -1,0 +1,72 @@
+<template>
+  <div class="banner">
+    <swiper :options="swiperOption">
+      <swiper-slide v-for="(item,index) in dd" :key="index">
+        <router-link :to="{path:'/book',query:{id:item.link}}">
+          <img :src="item.img">
+        </router-link>
+      </swiper-slide>
+    </swiper>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</template>
+
+<script>
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+export default {
+  props: ["dd"],
+  data() {
+    return {
+      swiperOption: {
+        speed: 500,
+        loop: true,
+        direction: "horizontal",
+        autoplay: {
+          delay: 3000,
+          stopOnLastSlide: false,
+          disableOnInteraction: false
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+          bulletElement: "li"
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev"
+        }
+      }
+    };
+  },
+  components: {
+    swiper,
+    swiperSlide
+  }
+};
+</script>
+
+<style lang="less" scoped>
+.banner {
+  position: relative;
+  width: 720px;
+  height: 240px;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  outline: none;
+}
+img {
+  width: 720px;
+  height: 240px;
+}
+.swiper-pagination {
+  bottom: 0;
+  left: 50%;
+  padding: 5px 0;
+  margin: 0 auto;
+}
+</style>
+
+

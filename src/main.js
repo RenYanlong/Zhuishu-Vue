@@ -4,7 +4,13 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import axios from "axios";
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
+import 'swiper/dist/css/swiper.css'
 import "element-ui/lib/theme-chalk/index.css";
+
+
+
 import {
   Pagination,
   Dialog,
@@ -12,8 +18,6 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Rate,
-  Carousel,
-  CarouselItem,
   Loading,
   MessageBox,
   Message,
@@ -29,11 +33,8 @@ Vue.use(Autocomplete);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
 Vue.use(Rate);
-Vue.use(Carousel);
-Vue.use(CarouselItem);
-
-
 Vue.use(Loading.directive);
+Vue.use(VueAwesomeSwiper)
 
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$msgbox = MessageBox;

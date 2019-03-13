@@ -8,13 +8,7 @@
     </div>
     <div class="homeRight">
       <div class="block">
-        <el-carousel height="240px" class="banner">
-          <el-carousel-item v-for="(item,index) in bannerInfo" :key="index">
-            <router-link :to="{path:'/book',query:{id:item.link}}">
-              <img :src="item.img">
-            </router-link>
-          </el-carousel-item>
-        </el-carousel>
+        <banner :dd = 'bannerInfo'></banner>
         <div class="hotwords">
           <div class="hotTitle">大家都在搜</div>
           <div class="hotMain">
@@ -33,6 +27,7 @@
 <script>
 import category from "@/components/home/category.vue";
 import sharts from "@/components/home/charts.vue";
+import banner from "@/components/home/banner.vue";
 export default {
   data() {
     return {
@@ -58,7 +53,8 @@ export default {
   },
   components: {
     category,
-    sharts
+    sharts,
+    banner
   },
   mounted() {
     this.$axios.get("https://novel.juhe.im/categories").then(response => {
