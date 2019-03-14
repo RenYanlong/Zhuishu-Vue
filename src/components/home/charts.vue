@@ -1,69 +1,32 @@
 <template>
   <div class="charts">
     <div class="chartsHead">
-      <span class="chartsName">排行榜</span>
+      <span class="chartsName">{{data.title}}</span>
     </div>
-    <div class="chartsMain">
-      <div class="rankingNav">
-        <span @click="changemale" :class="[this.currentTab == 'male'?'istab':'']">男生榜</span>
-        <span class="interval">|</span>
-        <span @click="changefemale" :class="[this.currentTab == 'female'?'istab':'']">女生榜</span>
-      </div>
-      <div>
-        <Chartsmain :data="maleinfo" v-if="currentTab === 'male'"></Chartsmain>
-        <Chartsmain :data="femaleinfo" v-else></Chartsmain>
-      </div>
+
+    <div class="chartsmain" v-if="data">
+      <ul>
+        <li v-for="(list,index) in data.books.slice(0,10)" :key="index">
+          <div class="chartsnum">
+            <span class="one" v-if="index == 0">{{(index + 1)}}</span>
+            <span class="two" v-else-if="index == 1">{{(index + 1)}}</span>
+            <span class="three" v-else-if="index == 2">{{(index + 1)}}</span>
+            <span class="other" v-else>{{(index + 1)}}</span>
+            <img :src="`http://statics.zhuishushenqi.com${list.cover}`" v-if="index == 0">
+          </div>
+          <div class="chartstext">
+            <p class="bookName">{{list.title}}</p>
+            <p class="follow">{{(list.latelyFollower/10000).toFixed(2)}} 万人气</p>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 <script>
-import Chartsmain from "@/components/home/chartsmain.vue";
 export default {
-  name: "charts",
-  data() {
-    return {
-      currentTab: "male",
-      maleinfo: "",
-      femaleinfo: "",
-      tabs: [
-        {
-          sex: "male",
-          name: "男生"
-        },
-        {
-          sex: "female",
-          name: "女生"
-        }
-      ]
-    };
-  },
-  methods: {
-    changefemale: function() {
-      if (this.currentTab != "female") {
-        this.currentTab = "female";
-      }
-    },
-    changemale: function() {
-      if (this.currentTab != "male") {
-        this.currentTab = "male";
-      }
-    }
-  },
-  components: {
-    Chartsmain
-  },
-  mounted() {
-    this.$axios
-      .get("https://novel.juhe.im/rank/54d43437d47d13ff21cad58b")
-      .then(response => {
-        this.femaleinfo = response.data.ranking.books.slice(0, 10);
-      });
-    this.$axios
-      .get("https://novel.juhe.im/rank/54d42d92321052167dfb75e3")
-      .then(response => {
-        this.maleinfo = response.data.ranking.books.slice(0, 10);
-      });
-  }
+  props: ["data"],
+  name: "charts"
 };
 </script>
 <style lang="less" scoped>
@@ -71,10 +34,10 @@ export default {
   background-color: @backgroundColor4;
   width: 250px;
   float: left;
-  border: 1px solid #eee;
   padding: 0 15px;
   box-sizing: border-box;
 }
+
 .chartsHead {
   box-sizing: border-box;
   height: 50px;
@@ -87,21 +50,74 @@ export default {
     font-weight: 700;
   }
 }
-.chartsMain {
-  .rankingNav {
-    height: 30px;
+.chartsmain {
+  padding: 13px 0;
+  li {
+    display: inline-block;
+    list-style: none;
+    width: 100%;
+    font-size: 14px;
+    margin-bottom: 13px;
+    cursor: pointer;
+  }
+}
+.chartsnum {
+  float: left;
+  span {
+    float: left;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    font-size: 12px;
+    font-weight: 400;
     text-align: center;
-    span {
-      line-height: 30px;
-      cursor: pointer;
-    }
-    .interval {
-      margin: 0 15px;
-    }
-    .istab {
-      color: red;
-      text-decoration: underline;
-    }
+  }
+  .one {
+    position: absolute;
+    margin-top: 0px;
+    background-color: #d82626;
+    color: #fff;
+  }
+  .two {
+    position: relative;
+    margin-top: 2px;
+    background-color: #fd5d32;
+    color: #fff;
+  }
+  .three {
+    position: relative;
+    margin-top: 2px;
+    background-color: #ffba60;
+    color: #fff;
+  }
+  .other {
+    position: relative;
+    margin-top: 2px;
+    background-color: #ededed;
+  }
+  img {
+    width: 70px;
+    height: 85px;
+  }
+}
+.chartstext {
+  float: left;
+  margin-left: 10px;
+  p {
+    margin: 0;
+  }
+  .bookName {
+    color: #666;
+    line-height: 20px;
+    font-size: 14px;
+  }
+  .bookName:hover{
+    color: @fontColor3;
+  }
+  .follow {
+    color: #999;
+    line-height: 20px;
+    font-size: 12px;
   }
 }
 </style>

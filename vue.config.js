@@ -5,5 +5,7 @@ module.exports = {
       patterns: ["src/assets/less/color.less"],
       preProcessor: "less"
     }
-  }
+  },
+
+  lintOnSave: undefined
 };

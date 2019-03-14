@@ -1,15 +1,18 @@
 <template>
   <div class="myApp">
+    <Customer></Customer>
     <Head></Head>
     <router-view/>
   </div>
 </template>
 <script>
+import Customer from '@/components/public/customer.vue';
 import Head from "./components/public/head";
 export default {
   name: "myApp",
   components: {
-    Head
+    Head,
+    Customer
   }
 };
 </script>

@@ -3,12 +3,10 @@
     <div class="homeLeft">
       <category :data="maleData" :sex="sexmale"></category>
       <category :data="femaleData" :sex="sexfemale"></category>
-      <category :data="pressData" :sex="sexpress"></category>
-      <sharts></sharts>
     </div>
     <div class="homeRight">
       <div class="block">
-        <banner :dd = 'bannerInfo'></banner>
+        <banner :dd="bannerInfo"></banner>
         <div class="hotwords">
           <div class="hotTitle">大家都在搜</div>
           <div class="hotMain">
@@ -21,13 +19,25 @@
         </div>
       </div>
     </div>
+    <div class="rank">
+      <chart :data="potential"></chart>
+      <chart :data="qidian"></chart>
+      <chart :data="qidianph"></chart>
+      <chart :data="vip"></chart>
+      <chart :data="nvrs"></chart>
+    </div>
+    <div class="over">
+      <Overbooks :info="wanjie"></Overbooks>
+    </div>
   </div>
 </template>
 
 <script>
 import category from "@/components/home/category.vue";
-import sharts from "@/components/home/charts.vue";
-import banner from "@/components/home/banner.vue";
+import chart from "@/components/home/charts.vue";
+import banner from "@/components/public/banner.vue";
+import Overbooks from "@/components/home/overbooks.vue";
+
 export default {
   data() {
     return {
@@ -37,6 +47,12 @@ export default {
       pressData: "",
       bannerInfo: "",
       hotBooks: "",
+      potential: "",
+      qidian: "",
+      qidianph: "",
+      vip: "",
+      wanjie: "",
+      nvrs: "",
       sexmale: {
         Egender: "male",
         CName: "男生"
@@ -44,23 +60,20 @@ export default {
       sexfemale: {
         Egender: "female",
         CName: "女生"
-      },
-      sexpress: {
-        Egender: "press",
-        CName: "出版社"
       }
     };
   },
   components: {
     category,
-    sharts,
-    banner
+    chart,
+    banner,
+    Overbooks
   },
+
   mounted() {
     this.$axios.get("https://novel.juhe.im/categories").then(response => {
-      this.maleData = response.data.male.slice(0, 9);
-      this.femaleData = response.data.female.slice(0, 9);
-      this.pressData = response.data.press.slice(0, 9);
+      this.maleData = response.data.male.slice(0, 12);
+      this.femaleData = response.data.female.slice(0, 12);
     });
     this.$axios.get("https://www.zhuishushenqi.com/spread").then(spread => {
       this.bannerInfo = spread.data.data;
@@ -68,6 +81,42 @@ export default {
     this.$axios.get("https://novel.juhe.im/hot-books").then(hot => {
       this.hotBooks = hot.data.newHotWords.slice(0, 5);
     });
+    //一周潜力榜
+    this.$axios
+      .get("https://novel.juhe.im/rank/54d42e72d9de23382e6877fb")
+      .then(pot => {
+        this.potential = pot.data.ranking;
+      });
+    //起点榜
+    this.$axios
+      .get("https://novel.juhe.im/rank/54d4306c321052167dfb75e4")
+      .then(qd => {
+        this.qidian = qd.data.ranking;
+      });
+    //票红榜
+    this.$axios
+      .get("https://novel.juhe.im/rank/550b836229cd462830ff4d1d")
+      .then(ph => {
+        this.qidianph = ph.data.ranking;
+      });
+    //vip
+    this.$axios
+      .get("https://novel.juhe.im/rank/57eb86f0ef9e5a8f20543d7d")
+      .then(vipp => {
+        this.vip = vipp.data.ranking;
+      });
+    //
+    this.$axios
+      .get("https://novel.juhe.im/rank/5a684515fc84c2b8efaa9875")
+      .then(rs => {
+        this.nvrs = rs.data.ranking;
+      });
+    //男生完结榜
+    this.$axios
+      .get("https://novel.juhe.im/rank/564eea0b731ade4d6c509493")
+      .then(ov => {
+        this.wanjie = ov.data.ranking;
+      });
   }
 };
 </script>
@@ -119,5 +168,19 @@ export default {
       }
     }
   }
+}
+.rank {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  float: left;
+  div {
+    width: 250px;
+    padding: 0 10px;
+  }
+}
+.over {
+  float: left;
+  width: 1200px;
 }
 </style>

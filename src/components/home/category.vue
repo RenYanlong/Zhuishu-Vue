@@ -7,12 +7,14 @@
       </router-link>
     </div>
     <div class="cetegoryList">
-      <div v-for="(List,index) in data" :key="index">
-        <router-link :to="{path:'/category-info',query:{gender:sex.Egender,major:List.name}}">
-          <p>{{List.name}}</p>
-          <p class="bookCount">{{List.bookCount}}</p>
-        </router-link>
-      </div>
+      <router-link
+        :to="{path:'/category-info',query:{gender:sex.Egender,major:List.name}}"
+        v-for="(List,index) in data"
+        :key="index"
+      >
+        <p>{{List.name}}</p>
+        <p class="bookCount">{{List.bookCount}}</p>
+      </router-link>
     </div>
   </div>
 </template>
@@ -29,43 +31,46 @@ export default {
 </script>
 <style lang='less' scoped>
 .category {
-  width: 250px;
   box-sizing: border-box;
   background-color: @backgroundColor4;
   border: @broderC2 1px solid;
   padding: 0 15px;
   margin-bottom: 10px;
+  transition: all 0.4s;
+}
+.category:hover {
+  transform: translateY(-1px);
+  box-shadow: 2px 2px 10px 1px rgba(62, 61, 67, 0.34);
 }
 .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid @broderC2;
-  height: 50px;
+  line-height: 39px;
   a {
-    font-size: 12px;
-    color: @fontColor1;
+    font-size: 13px;
+    color: @fontColor1;  
   }
 }
 .cetegoryList {
-  font-size: 13px;
-  padding: 12px 0;
-  display: inline-block;
-  div {
-    float: left;
-    width: 33.3%;
-    padding: 2px 0;
-    box-sizing: border-box;
-    line-height: 18px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-content: space-around;
+  padding: 7px 0;
+  font-size: 14px;
+  line-height: 30px;
+  a {
+    flex-basis: 33.3%; 
+    margin: 3px 0;
     .bookCount {
       font-size: 12px;
+      line-height: 10px;
     }
-    a:hover {
+  }
+  a:hover {
       color: @fontColor3;
     }
-  }
-  div:hover {
-    color: @fontColor3;
-  }
 }
 </style>

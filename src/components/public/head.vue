@@ -1,42 +1,8 @@
 <template>
   <div class="head">
-    <!-- customer -->
-    <div class="customer">
-      <div class="center">
-        <div class="follow" @mouseenter="showguanzhu = true" @mouseleave="showguanzhu = false">
-          <span>+关注</span>
-          <div class="followinterface" v-show="showguanzhu">
-            <div class="ground followpos"></div>
-            <div class="cover followpos"></div>
-            <div>
-              <img src="../../assets/images/fuwuhao.png">
-              <p>微信</p>
-            </div>
-            <div>
-              <img src="../../assets/images/weibo.png">
-              <p>微博</p>
-            </div>
-          </div>
-        </div>
-        <span class="interval">|</span>
-        <div
-          class="contact"
-          @mouseenter="showContactInterface = true"
-          @mouseleave="showContactInterface = false"
-        >
-          <span>联系客服</span>
-          <div class="contactInterface" v-show="showContactInterface">
-            <div class="ground contactpos"></div>
-            <div class="cover contactpos"></div>
-            <div>
-              <img src="../../assets/images/fuwuhao.png">
-              <p>微信联系客服</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- search -->
+    <!-- <div :class="{guding1:isguding1}" class="guding">
+      <div class="center"></div>
+    </div> -->
     <div class="search">
       <router-link :to="{path:'/'}">
         <h1></h1>
@@ -46,13 +12,21 @@
         <div class="search-but"></div>
       </div>
     </div>
-    <!-- nav -->
     <div class="nav">
       <div class="center">
         <router-link :to="{path:'/'}" :class="[this.$route.path === '/'? 'clicka':'']">首页</router-link>
-        <router-link :to="{path:'/category'}" :class="[this.$route.path === '/category'? 'clicka':'']">分类</router-link>
-        <router-link :to="{path:'/booklist'}" :class="[this.$route.path === '/booklist'? 'clicka':'']">书单</router-link>
-        <router-link :to="{path:'/ranking'}" :class="[this.$route.path === '/ranking'? 'clicka':'']">排行榜</router-link>
+        <router-link
+          :to="{path:'/category'}"
+          :class="[this.$route.path === '/category'? 'clicka':'']"
+        >分类</router-link>
+        <router-link
+          :to="{path:'/booklist'}"
+          :class="[this.$route.path === '/booklist'? 'clicka':'']"
+        >书单</router-link>
+        <router-link
+          :to="{path:'/ranking'}"
+          :class="[this.$route.path === '/ranking'? 'clicka':'']"
+        >排行榜</router-link>
         <router-link :to="{path:'/'}">客户端</router-link>
       </div>
     </div>
@@ -62,102 +36,71 @@
 export default {
   data() {
     return {
-      showContactInterface: false,
-      showguanzhu: false,
       input: "",
-      activeIndex: this.$route.name
+      isguding1: false
     };
+  },
+  methods: {
+    handleScroll() {
+      var scrollTop =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      //console.log(scrollTop);
+      if (scrollTop > 300) {
+        this.isguding1 = true;
+      } else {
+        this.isguding1 = false;
+      }
+    }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+    this.$axios.get("https://novel.juhe.im/categories").then(response => {
+      this.maleData = response.data.male.slice(0, 12);
+      this.femaleData = response.data.female.slice(0, 12);
+    });
   }
 };
 </script>
 <style lang="less" scoped>
-.customer {
-  background-color: @backgroundColor1;
+.guding {
+  width: 100%;
+  position: fixed;
+  top: -100px;
+  z-index: 99;
+  background-color: #3e3d43;
+  height: 40px;
+  transition: all 0.3s;
   .center {
-    position: relative;
     width: 1200px;
-    margin: 0 auto;
-    line-height: 40px;
-    text-align: right;
-    color: @fontColor1;
-    font-size: @fontSize14;
-    font-weight: 400;
-    .follow,
-    .contact {
-      display: inline-block;
-    }
-    .interval {
-      padding: 0 16px;
-    }
-    .followpos {
-      position: absolute;
-      right: 87px;
-    }
-    .contactpos {
-      position: absolute;
-      right: 14px;
-    }
-    .ground {
-      top: -15px;
-      border-bottom: 15px solid @backgroundColor3;
-      border-right: 15px solid transparent;
-      border-left: 15px solid transparent;
-    }
-    .cover {
-      top: -12px;
-      border-bottom: 15px solid @backgroundColor4;
-      border-right: 15px solid transparent;
-      border-left: 15px solid transparent;
-    }
-    .followinterface,
-    .contactInterface {
-      position: absolute;
-      display: flex;
-      justify-content: space-around;
-      right: 0px;
-      z-index: 200;
-      padding: 20px 10px;
-      margin-top: 13px;
-      border: 2px solid @backgroundColor3;
-      background-color: @backgroundColor4;
-      text-align: center;
-      img {
-        vertical-align: top;
-        width: 110px;
-        height: 110px;
-        margin: 0 10px;
-      }
-      p {
-        height: 30px;
-        line-height: 30px;
-      }
-    }
+    margin: 0 auto;  
   }
 }
+.guding1 {
+  transform: translateY(100px);
+}
 .search {
-  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 1200px;
-  height: 100px;
+  margin: 0 auto;
   h1 {
     width: 175px;
     height: 60px;
+    margin: 15px 0;
     background-image: url("../../assets/logo.png");
     background-size: 175px 60px;
-    display: inline-block;
-    margin-top: 20px;
   }
   .input {
     position: relative;
-    float: right;
-    margin-top: 30px;
     input {
       box-sizing: border-box;
       width: 260px;
       height: 40px;
-      padding: 0px 40px 0px 10px;
-      border: 2px solid #d82626;
-    }
-    input:focus {
+      padding: 0px 10px;
+      border: 1px solid #dbdbdb;
       outline: none;
     }
     .search-but {
@@ -166,7 +109,7 @@ export default {
       right: 0px;
       width: 40px;
       height: 40px;
-      background-color: #d82626;
+      background-color: #ed4259;
       background-image: url("./../../assets/search.png");
       background-repeat: no-repeat;
       background-position: center center;
@@ -174,29 +117,32 @@ export default {
   }
 }
 .nav {
-  background-color: @backgroundColor3;
+  background-color: #3e3d43;
   .center {
+    box-sizing: border-box;
+    width: 1200px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 1200px;
-    height: 60px;
-    margin: 0 auto;
+    color: #fff;
+    a:link,
+    a:hover,
+    a:active,
+    a:visited {
+      color: #fff;
+    }
     a {
-      width: 20%;
-      height: 60px;
-      line-height: 60px;
+      flex: 0 1 20%;
+      line-height: 40px;
       text-align: center;
-      color: @fontColor6;
       font-weight: 500;
     }
     a:hover {
-      background-color: @backgroundColor6;
-      color: @fontColor5;
+      background-color: #313035;
     }
-    .clicka{
-      background-color: @backgroundColor6;
-      color: @fontColor5;
+    .clicka {
+      background-color: #ed4259;
     }
   }
 }

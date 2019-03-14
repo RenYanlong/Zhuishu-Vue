@@ -1,3 +1,4 @@
 module.exports = {
-  'extends': 'plugin:vue/essential'
+  'extends': 'plugin:vue/strongly-recommended',
+  rules: undefined
 }

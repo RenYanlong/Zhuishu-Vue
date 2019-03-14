@@ -101,9 +101,8 @@ export default {
   margin: 0 auto;
   margin-top: 15px;
   .left {
-    width: 240px;
+    width: 200px;
     div {
-      border-bottom: 1px solid @borderC3;
       box-sizing: border-box;
       list-style: none;
       color: @fontColor2;
@@ -112,9 +111,7 @@ export default {
         box-sizing: border-box;
         display: inline-block;
         font-size: 14px;
-        height: 60px;
-        line-height: 60px;
-        padding: 0 30px;
+        line-height: 35px;
       }
     }
   }
@@ -123,15 +120,15 @@ export default {
     flex-flow: column nowrap;
     justify-content: left;
     align-items: center;
-    width: 900px;
+    width: 1000px;
     background-color: @backgroundColor4;
     .title {
-      width: 900px;
+      width: 1000px;
       box-sizing: border-box;
       line-height: 60px;
       font-size: 22px;
       font-weight: 700;
-      color: #cab389;
+      color: @fontColor2;
       padding-left: 15px;
     }
     .pagination {
@@ -140,11 +137,7 @@ export default {
   }
 }
 .isbut {
-  color: @fontColor4;
-  background-color: @backgroundColor5;
-  span {
-    border-bottom: 4px solid @fontColor4;
-  }
+  color: @fontColor3;
 }
 .book {
   box-sizing: border-box;

@@ -15,14 +15,13 @@
 
 <script>
 import { swiper, swiperSlide } from "vue-awesome-swiper";
+import "swiper/dist/css/swiper.css";
 export default {
   props: ["dd"],
   data() {
     return {
       swiperOption: {
-        speed: 500,
         loop: true,
-        direction: "horizontal",
         autoplay: {
           delay: 3000,
           stopOnLastSlide: false,
@@ -30,8 +29,7 @@ export default {
         },
         pagination: {
           el: ".swiper-pagination",
-          clickable: true,
-          bulletElement: "li"
+          clickable: true
         },
         navigation: {
           nextEl: ".swiper-button-next",
@@ -67,6 +65,8 @@ img {
   padding: 5px 0;
   margin: 0 auto;
 }
+span{
+  outline: none;
+}
 </style>
-
 
