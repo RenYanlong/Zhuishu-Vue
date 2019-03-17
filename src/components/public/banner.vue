@@ -7,8 +7,8 @@
         </router-link>
       </swiper-slide>
     </swiper>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev swiper-button-white"></div>
+    <div class="swiper-button-next swiper-button-white"></div>
     <div class="swiper-pagination"></div>
   </div>
 </template>
@@ -22,8 +22,9 @@ export default {
     return {
       swiperOption: {
         loop: true,
+        speed: 300,
         autoplay: {
-          delay: 3000,
+          delay: 4000,
           stopOnLastSlide: false,
           disableOnInteraction: false
         },
@@ -45,7 +46,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .banner {
   position: relative;
   width: 720px;
@@ -64,9 +65,13 @@ img {
   left: 50%;
   padding: 5px 0;
   margin: 0 auto;
-}
-span{
-  outline: none;
+  span {
+    outline: none;
+    margin: 0 3px;
+  }
+  .swiper-pagination-bullet-active {
+    background-color: #fff;
+  }
 }
 </style>
 
