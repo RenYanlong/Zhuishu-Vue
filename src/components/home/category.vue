@@ -32,15 +32,10 @@ export default {
 <style lang='less' scoped>
 .category {
   box-sizing: border-box;
-  background-color: @backgroundColor4;
-  border: @broderC2 1px solid;
+  background-color: #f2f2f2;
+  // border: @broderC2 1px solid;
   padding: 0 15px;
-  margin-bottom: 10px;
-  transition: all 0.4s;
-}
-.category:hover {
-  transform: translateY(-1px);
-  box-shadow: 2px 2px 10px 1px rgba(62, 61, 67, 0.34);
+  // margin-bottom: 10px;
 }
 .title {
   display: flex;
@@ -48,6 +43,7 @@ export default {
   align-items: center;
   border-bottom: 1px solid @broderC2;
   line-height: 39px;
+  font-size: 13px;
   a {
     font-size: 13px;
     color: @fontColor1;  

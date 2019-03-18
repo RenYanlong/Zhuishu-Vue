@@ -24,7 +24,7 @@
       <chart :data="qidian"></chart>
       <chart :data="qidianph"></chart>
       <chart :data="vip"></chart>
-      <chart :data="nvrs"></chart>
+      
     </div>
     <div class="over">
       <Overbooks :info="wanjie"></Overbooks>
@@ -74,6 +74,7 @@ export default {
     this.$axios.get("https://novel.juhe.im/categories").then(response => {
       this.maleData = response.data.male.slice(0, 12);
       this.femaleData = response.data.female.slice(0, 12);
+      this.pressData = response.data.press.slice(0, 12);
     });
     this.$axios.get("https://www.zhuishushenqi.com/spread").then(spread => {
       this.bannerInfo = spread.data.data;
@@ -123,23 +124,24 @@ export default {
 
 <style lang="less" scoped>
 .home {
-  width: 1200px;
+  width: 1100px;
   margin: 0 auto;
   margin-top: 15px;
   .homeLeft {
     float: left;
     width: 250px;
+    margin-top: -15px;
   }
   .homeRight {
     float: left;
     margin-left: 10px;
     .block {
       .banner {
-        width: 720px;
+        width: 630px;
         float: left;
         img {
-          width: 720px;
-          height: 240px;
+          width: 630px;
+          height: 210px;
         }
       }
     }
@@ -148,7 +150,7 @@ export default {
       box-sizing: border-box;
       background-color: @backgroundColor4;
       border: 1px solid @broderC2;
-      width: 210px;
+      width: 200px;
       height: 240px;
       padding: 0 10px;
       margin-left: 10px;
@@ -172,7 +174,7 @@ export default {
 .rank {
   display: flex;
   justify-content: space-between;
-  width: 1200px;
+  width: 1100px;
   float: left;
   div {
     width: 250px;

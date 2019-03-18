@@ -14,11 +14,12 @@
     </div>
     <div class="nav">
       <div class="center">
+        <div class="all">作品分类</div>
         <router-link :to="{path:'/'}" :class="[this.$route.path === '/'? 'clicka':'']">首页</router-link>
         <router-link
           :to="{path:'/category'}"
           :class="[this.$route.path === '/category'? 'clicka':'']"
-        >分类</router-link>
+        >全部作品</router-link>
         <router-link
           :to="{path:'/booklist'}"
           :class="[this.$route.path === '/booklist'? 'clicka':'']"
@@ -27,7 +28,6 @@
           :to="{path:'/ranking'}"
           :class="[this.$route.path === '/ranking'? 'clicka':'']"
         >排行榜</router-link>
-        <router-link :to="{path:'/'}">客户端</router-link>
       </div>
     </div>
   </div>
@@ -54,13 +54,13 @@ export default {
       }
     }
   },
-  mounted() {
-    window.addEventListener("scroll", this.handleScroll);
-    this.$axios.get("https://novel.juhe.im/categories").then(response => {
-      this.maleData = response.data.male.slice(0, 12);
-      this.femaleData = response.data.female.slice(0, 12);
-    });
-  }
+  // mounted() {
+  //   window.addEventListener("scroll", this.handleScroll);
+  //   this.$axios.get("https://novel.juhe.im/categories").then(response => {
+  //     this.maleData = response.data.male.slice(0, 12);
+  //     this.femaleData = response.data.female.slice(0, 12);
+  //   });
+  // }
 };
 </script>
 <style lang="less" scoped>
@@ -84,7 +84,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1200px;
+  width: 1100px;
   margin: 0 auto;
   h1 {
     width: 175px;
@@ -119,11 +119,18 @@ export default {
 .nav {
   background-color: #3e3d43;
   .center {
+    .all{
+      width: 250px;
+      box-sizing: border-box;
+      background-color: #313035;
+      line-height: 40px;
+      padding-left: 20px;
+    }
     box-sizing: border-box;
-    width: 1200px;
+    width: 1100px;
     margin: 0 auto;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
     color: #fff;
     a:link,
@@ -133,7 +140,7 @@ export default {
       color: #fff;
     }
     a {
-      flex: 0 1 20%;
+      padding: 0 60px;
       line-height: 40px;
       text-align: center;
       font-weight: 500;

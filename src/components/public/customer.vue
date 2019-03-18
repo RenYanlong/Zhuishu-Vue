@@ -52,7 +52,7 @@ export default {
     display: flex;
     margin: 0 auto;
     justify-content: flex-end;
-    width: 1200px;
+    width: 1100px;
     line-height: 35px;
     color: @fontColor1;
     font-size: 13px;

@@ -33,7 +33,7 @@ a:visited {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei",
     "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
-  background-color: @backgroundColor;
+  background-color: #fff;
   color: #333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
