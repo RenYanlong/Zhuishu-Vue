@@ -183,7 +183,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 1200px;
+  width: 1100px;
   margin: 0 auto;
   margin-top: 50px;
   background-color: @backgroundColor4;
@@ -243,7 +243,7 @@ export default {
         padding: 0;
       }
       .content {
-        height: 20px;
+
         line-height: 20px;
         padding-left: 10px;
         margin: 5px 0;

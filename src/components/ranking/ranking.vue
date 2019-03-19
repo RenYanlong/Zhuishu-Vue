@@ -1,8 +1,18 @@
 <template>
   <div class="ranking">
     <div class="left">
+      <div class="sex">男生</div>
       <div
         v-for="(item,index) in maleinfo"
+        :key="index"
+        @click="id = item._id,currentPage = 1,clickleft()"
+        :class="[id == item._id ? 'isbut' : '']"
+      >
+        <span>{{item.title}}</span>
+      </div>
+      <div class="sex">女生</div>
+      <div
+        v-for="(item,index) in femaleinfo"
         :key="index"
         @click="id = item._id,currentPage = 1,clickleft()"
         :class="[id == item._id ? 'isbut' : '']"
@@ -75,7 +85,7 @@ export default {
   mounted() {
     this.$axios.get("https://novel.juhe.im/rank-category").then(rank => {
       this.maleinfo = rank.data.male;
-      this.femaleinfo = rank.data.male;
+      this.femaleinfo = rank.data.female;
     }),
       this.$axios.get(`https://novel.juhe.im/rank/${this.id}`).then(info => {
         this.booklist = info.data;
@@ -93,15 +103,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.sex{
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 40px;
+}
 .ranking {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
-  width: 1200px;
+  width: 1000px;
   margin: 0 auto;
   margin-top: 15px;
   .left {
-    width: 200px;
+    width: 250px;
     div {
       box-sizing: border-box;
       list-style: none;
@@ -120,10 +135,10 @@ export default {
     flex-flow: column nowrap;
     justify-content: left;
     align-items: center;
-    width: 1000px;
+    width: 750px;
     background-color: @backgroundColor4;
     .title {
-      width: 1000px;
+      width: 750px;
       box-sizing: border-box;
       line-height: 60px;
       font-size: 22px;
@@ -141,7 +156,7 @@ export default {
 }
 .book {
   box-sizing: border-box;
-  width: 410px;
+  width: 750px;
   display: inline-block;
   padding: 15px;
   .bookImg {
@@ -157,7 +172,7 @@ export default {
     height: 120px;
     margin-left: 15px;
     float: left;
-    width: 275px;
+    width: 615px;
     .bookname {
       color: #333;
       font-weight: 700;

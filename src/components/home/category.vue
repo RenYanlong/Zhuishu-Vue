@@ -8,7 +8,7 @@
     </div>
     <div class="cetegoryList">
       <router-link
-        :to="{path:'/category-info',query:{gender:sex.Egender,major:List.name}}"
+        :to="{path:'/category',query:{gender:sex.Egender,major:List.name}}"
         v-for="(List,index) in data"
         :key="index"
       >
@@ -44,6 +44,9 @@ export default {
   border-bottom: 1px solid @broderC2;
   line-height: 39px;
   font-size: 13px;
+  h3{
+    color: #313035;
+  }
   a {
     font-size: 13px;
     color: @fontColor1;  

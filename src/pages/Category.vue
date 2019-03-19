@@ -1,77 +1,68 @@
 <template>
   <div class="category">
-    <div class="categoryLeft">
-      <div class="leftNav">
-        <ul>
-          <li
-            v-for="(item,index) in subCategories"
-            :key="index"
-            @click="gender = index,major = item[0].major,changeGender()"
-            :class="[gender == index ? 'isbut':'']"
-          >
-            <span v-if="index == 'male'">男生</span>
-            <span v-else-if="index == 'female'">女生</span>
-            <span v-else-if="index == 'press'">出版物</span>
-          </li>
-        </ul>
+    <div class="nav">
+      <ul>
+        <li
+          v-for="(item,index) in subCategories"
+          :key="index"
+          @click="gender = index,major = item[0].major,changeGender()"
+          :class="[gender == index ? 'isbut':'']"
+        >
+          <span v-if="index == 'male'">男生</span>
+          <span v-else-if="index == 'female'">女生</span>
+          <span v-else-if="index == 'press'">出版物</span>
+        </li>
+      </ul>
+    </div>
+    <div class="majorSort">
+      <ul>
+        <li
+          v-for="(list,index) in subCategories[gender]"
+          :key="index"
+          @click="major = list.major,changeMajor()"
+          :class="[major == list.major ? 'majorbut' : '']"
+        >{{list.major}}</li>
+      </ul>
+    </div>
+    <div class="minorSort" v-if="minorlist != ''">
+      <span>具体类型：</span>
+      <ul>
+        <li
+          v-for="(item,index) in minorlist"
+          :key="index"
+          @click="minor = item,changeMinor()"
+          :class="[minor == item ? 'majorbut' : '']"
+        >{{item}}</li>
+      </ul>
+    </div>
+    <div class="bookList">
+      <div class="book" v-for="list in categorylist.books" :key="list._id">
+        <router-link :to="{path:'/book',query:{id:list._id}}">
+          <div class="bookImg">
+            <img :src="`http://statics.zhuishushenqi.com${list.cover}`" v-if="list.cover">
+            <img src="../assets/img-bk.png" v-else>
+          </div>
+          <div class="bookinfo">
+            <p class="bookname">{{list.title}}</p>
+            <p class="author">{{list.author}}</p>
+            <p class="brief">{{list.shortIntro}}</p>
+            <p class="popular">
+              <span>{{list.latelyFollower}}</span>人气
+              <span class="shu">|</span>
+              <span>{{list.retentionRatio}}%</span>读者存留
+            </p>
+          </div>
+        </router-link>
       </div>
     </div>
-    <div class="categoryRight">
-      <div class="rightCategoryTitle">
-        <p v-if="this.gender == 'female'">女生</p>
-        <p v-else-if="this.gender == 'press'">出版物</p>
-        <p v-else>男生</p>
-      </div>
-      <div class="majorSort">
-        <ul>
-          <li
-            v-for="(list,index) in subCategories[gender]"
-            :key="index"
-            @click="major = list.major,changeMajor()"
-            :class="[major == list.major ? 'majorbut' : '']"
-          >{{list.major}}</li>
-        </ul>
-      </div>
-      <div class="minorSort" v-if="minorlist != ''">
-        <span>具体类型：</span>
-        <ul>
-          <li
-            v-for="(item,index) in minorlist"
-            :key="index"
-            @click="minor = item,changeMinor()"
-            :class="[minor == item ? 'majorbut' : '']"
-          >{{item}}</li>
-        </ul>
-      </div>
-
-      <div class="bookList">
-        <div class="book" v-for="list in categorylist.books" :key="list._id">
-          <router-link :to="{path:'/book',query:{id:list._id}}">
-            <div class="bookImg">
-              <img :src="`http://statics.zhuishushenqi.com${list.cover}`" v-if="list.cover">
-              <img src="../assets/img-bk.png" v-else>
-            </div>
-            <div class="bookinfo">
-              <p class="bookname">{{list.title}}</p>
-              <p class="author">{{list.author}}</p>
-              <p class="brief">{{list.shortIntro}}</p>
-              <p class="popular">
-                <span>{{list.latelyFollower}}</span>人气
-                <span class="shu">|</span>
-                <span>{{list.retentionRatio}}%</span>读者存留
-              </p>
-            </div>
-          </router-link>
-        </div>
-        <el-pagination
-          background
-          :current-page.sync="currentPage"
-          :page-size="28"
-          layout="total, prev, pager, next,jumper"
-          :total="categorylist.total"
-        ></el-pagination>
-      </div>
-    </div>
+    <el-pagination
+      background
+      :current-page.sync="currentPage"
+      :page-size="28"
+      layout="total, prev, pager, next,jumper"
+      :total="categorylist.total"
+      class="pag"
+    ></el-pagination>
   </div>
 </template>
 <script>
@@ -151,7 +142,6 @@ export default {
   watch: {
     $route() {
       this.getcanshu();
-      //参数改变后的操作
       this.$axios
         .get(
           `https://novel.juhe.im/category-info?type=hot&limit=19&gender=${
@@ -163,9 +153,7 @@ export default {
         });
     },
     currentPage() {
-      console.log(111);
       this.getcanshu();
-      //参数改变后的操作
       this.$axios
         .get(
           `https://novel.juhe.im/category-info?type=hot&limit=19&gender=${
@@ -198,104 +186,85 @@ export default {
 </script>
 <style lang='less' scoped>
 .category {
-  width: 1200px;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
   margin: 0 auto;
   margin-top: 15px;
-  .categoryLeft {
-    width: 240px;
-    float: left;
-    border-top: 4px solid #cab389;
-    .leftNav {
+  width: 1000px;
+  .nav {
+    width: 1000px;
+    ul {
+      display: flex;
+      font-size: 14px;
+      font-weight: 500;
+      justify-content: flex-start;
       li {
-        border-bottom: 1px solid @borderC3;
+        border: 1px solid #fff;
         box-sizing: border-box;
         list-style: none;
+        padding: 0 10px;
         color: @fontColor2;
-        span {
-          box-sizing: border-box;
-          display: inline-block;
-          font-size: 14px;
-          height: 60px;
-          line-height: 60px;
-          padding: 0 30px;
-        }
+        height: 40px;
+        line-height: 40px;
       }
-      .isbut {
-        color: @fontColor4;
-        background-color: @backgroundColor5;
-        span {
-          border-bottom: 4px solid @fontColor4;
-        }
-      }
+    }
+    .isbut {
+      font-weight: 600;
+      color: #ed4259;
     }
   }
-  .categoryRight {
-    width: 880px;
-    float: right;
-    .rightCategoryTitle p {
-      width: 100%;
-      height: 60px;
-      line-height: 60px;
-      font-size: 22px;
-      font-weight: 700;
-      color: #cab389;
-    }
+  .majorSort {
+    width: 1000px;
+    line-height: 40px;
 
-    .majorSort {
-      width: 100%;
-      height: 30px;
-      margin-bottom: 10px;
-      font-weight: 400;
-      .majorbut {
-        background-color: @backgroundColor3;
-        color: @fontColor5;
-        border-radius: 2px;
-      }
-      li {
-        float: left;
-        list-style: none;
-        padding: 0 10px;
-        line-height: 30px;
-        font-size: 14px;
-        color: #666;
-        cursor: pointer;
-      }
-      li:hover{
-        color:@fontColor3;
-      }
+    font-weight: 400;
+    .majorbut {
+      font-weight: 600;
+      color: #ed4259;
+      border-radius: 2px;
     }
-    .minorSort {
-      width: 100%;
-      height: 30px;
-      padding: 15px;
-      background-color: @backgroundColor7;
-      .majorbut {
-        background-color: @backgroundColor3;
-        color: @fontColor5;
-        border-radius: 2px;
-      }
-      li,
-      span {
-        float: left;
-        list-style: none;
-        padding: 0 10px;
-        line-height: 30px;
-        font-size: 14px;
-        color: #666;
-        cursor: pointer;
-      }
-      li:hover{
-        color:@fontColor3;
-      }
-      span {
-        padding: 0;
-      }
+    li {
+      float: left;
+      list-style: none;
+      padding: 0 10px;
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+    }
+    li:hover {
+      color: @fontColor3;
+    }
+  }
+  .minorSort {
+    width: 1000px;
+    line-height: 40px;
+    line-height: 40px;
+    .majorbut {
+      font-weight: 600;
+      color: #ed4259;
+    }
+    li,
+    span {
+      float: left;
+      list-style: none;
+      padding: 0 10px;
+      line-height: 30px;
+      font-size: 14px;
+      color: #666;
+      cursor: pointer;
+    }
+    li:hover {
+      color: @fontColor3;
     }
   }
 }
+.bookList{
+  margin: 10px 0 20px;
+}
 .book {
   box-sizing: border-box;
-  width: 410px;
+  width: 500px;
   display: inline-block;
   padding: 15px;
   .bookImg {
@@ -311,7 +280,7 @@ export default {
     height: 120px;
     margin-left: 15px;
     float: left;
-    width: 275px;
+    width: 345px;
     .bookname {
       color: #333;
       font-weight: 700;

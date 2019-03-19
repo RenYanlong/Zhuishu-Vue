@@ -1,8 +1,5 @@
 <template>
   <div class="head">
-    <!-- <div :class="{guding1:isguding1}" class="guding">
-      <div class="center"></div>
-    </div> -->
     <div class="search">
       <router-link :to="{path:'/'}">
         <h1></h1>
@@ -14,7 +11,12 @@
     </div>
     <div class="nav">
       <div class="center">
-        <div class="all">作品分类</div>
+        <div class="all" @mouseenter="ishow = false" @mouseleave="ishow = true">作品分类
+          <div class="homeLeft" :class="{show:ishow}">
+            <category :data="maleData" :sex="sexmale"></category>
+            <category :data="femaleData" :sex="sexfemale"></category>
+          </div>
+        </div>
         <router-link :to="{path:'/'}" :class="[this.$route.path === '/'? 'clicka':'']">首页</router-link>
         <router-link
           :to="{path:'/category'}"
@@ -33,12 +35,27 @@
   </div>
 </template>
 <script>
+import category from "../home/category";
 export default {
   data() {
     return {
+      ishow:true,
+      maleData: "",
+      femaleData: "",
       input: "",
-      isguding1: false
+      isguding1: false,
+      sexmale: {
+        Egender: "male",
+        CName: "男生"
+      },
+      sexfemale: {
+        Egender: "female",
+        CName: "女生"
+      }
     };
+  },
+  components: {
+    category
   },
   methods: {
     handleScroll() {
@@ -46,7 +63,6 @@ export default {
         window.pageYOffset ||
         document.documentElement.scrollTop ||
         document.body.scrollTop;
-      //console.log(scrollTop);
       if (scrollTop > 300) {
         this.isguding1 = true;
       } else {
@@ -54,37 +70,21 @@ export default {
       }
     }
   },
-  // mounted() {
-  //   window.addEventListener("scroll", this.handleScroll);
-  //   this.$axios.get("https://novel.juhe.im/categories").then(response => {
-  //     this.maleData = response.data.male.slice(0, 12);
-  //     this.femaleData = response.data.female.slice(0, 12);
-  //   });
-  // }
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+    this.$axios.get("https://novel.juhe.im/categories").then(response => {
+      this.maleData = response.data.male.slice(0, 12);
+      this.femaleData = response.data.female.slice(0, 12);
+    });
+  }
 };
 </script>
 <style lang="less" scoped>
-.guding {
-  width: 100%;
-  position: fixed;
-  top: -100px;
-  z-index: 99;
-  background-color: #3e3d43;
-  height: 40px;
-  transition: all 0.3s;
-  .center {
-    width: 1200px;
-    margin: 0 auto;  
-  }
-}
-.guding1 {
-  transform: translateY(100px);
-}
 .search {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1100px;
+  width: 1000px;
   margin: 0 auto;
   h1 {
     width: 175px;
@@ -119,15 +119,25 @@ export default {
 .nav {
   background-color: #3e3d43;
   .center {
-    .all{
+    .all {
+      position: relative;
       width: 250px;
       box-sizing: border-box;
       background-color: #313035;
       line-height: 40px;
-      padding-left: 20px;
+      padding-left: 15px;
+      .homeLeft {
+        position: absolute;
+        z-index: 99;
+        width: 250px;
+        left:0;
+      }
+      .show{
+        display: none;
+      }
     }
     box-sizing: border-box;
-    width: 1100px;
+    width: 1000px;
     margin: 0 auto;
     display: flex;
     justify-content: flex-start;

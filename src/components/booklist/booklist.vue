@@ -1,6 +1,6 @@
 <template>
   <div class="booklist">
-    <div class="listleft">
+    <div class="title">
       <ul>
         <li @click="clickhot(),chengeurl()" :class="[defaultSort == '按本周热度'?'but':'']">
           <span>按本周热度</span>
@@ -13,26 +13,23 @@
         </li>
       </ul>
     </div>
-    <div class="listright">
-      <div class="listghtmain">
-        <p>{{defaultSort}}</p>
-        <ul>
-          <li v-for="list in categorylist" :key="list.name" class="bookb">
-            <router-link :to="{path:'/bookListDetails',query:{id:list._id}}">
-              <book :book="list"></book>
-            </router-link>
-          </li>
-        </ul>
-      </div>
-      <el-pagination
-        background
-        @current-change="chengeurl,chengeurl()"
-        :current-page.sync="currentPage"
-        :page-size="20"
-        layout="prev, pager, next, jumper"
-        :total="bookListNum"
-      ></el-pagination>
+    <div class="listghtmain">
+      <ul>
+        <li v-for="list in categorylist" :key="list.name" class="bookb">
+          <router-link :to="{path:'/bookListDetails',query:{id:list._id}}">
+            <book :book="list"></book>
+          </router-link>
+        </li>
+      </ul>
     </div>
+    <el-pagination
+      background
+      @current-change="chengeurl,chengeurl()"
+      :current-page.sync="currentPage"
+      :page-size="20"
+      layout="prev, pager, next, jumper"
+      :total="bookListNum"
+    ></el-pagination>
   </div>
 </template>
 <script>
@@ -43,8 +40,8 @@ export default {
     return {
       bookListNum: "",
       currentPage: this.$route.query.start ? this.$route.query.start : "",
-      sort: this.$route.query.sort ? this.$route.query.sort : "",
-      duration: this.$route.query.duration ? this.$route.query.duration : "",
+      sort: this.$route.query.sort ? this.$route.query.sort : "collectorCount",
+      duration: this.$route.query.duration ? this.$route.query.duration : "last-seven-days",
       categorylist: ""
     };
   },
@@ -120,41 +117,45 @@ export default {
 <style lang='less' scoped>
 .bookb {
   box-sizing: border-box;
-  width: 410px;
+  width: 500px;
   display: inline-block;
   padding: 15px;
   cursor: pointer;
 }
 .booklist {
-  width: 1200px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  width: 1000px;
   margin: 0 auto;
   padding: 15px 0;
 }
-.listleft {
-  float: left;
-  width: 240px;
-  border-top: 5px #cab389 solid;
+.title {
+  width: 1000px;
   font-size: 14px;
-  li {
-    box-sizing: border-box;
-    height: 60px;
-    list-style: none;
-    color: #999;
-    border-bottom: 1px solid #ccc;
-    cursor: pointer;
-    span {
+  height: 40px;
+  line-height: 40px;
+  ul {
+    display: flex;
+    li {
       box-sizing: border-box;
-      display: inline-block;
-      height: 60px;
-      line-height: 60px;
-      padding: 0 30px;
+      list-style: none;
+      color: #999;
+      cursor: pointer;
+      padding: 0 10px;
+    }
+    li:hover {
+      color: #ed4259;
+    }
+    .but {
+      font-weight: 600;
+      color: #ed4259;
     }
   }
 }
-.listright {
-  float: right;
-  width: 880px;
-  padding: 0 15px;
+.listghtmain{
+  margin: 10px 0 20px;
 }
 .listghtmain p {
   width: 100%;
@@ -170,15 +171,5 @@ export default {
   font-size: 22px;
   font-weight: 700;
   color: #cab389;
-}
-.listleft .istab {
-  color: red;
-}
-.but {
-  color: @fontColor4;
-  background-color: @backgroundColor5;
-  span {
-    border-bottom: 4px solid @fontColor4;
-  }
 }
 </style>

@@ -7,12 +7,14 @@ import {
   Pagination, 
   Breadcrumb,
   BreadcrumbItem,
+  Rate
 } from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.use(Pagination);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
+Vue.use(Rate);
 
 (Vue.config.productionTip = false), (Vue.prototype.$axios = axios);
 

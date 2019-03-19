@@ -1,21 +1,19 @@
 <template>
   <div class="home">
-    <div class="homeLeft">
+    <!-- <div class="homeLeft">
       <category :data="maleData" :sex="sexmale"></category>
       <category :data="femaleData" :sex="sexfemale"></category>
-    </div>
-    <div class="homeRight">
-      <div class="block">
-        <banner :dd="bannerInfo"></banner>
-        <div class="hotwords">
-          <div class="hotTitle">大家都在搜</div>
-          <div class="hotMain">
-            <ul>
-              <li v-for="(list,index) in hotBooks" :key="index">
-                <router-link :to="{path:'/book',query:{id:list.book}}">{{list.word}}</router-link>
-              </li>
-            </ul>
-          </div>
+    </div>-->
+    <div class="bannerhot">
+      <banner :dd="bannerInfo"></banner>
+      <div class="hotwords">
+        <div class="hotTitle">大家都在搜</div>
+        <div class="hotMain">
+          <ul>
+            <li v-for="(list,index) in hotBooks" :key="index">
+              <router-link :to="{path:'/book',query:{id:list.book}}">{{list.word}}</router-link>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -24,7 +22,6 @@
       <chart :data="qidian"></chart>
       <chart :data="qidianph"></chart>
       <chart :data="vip"></chart>
-      
     </div>
     <div class="over">
       <Overbooks :info="wanjie"></Overbooks>
@@ -124,34 +121,27 @@ export default {
 
 <style lang="less" scoped>
 .home {
-  width: 1100px;
+  width: 1000px;
   margin: 0 auto;
   margin-top: 15px;
-  .homeLeft {
-    float: left;
-    width: 250px;
-    margin-top: -15px;
-  }
-  .homeRight {
-    float: left;
-    margin-left: 10px;
-    .block {
-      .banner {
-        width: 630px;
-        float: left;
-        img {
-          width: 630px;
-          height: 210px;
-        }
+  .bannerhot {
+    display: flex;
+    justify-content: space-between;
+    .banner {
+      width: 780px;
+      float: left;
+      img {
+        width: 780px;
+        height: 260px;
       }
     }
+
     .hotwords {
-      float: right;
       box-sizing: border-box;
       background-color: @backgroundColor4;
       border: 1px solid @broderC2;
-      width: 200px;
-      height: 240px;
+      width: 210px;
+      height: 260px;
       padding: 0 10px;
       margin-left: 10px;
       font-size: 14px;

@@ -51,7 +51,7 @@ export default {
 <style lang='less' scoped>
 .bookTitle {
   margin-bottom: 20px;
-  margin-top: 70px;
+  margin-top: 30px;
   .bookinfo {
     display: flex;
     flex-flow: row nowrap;

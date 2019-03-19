@@ -49,16 +49,14 @@ export default {
 <style lang="less">
 .banner {
   position: relative;
-  width: 720px;
-  height: 240px;
 }
 .swiper-button-prev,
 .swiper-button-next {
   outline: none;
 }
 img {
-  width: 720px;
-  height: 240px;
+  width: 780px;
+  height: 260px;
 }
 .swiper-pagination {
   bottom: 0;

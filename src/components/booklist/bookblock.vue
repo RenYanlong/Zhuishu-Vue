@@ -33,7 +33,7 @@ export default {
   height: 120px;
   margin-left: 15px;
   float: left;
-  width: 275px;
+  width: 355px;
   span {
     color: @fontColor3;
   }
