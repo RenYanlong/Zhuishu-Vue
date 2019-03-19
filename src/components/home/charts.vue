@@ -3,10 +3,10 @@
     <div class="chartsHead">
       <span class="chartsName">{{data.title}}</span>
     </div>
-
     <div class="chartsmain" v-if="data">
       <ul>
         <li v-for="(list,index) in data.books.slice(0,10)" :key="index">
+          <router-link :to="{path:'/book',query:{id:list._id}}">
           <div class="chartsnum">
             <span class="one" v-if="index == 0">{{(index + 1)}}</span>
             <span class="two" v-else-if="index == 1">{{(index + 1)}}</span>
@@ -16,8 +16,9 @@
           </div>
           <div class="chartstext">
             <p class="bookName">{{list.title}}</p>
-            <p class="follow">{{(list.latelyFollower/10000).toFixed(2)}} 万人气</p>
+            <p class="follow">{{list.latelyFollower}}</p>
           </div>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -36,17 +37,16 @@ export default {
   float: left;
   padding: 0 15px;
   box-sizing: border-box;
+  color: #333;
 }
-
 .chartsHead {
   box-sizing: border-box;
   height: 50px;
   line-height: 50px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #333;
   .chartsName {
     float: left;
     font-size: 18px;
-    color: #333;
     font-weight: 700;
   }
 }
@@ -57,20 +57,22 @@ export default {
     list-style: none;
     width: 100%;
     font-size: 14px;
-    margin-bottom: 13px;
+    margin-bottom: 10px;
     cursor: pointer;
   }
 }
 .chartsnum {
   float: left;
+  margin-right: 6px;
   span {
     float: left;
     width: 16px;
     height: 16px;
     line-height: 16px;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 600;
     text-align: center;
+    
   }
   .one {
     position: absolute;
@@ -101,13 +103,14 @@ export default {
   }
 }
 .chartstext {
-  float: left;
+  display: flex;
+  justify-content: space-between;
   margin-left: 10px;
   p {
     margin: 0;
   }
   .bookName {
-    color: #666;
+   
     line-height: 20px;
     font-size: 14px;
   }

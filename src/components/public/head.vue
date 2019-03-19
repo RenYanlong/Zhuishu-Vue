@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-import category from "../home/category";
+import category from "../public/category";
 export default {
   data() {
     return {

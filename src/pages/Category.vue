@@ -81,7 +81,6 @@ export default {
     };
   },
   methods: {
-    //改变url参数
     changeGender: function() {
       this.$router.push({
         path: "/category",
@@ -90,7 +89,6 @@ export default {
         }
       });
     },
-    //改变url参数
     changeMajor: function() {
       this.$router.push({
         path: "/category",
@@ -110,7 +108,6 @@ export default {
         }
       });
     },
-    //改变ajax请求参数
     getcanshu: function() {
       if (this.$route.query.gender) {
         this.gender = this.$route.query.gender;
@@ -229,7 +226,7 @@ export default {
       list-style: none;
       padding: 0 10px;
       font-size: 14px;
-      color: #666;
+      color: #333;
       cursor: pointer;
     }
     li:hover {
@@ -251,7 +248,7 @@ export default {
       padding: 0 10px;
       line-height: 30px;
       font-size: 14px;
-      color: #666;
+      color: #333;
       cursor: pointer;
     }
     li:hover {

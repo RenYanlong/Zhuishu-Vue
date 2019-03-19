@@ -17,27 +17,33 @@
         </div>
       </div>
     </div>
+    <div class="over">
+      <p class="title">热门推荐</p>
+      <div class="main">
+        <tuijian :info="item" v-for="(item,index) in wanjie" :key="index"></tuijian>
+      </div>
+      <!-- <Overbooks :info="wanjie"></Overbooks> -->
+    </div>
     <div class="rank">
       <chart :data="potential"></chart>
       <chart :data="qidian"></chart>
       <chart :data="qidianph"></chart>
       <chart :data="vip"></chart>
     </div>
-    <div class="over">
-      <Overbooks :info="wanjie"></Overbooks>
-    </div>
   </div>
 </template>
 
 <script>
-import category from "@/components/home/category.vue";
+// import category from "@/components/home/category.vue";
 import chart from "@/components/home/charts.vue";
-import banner from "@/components/public/banner.vue";
+import banner from "@/components/home/banner.vue";
 import Overbooks from "@/components/home/overbooks.vue";
+import tuijian from "../components/home/tuijian";
 
 export default {
   data() {
     return {
+      remen: "",
       name: "home",
       maleData: "",
       femaleData: "",
@@ -61,10 +67,11 @@ export default {
     };
   },
   components: {
-    category,
+    // category,
     chart,
     banner,
-    Overbooks
+    Overbooks,
+    tuijian
   },
 
   mounted() {
@@ -77,9 +84,8 @@ export default {
       this.bannerInfo = spread.data.data;
     });
     this.$axios.get("https://novel.juhe.im/hot-books").then(hot => {
-      this.hotBooks = hot.data.newHotWords.slice(0, 5);
+      this.hotBooks = hot.data.newHotWords.slice(0, 6);
     });
-    //一周潜力榜
     this.$axios
       .get("https://novel.juhe.im/rank/54d42e72d9de23382e6877fb")
       .then(pot => {
@@ -113,7 +119,7 @@ export default {
     this.$axios
       .get("https://novel.juhe.im/rank/564eea0b731ade4d6c509493")
       .then(ov => {
-        this.wanjie = ov.data.ranking;
+        this.wanjie = ov.data.ranking.books.slice(0, 9);
       });
   }
 };
@@ -135,7 +141,6 @@ export default {
         height: 260px;
       }
     }
-
     .hotwords {
       box-sizing: border-box;
       background-color: @backgroundColor4;
@@ -164,15 +169,26 @@ export default {
 .rank {
   display: flex;
   justify-content: space-between;
-  width: 1100px;
+  width: 1000px;
   float: left;
   div {
     width: 250px;
     padding: 0 10px;
   }
 }
+
 .over {
-  float: left;
-  width: 1200px;
+  width: 750px;
+  .title {
+    font-size: 18px;
+    line-height: 50px;
+    height: 50px;
+    font-weight: 600;
+    border-bottom: 1px solid #333;
+  }
+  .main {
+    display: flex;
+    flex-flow: row wrap;
+  }
 }
 </style>
