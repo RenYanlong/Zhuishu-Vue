@@ -48,7 +48,7 @@
             <img :src="`https://statics.zhuishushenqi.com${item.author.avatar}`">
             <div class="shortright">
               <p>
-                <span>{{item.author.nickname}}</span>
+                <span class="nickname">{{item.author.nickname}}</span>
                 <span>{{item.updated.slice(0,10)}}</span>
               </p>
               <el-rate v-model="item.rating" disabled text-color="#ff9900"></el-rate>
@@ -183,7 +183,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 1100px;
+  width: 1000px;
   margin: 0 auto;
   margin-top: 50px;
   background-color: @backgroundColor4;
@@ -195,7 +195,7 @@ export default {
 }
 .left {
   width: 690px;
-  margin-right: 20px;
+  margin-right: 30px;
   .bookSection > div {
     margin-bottom: 40px;
   }
@@ -208,9 +208,9 @@ export default {
   }
   p,
   li {
-    font-size: 12px;
+    font-size: 13px;
     color: #666;
-    line-height: 20px;
+    line-height: 25px;
     list-style: none;
     padding-left: 40px;
     box-sizing: border-box;
@@ -239,12 +239,15 @@ export default {
     }
     div {
       padding: 0 10px;
+      .nickname{
+        font-weight: 600;
+      }
       p {
+        font-size: 14px;
         padding: 0;
       }
       .content {
-
-        line-height: 20px;
+        line-height: 25px;
         padding-left: 10px;
         margin: 5px 0;
       }

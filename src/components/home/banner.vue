@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
     <swiper :options="swiperOption">
-      <swiper-slide v-for="(item,index) in dd" :key="index">
+      <swiper-slide v-for="(item,key) in bannerData" :key="key">
         <router-link :to="{path:'/book',query:{id:item.link}}">
           <img :src="item.img">
         </router-link>
@@ -17,7 +17,7 @@
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/dist/css/swiper.css";
 export default {
-  props: ["dd"],
+  props: ['bannerData'],
   data() {
     return {
       swiperOption: {

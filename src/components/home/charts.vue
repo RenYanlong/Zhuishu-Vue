@@ -1,18 +1,18 @@
 <template>
   <div class="charts">
     <div class="chartsHead">
-      <span class="chartsName">{{data.title}}</span>
+      <span class="chartsName">{{bookData.title}}</span>
     </div>
-    <div class="chartsmain" v-if="data">
+    <div class="chartsmain" v-if="bookData">
       <ul>
-        <li v-for="(list,index) in data.books.slice(0,10)" :key="index">
+        <li v-for="(list,index) in bookData.books.slice(0,10)" :key="index">
           <router-link :to="{path:'/book',query:{id:list._id}}">
           <div class="chartsnum">
             <span class="one" v-if="index == 0">{{(index + 1)}}</span>
             <span class="two" v-else-if="index == 1">{{(index + 1)}}</span>
             <span class="three" v-else-if="index == 2">{{(index + 1)}}</span>
             <span class="other" v-else>{{(index + 1)}}</span>
-            <img :src="`http://statics.zhuishushenqi.com${list.cover}`" v-if="index == 0">
+            <img v-lazy="`http://statics.zhuishushenqi.com${list.cover}`" v-if="index == 0">
           </div>
           <div class="chartstext">
             <p class="bookName">{{list.title}}</p>
@@ -26,7 +26,7 @@
 </template>
 <script>
 export default {
-  props: ["data"],
+  props: ["bookData"],
   name: "charts"
 };
 </script>

@@ -3,15 +3,15 @@
     <div class="introduceInfo">
       <div class="cover" v-if="info">
         <img
-          :src="`http://statics.zhuishushenqi.com${info.books[0].book.cover}`"
+          v-lazy="`http://statics.zhuishushenqi.com${info.books[1].book.cover}`"
           class="img1"
         >
         <img
-          :src="`http://statics.zhuishushenqi.com${info.books[1].book.cover}`"
+          v-lazy="`http://statics.zhuishushenqi.com${info.books[0].book.cover}`"
           class="img2"
         >
         <img
-          :src="`http://statics.zhuishushenqi.com${info.books[2].book.cover}`"
+          v-lazy="`http://statics.zhuishushenqi.com${info.books[2].book.cover}`"
           class="img3"
         >
       </div>

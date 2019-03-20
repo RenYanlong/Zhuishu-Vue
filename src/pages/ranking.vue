@@ -22,31 +22,16 @@
     </div>
     <div class="right" v-if="booklist">
       <div class="title">{{booklist.ranking.title}}</div>
-      <div>
-        <div
+      <div class="main">
+        <Book
+          :bookData="item"
           v-for="(item,index) in booklist.ranking.books.slice((currentPage - 1) * pagesize,
         currentPage * pagesize)"
           :key="index"
-          class="book"
-        >
-          <router-link tag="a" target="_blank" :to="{path:'/book',query:{id:item._id}}">
-            <div class="bookImg">
-              <img :src="`http://statics.zhuishushenqi.com${item.cover}`">
-            </div>
-            <div class="bookinfo">
-              <p class="bookname">{{item.title}}</p>
-              <p class="author">{{item.author}}</p>
-              <p class="brief">{{item.shortIntro}}</p>
-              <p class="popular">
-                <span>{{item.latelyFollower}}</span>人气
-                <span class="shu">|</span>
-                <span>{{item.retentionRatio}}%</span>读者存留
-              </p>
-            </div>
-          </router-link>
-        </div>
+        ></Book>
       </div>
       <el-pagination
+        background
         class="pagination"
         :current-page.sync="currentPage"
         :page-size="20"
@@ -58,7 +43,11 @@
 </template>
 
 <script>
+import Book from "./../components/rank/book";
 export default {
+  components: {
+    Book
+  },
   name: "ranking",
   data() {
     return {
@@ -103,7 +92,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.sex{
+.sex {
   font-size: 15px;
   font-weight: 600;
   line-height: 40px;
@@ -131,10 +120,6 @@ export default {
     }
   }
   .right {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: left;
-    align-items: center;
     width: 750px;
     background-color: @backgroundColor4;
     .title {
@@ -146,6 +131,9 @@ export default {
       color: @fontColor2;
       padding-left: 15px;
     }
+    .main {
+      padding-left: 15px;
+    }
     .pagination {
       margin: 20px 0;
     }
@@ -153,58 +141,5 @@ export default {
 }
 .isbut {
   color: @fontColor3;
-}
-.book {
-  box-sizing: border-box;
-  width: 750px;
-  display: inline-block;
-  padding: 15px;
-  .bookImg {
-    float: left;
-    height: 120px;
-    width: 90px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  .bookinfo {
-    height: 120px;
-    margin-left: 15px;
-    float: left;
-    width: 615px;
-    .bookname {
-      color: #333;
-      font-weight: 700;
-      font-size: 14px;
-      line-height: 22px;
-    }
-    .author,
-    .brief,
-    .popular {
-      font-size: 12px;
-      color: #999;
-    }
-    .author {
-      line-height: 28px;
-    }
-    .brief {
-      height: 40px;
-      line-height: 20px;
-      margin: 5px 0;
-      box-orient: vertical;
-      line-clamp: 2;
-      overflow: hidden;
-    }
-    .popular {
-      line-height: 20px;
-      span {
-        color: @fontColor3;
-      }
-      .shu {
-        padding: 0 15px;
-      }
-    }
-  }
 }
 </style>

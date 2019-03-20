@@ -1,7 +1,7 @@
 <template>
   <div class="bookblock">
     <div class="bookImg">
-      <img :src="`http://statics.zhuishushenqi.com${book.cover}`" v-if="book.cover != ''">
+      <img v-lazy="`http://statics.zhuishushenqi.com${book.cover}`" v-if="book.cover != ''">
       <img src="../../../src/assets/img-bk.png" v-else>
     </div>
     <div class="bookinfo">

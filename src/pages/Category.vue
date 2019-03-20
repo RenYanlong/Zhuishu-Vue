@@ -39,7 +39,7 @@
       <div class="book" v-for="list in categorylist.books" :key="list._id">
         <router-link :to="{path:'/book',query:{id:list._id}}">
           <div class="bookImg">
-            <img :src="`http://statics.zhuishushenqi.com${list.cover}`" v-if="list.cover">
+            <img v-lazy="`http://statics.zhuishushenqi.com${list.cover}`" v-if="list.cover">
             <img src="../assets/img-bk.png" v-else>
           </div>
           <div class="bookinfo">

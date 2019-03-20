@@ -1,7 +1,7 @@
 <template>
   <div class="book">
     <div class="bookInfo">
-      <img class="cover" :src="`http://statics.zhuishushenqi.com${bookInfo.book.cover}`">
+      <img v-lazy="`http://statics.zhuishushenqi.com${bookInfo.book.cover}`">
       <div class="info">
         <h4>{{bookInfo.book.title}}</h4>
         <p class="zuozhe">{{bookInfo.book.author}}</p>
@@ -30,8 +30,7 @@ export default {
     flex-flow: row nowrap;
     justify-content: left;
     background-color: @backgroundColor4;
-    .cover {
-      float: left;
+    img {
       width: 90px;
       height: 120px;
     }

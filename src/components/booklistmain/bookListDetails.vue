@@ -62,7 +62,7 @@ export default {
 </script>
 <style lang='less' scoped>
 .breadcrumb {
-  width: 1200px;
+  width: 1000px;
   height: 60px;
   line-height: 60px;
   margin: 0 auto;

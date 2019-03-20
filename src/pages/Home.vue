@@ -1,44 +1,29 @@
 <template>
   <div class="home">
-    <!-- <div class="homeLeft">
-      <category :data="maleData" :sex="sexmale"></category>
-      <category :data="femaleData" :sex="sexfemale"></category>
-    </div>-->
     <div class="bannerhot">
-      <banner :dd="bannerInfo"></banner>
-      <div class="hotwords">
-        <div class="hotTitle">大家都在搜</div>
-        <div class="hotMain">
-          <ul>
-            <li v-for="(list,index) in hotBooks" :key="index">
-              <router-link :to="{path:'/book',query:{id:list.book}}">{{list.word}}</router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
+      <banner :bannerData="bannerInfo"></banner>    
+      <HotWords :hotwordsData="hotBooks"></HotWords>
     </div>
-    <div class="over">
+    <div class="popular">
       <p class="title">热门推荐</p>
       <div class="main">
-        <tuijian :info="item" v-for="(item,index) in wanjie" :key="index"></tuijian>
+        <Recommend :info="item" v-for="(item,index) in finish" :key="index"></Recommend>
       </div>
-      <!-- <Overbooks :info="wanjie"></Overbooks> -->
     </div>
     <div class="rank">
-      <chart :data="potential"></chart>
-      <chart :data="qidian"></chart>
-      <chart :data="qidianph"></chart>
-      <chart :data="vip"></chart>
+      <chart :bookData="potential"></chart>
+      <chart :bookData="qidian"></chart>
+      <chart :bookData="qidianph"></chart>
+      <chart :bookData="vip"></chart>
     </div>
   </div>
 </template>
 
 <script>
-// import category from "@/components/home/category.vue";
+import HotWords from "./../components/home/hotwords";
 import chart from "@/components/home/charts.vue";
 import banner from "@/components/home/banner.vue";
-import Overbooks from "@/components/home/overbooks.vue";
-import tuijian from "../components/home/tuijian";
+import Recommend from "../components/home/recommend";
 
 export default {
   data() {
@@ -54,7 +39,7 @@ export default {
       qidian: "",
       qidianph: "",
       vip: "",
-      wanjie: "",
+      finish: "",
       nvrs: "",
       sexmale: {
         Egender: "male",
@@ -67,25 +52,21 @@ export default {
     };
   },
   components: {
-    // category,
+    HotWords,
     chart,
     banner,
-    Overbooks,
-    tuijian
+    Recommend
   },
 
   mounted() {
-    this.$axios.get("https://novel.juhe.im/categories").then(response => {
-      this.maleData = response.data.male.slice(0, 12);
-      this.femaleData = response.data.female.slice(0, 12);
-      this.pressData = response.data.press.slice(0, 12);
-    });
+    //请求banner数据
     this.$axios.get("https://www.zhuishushenqi.com/spread").then(spread => {
       this.bannerInfo = spread.data.data;
     });
     this.$axios.get("https://novel.juhe.im/hot-books").then(hot => {
       this.hotBooks = hot.data.newHotWords.slice(0, 6);
     });
+    //潜力榜
     this.$axios
       .get("https://novel.juhe.im/rank/54d42e72d9de23382e6877fb")
       .then(pot => {
@@ -119,7 +100,7 @@ export default {
     this.$axios
       .get("https://novel.juhe.im/rank/564eea0b731ade4d6c509493")
       .then(ov => {
-        this.wanjie = ov.data.ranking.books.slice(0, 9);
+        this.finish = ov.data.ranking.books.slice(0, 9);
       });
   }
 };
@@ -135,34 +116,6 @@ export default {
     justify-content: space-between;
     .banner {
       width: 780px;
-      float: left;
-      img {
-        width: 780px;
-        height: 260px;
-      }
-    }
-    .hotwords {
-      box-sizing: border-box;
-      background-color: @backgroundColor4;
-      border: 1px solid @broderC2;
-      width: 210px;
-      height: 260px;
-      padding: 0 10px;
-      margin-left: 10px;
-      font-size: 14px;
-      .hotTitle {
-        border-bottom: 1px solid @broderC2;
-        line-height: 50px;
-        height: 50px;
-      }
-      .hotMain {
-        margin-top: 10px;
-        color: @fontColor1;
-        li {
-          list-style: none;
-          line-height: 30px;
-        }
-      }
     }
   }
 }
@@ -177,7 +130,7 @@ export default {
   }
 }
 
-.over {
+.popular {
   width: 750px;
   .title {
     font-size: 18px;

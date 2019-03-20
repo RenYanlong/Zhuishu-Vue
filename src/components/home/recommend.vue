@@ -1,12 +1,12 @@
 <template>
   <div class="tuijian">
-    <img :src="`http://statics.zhuishushenqi.com${info.cover}`">
+    <img v-lazy="`http://statics.zhuishushenqi.com${info.cover}`">
     <div class="info">
       <p class="title">{{info.title}}</p>
       <p class="jianjie">{{info.shortIntro}}</p>
       <div class="zuozhe">
         <div class="zuohe">{{info.author}}</div>
-        <div class="leixing">{{info.majorCate}}</div>
+        <!-- <div class="leixing">{{info.majorCate}}</div> -->
       </div>
     </div>
   </div>
@@ -56,11 +56,10 @@ export default {
       color: #a6a6a6;
       height: 20px;
       line-height: 20px;
-      .leixing{
-        padding: 0 5px;
-        box-sizing: border-box;
-        border: 1px solid #a6a6a6;
-      }
+      // .leixing{
+      //   padding: 0 5px;
+      //   box-sizing: border-box;
+      // }
     }
   }
 }

@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import axios from "axios";
+import VueLazyload from 'vue-lazyload'
 import {
   Pagination, 
   Breadcrumb,
@@ -15,6 +16,7 @@ Vue.use(Pagination);
 Vue.use(Breadcrumb);
 Vue.use(BreadcrumbItem);
 Vue.use(Rate);
+Vue.use(VueLazyload);
 
 (Vue.config.productionTip = false), (Vue.prototype.$axios = axios);
 
