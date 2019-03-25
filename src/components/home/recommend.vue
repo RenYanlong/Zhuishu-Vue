@@ -6,7 +6,6 @@
       <p class="jianjie">{{info.shortIntro}}</p>
       <div class="zuozhe">
         <div class="zuohe">{{info.author}}</div>
-        <!-- <div class="leixing">{{info.majorCate}}</div> -->
       </div>
     </div>
   </div>
@@ -21,13 +20,14 @@ export default {
 <style lang="less" scoped>
 .tuijian {
   display: flex;
-  width: 250px;
+  
+  width: 23%;
   box-sizing: border-box;
-  padding: 20px 10px;
+  padding: 10px 0;
   img {
     width: 70px;
     height: 85px;
-    margin-right: 5px;
+    margin-right: 10px;
   }
   .info {
     display: flex;
@@ -56,10 +56,6 @@ export default {
       color: #a6a6a6;
       height: 20px;
       line-height: 20px;
-      // .leixing{
-      //   padding: 0 5px;
-      //   box-sizing: border-box;
-      // }
     }
   }
 }

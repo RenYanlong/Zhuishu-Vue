@@ -32,10 +32,8 @@ export default {
 <style lang='less' scoped>
 .category {
   box-sizing: border-box;
-  background-color: #f2f2f2;
-  // border: @broderC2 1px solid;
+  background-color: #f5f5f5;
   padding: 0 15px;
-  // margin-bottom: 10px;
 }
 .title {
   display: flex;

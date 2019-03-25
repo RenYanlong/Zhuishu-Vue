@@ -1,18 +1,20 @@
 <template>
   <div class="myApp">
-    <Customer></Customer>
     <Head></Head>
     <router-view/>
+    <Footer></Footer>
   </div>
 </template>
 <script>
+import Footer from './components/public/footer'
 import Customer from '@/components/public/customer.vue';
 import Head from "./components/public/head";
 export default {
   name: "myApp",
   components: {
     Head,
-    Customer
+    Customer,
+    Footer
   }
 };
 </script>
@@ -33,7 +35,7 @@ a:visited {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei",
     "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
-  background-color: #fff;
+  background-color: #f5f5f5;
   color: #333;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

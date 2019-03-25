@@ -8,11 +8,17 @@
         <input type="text" placeholder="请输入内容">
         <div class="search-but"></div>
       </div>
+      <div class="bookshelf">
+          我的书架
+        </div>
     </div>
     <div class="nav">
       <div class="center">
-        <div class="all" @mouseenter="ishow = false" @mouseleave="ishow = true">作品分类
+        <div class="all" @mouseenter="ishow = false" @mouseleave="ishow = true">
+          <span></span>
+          作品分类
           <div class="homeLeft" :class="{show:ishow}">
+            <div class="sanjiao"></div>
             <category :data="maleData" :sex="sexmale"></category>
             <category :data="femaleData" :sex="sexfemale"></category>
           </div>
@@ -80,16 +86,21 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+.head{
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+}
 .search {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 1000px;
   margin: 0 auto;
+  border-bottom: 1px solid #dbdbdb;
   h1 {
     width: 175px;
     height: 60px;
-    margin: 15px 0;
+    margin: 20px 0;
     background-image: url("../../assets/logo.png");
     background-size: 175px 60px;
   }
@@ -115,22 +126,43 @@ export default {
       background-position: center center;
     }
   }
+  .bookshelf{
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #dbdbdb;
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 14px;
+  }
 }
 .nav {
-  background-color: #3e3d43;
+  color: #333;
   .center {
     .all {
       position: relative;
-      width: 250px;
       box-sizing: border-box;
-      background-color: #313035;
-      line-height: 40px;
-      padding-left: 15px;
+      line-height: 64px;
+      padding-right: 60px;
+      span{
+        display: inline-block;
+
+      }
       .homeLeft {
         position: absolute;
         z-index: 99;
         width: 250px;
         left:0;
+        top: 64px;
+        .sanjiao{
+          position: absolute;
+          border-bottom: 10px solid #f5f5f5;
+          border-right: 10px solid transparent;
+          border-left: 10px solid transparent;
+          top: -10px;
+          left: 20px;
+        }
       }
       .show{
         display: none;
@@ -142,24 +174,18 @@ export default {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    color: #fff;
-    a:link,
-    a:hover,
-    a:active,
-    a:visited {
-      color: #fff;
-    }
     a {
-      padding: 0 60px;
-      line-height: 40px;
+      padding-right: 60px;
+      height: 64px;
+      line-height: 64px;
       text-align: center;
-      font-weight: 500;
+      color: #333;
     }
     a:hover {
-      background-color: #313035;
+      color: #ed4259;
     }
     .clicka {
-      background-color: #ed4259;
+      color: #ed4259;
     }
   }
 }

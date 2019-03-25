@@ -20,21 +20,20 @@ export default {
 <style lang="less" scoped>
 .hotwords {
   box-sizing: border-box;
-  background-color: @backgroundColor4;
-  border: 1px solid @broderC2;
   width: 210px;
   height: 260px;
   padding: 0 10px;
-  margin-left: 10px;
+  margin-left: 20px;
   font-size: 14px;
+  color: #333;
   .hotTitle {
+    font-size: 16px;
     border-bottom: 1px solid @broderC2;
     line-height: 50px;
     height: 50px;
   }
   .hotMain {
     margin-top: 10px;
-    color: @fontColor1;
     li {
       list-style: none;
       line-height: 30px;

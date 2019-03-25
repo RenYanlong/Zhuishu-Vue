@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="bannerhot">
-      <banner :bannerData="bannerInfo"></banner>    
+      <banner :bannerData="bannerInfo"></banner>
       <HotWords :hotwordsData="hotBooks"></HotWords>
     </div>
     <div class="popular">
@@ -100,7 +100,7 @@ export default {
     this.$axios
       .get("https://novel.juhe.im/rank/564eea0b731ade4d6c509493")
       .then(ov => {
-        this.finish = ov.data.ranking.books.slice(0, 9);
+        this.finish = ov.data.ranking.books.slice(0, 12);
       });
   }
 };
@@ -114,6 +114,10 @@ export default {
   .bannerhot {
     display: flex;
     justify-content: space-between;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
     .banner {
       width: 780px;
     }
@@ -123,7 +127,11 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 1000px;
-  float: left;
+  border-radius: 6px;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #fff;
+  margin-bottom: 20px;
   div {
     width: 250px;
     padding: 0 10px;
@@ -131,17 +139,24 @@ export default {
 }
 
 .popular {
-  width: 750px;
+  width: 1000px;
+  box-sizing: border-box;
+  background-color: #fff;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  padding: 20px;
   .title {
-    font-size: 18px;
-    line-height: 50px;
-    height: 50px;
+    font-size: 20px;
+    line-height: 33px;
+    height: 33px;
     font-weight: 600;
-    border-bottom: 1px solid #333;
+    border-bottom: 1px solid #dbdbdb;
   }
   .main {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 5px 0;
   }
 }
 </style>
