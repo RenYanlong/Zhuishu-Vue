@@ -15,21 +15,21 @@
     </div>
     <div class="listghtmain">
       <ul>
-        <li v-for="list in categorylist" :key="list.name" class="bookb">
+        <li v-for="(list,index) in categorylist" :key="index" class="bookb">
           <router-link :to="{path:'/bookListDetails',query:{id:list._id}}">
             <book :book="list"></book>
           </router-link>
         </li>
+        <el-pagination
+          @current-change="chengeurl,chengeurl()"
+          :current-page.sync="currentPage"
+          :page-size="20"
+          layout="prev, pager, next, jumper"
+          :total="bookListNum"
+          class="pag"
+        ></el-pagination>
       </ul>
     </div>
-    <el-pagination
-      background
-      @current-change="chengeurl,chengeurl()"
-      :current-page.sync="currentPage"
-      :page-size="20"
-      layout="prev, pager, next, jumper"
-      :total="bookListNum"
-    ></el-pagination>
   </div>
 </template>
 <script>
@@ -39,9 +39,11 @@ export default {
   data() {
     return {
       bookListNum: "",
-      currentPage: this.$route.query.start ? this.$route.query.start : "",
+      currentPage: this.$route.query.start ? this.$route.query.start : 1,
       sort: this.$route.query.sort ? this.$route.query.sort : "collectorCount",
-      duration: this.$route.query.duration ? this.$route.query.duration : "last-seven-days",
+      duration: this.$route.query.duration
+        ? this.$route.query.duration
+        : "last-seven-days",
       categorylist: ""
     };
   },
@@ -90,7 +92,7 @@ export default {
       .get(
         `https://novel.juhe.im/booklists?sort=${this.sort}&duration=${
           this.duration
-        }&start=${this.currentPage - 1}`
+        }&start=${this.currentPage}`
       )
       .then(response => {
         this.bookListNum = response.data.total;
@@ -104,7 +106,7 @@ export default {
         .get(
           `https://novel.juhe.im/booklists?sort=${this.sort}&duration=${
             this.duration
-          }&start=${this.currentPage - 1}`
+          }&start=${this.currentPage}`
         )
         .then(response => {
           this.bookListNum = response.data.total;
@@ -115,16 +117,9 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.bookb {
-  box-sizing: border-box;
-  width: 500px;
-  display: inline-block;
-  padding: 15px;
-  cursor: pointer;
-}
 .booklist {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column nowrap;
   justify-content: center;
   align-content: center;
   width: 1000px;
@@ -133,9 +128,10 @@ export default {
 }
 .title {
   width: 1000px;
-  font-size: 14px;
+  font-size: 16px;
   height: 40px;
   line-height: 40px;
+  border-bottom: 1px solid #dbdbdb;
   ul {
     display: flex;
     li {
@@ -145,31 +141,29 @@ export default {
       cursor: pointer;
       padding: 0 10px;
     }
-    li:hover {
-      color: #ed4259;
-    }
     .but {
       font-weight: 600;
       color: #ed4259;
     }
   }
 }
-.listghtmain{
-  margin: 10px 0 20px;
-}
-.listghtmain p {
+.listghtmain {
   width: 100%;
-  height: 60px;
-  line-height: 60px;
-  font-size: 22px;
-  font-weight: 700;
-  color: #cab389;
-}
-.listrighttitle {
-  width: 100%;
-  line-height: 60px;
-  font-size: 22px;
-  font-weight: 700;
-  color: #cab389;
+  background-color: #fff;
+  border-radius: 6px;
+  margin: 20px 0;
+  padding: 20px;
+  .pag {
+    align-self: flex-end;
+    padding: 30px 0;
+  }
+  ul {
+    display: flex;
+    flex-flow: column nowrap;
+    li {
+      list-style: none;
+      cursor: pointer;
+    }
+  }
 }
 </style>

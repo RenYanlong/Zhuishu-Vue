@@ -1,8 +1,7 @@
 <template>
   <div class="bookblock">
     <div class="bookImg">
-      <img v-lazy="`http://statics.zhuishushenqi.com${book.cover}`" v-if="book.cover != ''">
-      <img src="../../../src/assets/img-bk.png" v-else>
+      <img :src="`https://statics.zhuishushenqi.com${book.cover}`">     
     </div>
     <div class="bookinfo">
       <p class="bookname">{{book.title}}</p>
@@ -22,38 +21,26 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.bookImg {
-  float: left;
-  img {
-    height: 120px;
-    width: 90px;
-  }
+.bookblock {
+  display: flex;
+  border-bottom: 1px solid #dbdbdb;
+  padding: 22px 0;
+}
+img {
+  height: 136px;
+  width: 102px;
 }
 .bookinfo {
-  height: 120px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
   margin-left: 15px;
-  float: left;
-  width: 355px;
-  span {
-    color: @fontColor3;
-  }
+  font-size: 13px;
+    color: @fontColor2;
   .bookname {
     color: @fontColor;
-    font-weight: 700;
-    font-size: 14px;
-    line-height: 22px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .author,
-  .brief,
-  .popular {
-    font-size: 12px;
-    color: @fontColor2;
-  }
-  .author {
-    line-height: 28px;
+    font-weight: 600;
+    font-size: 18px;
   }
   .brief {
     height: 40px;

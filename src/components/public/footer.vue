@@ -63,9 +63,9 @@ export default {
   font-size: 13px;
   color: #666;
   line-height: 25px;
-  border-top: 1px solid #666;
   padding: 30px 0;
   .friendLink {
+    width: 100%;
     margin-bottom: 20px;
     a {
       display: inline-block;

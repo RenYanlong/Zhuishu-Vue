@@ -1,14 +1,14 @@
 import Vue from "vue";
 import Router from "vue-router";
 
-
 import Home from "./pages/Home.vue";
 import Booklist from "./pages/booklist.vue";
 import Category from "./pages/Category.vue";
 import BookListDetails from "./components/booklistmain/bookListDetails.vue";
 import Book from "./components/book/book.vue";
-import Ranking from './pages/ranking.vue'
-import Chapters from './components/chapters/chapters.vue'
+import Ranking from './pages/ranking.vue';
+import Chapters from './components/chapters/chapters.vue';
+import Search from './pages/search.vue';
 
 Vue.use(Router);
 
@@ -19,6 +19,11 @@ export default new Router({
       path: "/",
       name: "home",
       component: Home
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search
     },
     {
       path: "/category",

@@ -1,6 +1,6 @@
 <template>
   <div class="book">
-    <div class="bookInfo">
+    <div class="bookInfo" v-if="bookInfo">
       <img v-lazy="`http://statics.zhuishushenqi.com${bookInfo.book.cover}`">
       <div class="info">
         <h4>{{bookInfo.book.title}}</h4>

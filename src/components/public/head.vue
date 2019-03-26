@@ -5,12 +5,12 @@
         <h1></h1>
       </router-link>
       <div class="input">
-        <input type="text" placeholder="请输入内容">
-        <div class="search-but"></div>
+        <input type="text" placeholder="冥冥之中喜欢你" v-model="input">
+        <router-link :to="{path:'/search',query:{keyword:input}}">
+          <div class="search-but"></div>
+        </router-link>
       </div>
-      <div class="bookshelf">
-          我的书架
-        </div>
+      <div class="bookshelf">我的书架</div>
     </div>
     <div class="nav">
       <div class="center">
@@ -45,7 +45,8 @@ import category from "../public/category";
 export default {
   data() {
     return {
-      ishow:true,
+      input: "冥冥之中喜欢你",
+      ishow: true,
       maleData: "",
       femaleData: "",
       input: "",
@@ -86,9 +87,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.head{
+.head {
   background-color: #fff;
-  box-shadow: 0 1px 4px rgba(0,0,0,.1);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 .search {
   display: flex;
@@ -126,7 +127,7 @@ export default {
       background-position: center center;
     }
   }
-  .bookshelf{
+  .bookshelf {
     display: inline-block;
     box-sizing: border-box;
     border: 1px solid #dbdbdb;
@@ -145,17 +146,16 @@ export default {
       box-sizing: border-box;
       line-height: 64px;
       padding-right: 60px;
-      span{
+      span {
         display: inline-block;
-
       }
       .homeLeft {
         position: absolute;
         z-index: 99;
         width: 250px;
-        left:0;
+        left: 0;
         top: 64px;
-        .sanjiao{
+        .sanjiao {
           position: absolute;
           border-bottom: 10px solid #f5f5f5;
           border-right: 10px solid transparent;
@@ -164,7 +164,7 @@ export default {
           left: 20px;
         }
       }
-      .show{
+      .show {
         display: none;
       }
     }

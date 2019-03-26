@@ -1,7 +1,9 @@
 <template>
   <div class="book">
-    <router-link tag="a" target="_blank" :to="{path:'/book',query:{id:bookData._id}}">
-      <img :src="`https://statics.zhuishushenqi.com${bookData.cover}`">
+    <router-link target="_blank" :to="{path:'/book',query:{id:bookData._id}}">
+      <div>
+        <img :src="`https://statics.zhuishushenqi.com${bookData.cover}`">
+      </div>
       <div class="bookinfo">
         <p class="bookname">{{bookData.title}}</p>
         <p class="author">{{bookData.author}}</p>
@@ -26,29 +28,25 @@ export default {
 .book {
   a {
     display: flex;
-    justify-content: flex-start;  
-    margin-bottom: 25px; 
-  }
-  img {
+    justify-content: flex-start;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 20px 0;
+    img {
       height: 120px;
       width: 90px;
+      margin-right: 15px;
     }
+  }
   .bookinfo {
-    margin-left: 10px;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #666;
     .bookname {
       color: #333;
       font-weight: 700;
-      font-size: 16px;
-      line-height: 22px;
-    }
-    .author,
-    .brief,
-    .popular {
-      font-size: 13px;
-      color: #666;
-    }
-    .author {
-      line-height: 28px;
+      font-size: 14px;
     }
     .brief {
       height: 40px;

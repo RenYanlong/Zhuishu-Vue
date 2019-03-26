@@ -1,39 +1,31 @@
 <template>
   <div class="category">
-    <div class="nav">
-      <ul>
-        <li
-          v-for="(item,index) in subCategories"
-          :key="index"
-          @click="gender = index,major = item[0].major,changeGender()"
-          :class="[gender == index ? 'isbut':'']"
-        >
-          <span v-if="index == 'male'">男生</span>
-          <span v-else-if="index == 'female'">女生</span>
-          <span v-else-if="index == 'press'">出版物</span>
-        </li>
-      </ul>
-    </div>
-    <div class="majorSort">
-      <ul>
-        <li
-          v-for="(list,index) in subCategories[gender]"
-          :key="index"
-          @click="major = list.major,changeMajor()"
-          :class="[major == list.major ? 'majorbut' : '']"
-        >{{list.major}}</li>
-      </ul>
-    </div>
-    <div class="minorSort" v-if="minorlist != ''">
-      <span>具体类型：</span>
-      <ul>
-        <li
-          v-for="(item,index) in minorlist"
-          :key="index"
-          @click="minor = item,changeMinor()"
-          :class="[minor == item ? 'majorbut' : '']"
-        >{{item}}</li>
-      </ul>
+    <div class="left">
+      <div class="sex">
+        <ul>
+          <li
+            v-for="(item,index) in subCategories"
+            :key="index"
+            @click="gender = index,major = item[0].major,changeGender()"
+            :class="[gender == index ? 'isbut':'']"
+          >
+            <span v-if="index == 'male'">男生</span>
+            <span v-else-if="index == 'female'">女生</span>
+            <span v-else-if="index == 'press'">出版物</span>
+          </li>
+        </ul>
+      </div>
+      <div class="majorSort">
+        <p>分类</p>
+        <ul>
+          <li
+            v-for="(list,index) in subCategories[gender]"
+            :key="index"
+            @click="major = list.major,changeMajor()"
+            :class="[major == list.major ? 'majorbut' : '']"
+          >{{list.major}}</li>
+        </ul>
+      </div>
     </div>
     <div class="bookList">
       <div class="book" v-for="list in categorylist.books" :key="list._id">
@@ -54,15 +46,15 @@
           </div>
         </router-link>
       </div>
-    </div>
-    <el-pagination
-      background
+      <el-pagination
       :current-page.sync="currentPage"
       :page-size="28"
       layout="total, prev, pager, next,jumper"
       :total="categorylist.total"
       class="pag"
     ></el-pagination>
+    </div>
+    
   </div>
 </template>
 <script>
@@ -95,16 +87,6 @@ export default {
         query: {
           gender: this.gender,
           major: this.major
-        }
-      });
-    },
-    changeMinor: function() {
-      this.$router.push({
-        path: "/category",
-        query: {
-          gender: this.gender,
-          major: this.major,
-          minor: this.minor
         }
       });
     },
@@ -184,100 +166,94 @@ export default {
 <style lang='less' scoped>
 .category {
   display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  margin: 0 auto;
-  margin-top: 15px;
+  align-items: flex-start;
   width: 1000px;
-  .nav {
-    width: 1000px;
-    ul {
-      display: flex;
-      font-size: 14px;
-      font-weight: 500;
-      justify-content: flex-start;
-      li {
-        border: 1px solid #fff;
-        box-sizing: border-box;
+  margin: 0 auto;
+  list-style: none;
+  margin-top: 20px;
+  .left {
+    width: 230px;
+    font-size: 13px;
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 6px;
+    .sex {
+      border-bottom: 1px solid #dbdbdb;
+      ul {
+        display: flex;
         list-style: none;
-        padding: 0 10px;
-        color: @fontColor2;
-        height: 40px;
-        line-height: 40px;
+        li {
+          padding: 0 10px;
+          border-bottom: 2px solid #fff;
+          cursor: pointer;
+        }
       }
-    }
-    .isbut {
-      font-weight: 600;
-      color: #ed4259;
+      .isbut {
+        font-weight: 600;
+        color: #ed4259;
+        border-bottom: 2px solid #ed4259;
+      }
     }
   }
   .majorSort {
-    width: 1000px;
-    line-height: 40px;
-
-    font-weight: 400;
-    .majorbut {
-      font-weight: 600;
-      color: #ed4259;
-      border-radius: 2px;
-    }
-    li {
-      float: left;
-      list-style: none;
-      padding: 0 10px;
+    padding: 20px 0;
+    p {
+      height: 20px;
+      line-height: 20px;
       font-size: 14px;
-      color: #333;
-      cursor: pointer;
-    }
-    li:hover {
-      color: @fontColor3;
-    }
-  }
-  .minorSort {
-    width: 1000px;
-    line-height: 40px;
-    line-height: 40px;
-    .majorbut {
       font-weight: 600;
-      color: #ed4259;
     }
-    li,
-    span {
-      float: left;
+    ul {
+      display: flex;
+      flex-flow: row wrap;
       list-style: none;
-      padding: 0 10px;
-      line-height: 30px;
-      font-size: 14px;
-      color: #333;
-      cursor: pointer;
+      li {
+        flex: 0 0 33.3%;
+        box-sizing: border-box;
+        height: 40px;
+        line-height: 40px;
+        cursor: pointer;
+      }
+      li:hover {
+        color: @fontColor3;
+      }
     }
-    li:hover {
-      color: @fontColor3;
+    .majorbut {
+      font-weight: 500;
+      color: #ed4259;
     }
   }
 }
-.bookList{
-  margin: 10px 0 20px;
+.bookList {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 750px;
+  margin-left: 20px;
+  background-color: #fff;
+  border-radius: 6px;
+  padding: 20px;
+  box-sizing: border-box;
+  .pag{
+    align-self:flex-end;
+    padding: 30px 0;
+
+  }
 }
 .book {
   box-sizing: border-box;
-  width: 500px;
-  display: inline-block;
-  padding: 15px;
-  .bookImg {
-    float: left;
+  padding: 20px 0;
+  border-bottom: 1px solid #dbdbdb;
+  a {
+    display: flex;
+    justify-content: flex-start;
+  }
+  img {
     height: 120px;
     width: 90px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    margin-right: 15px;
   }
   .bookinfo {
-    height: 120px;
-    margin-left: 15px;
-    float: left;
-    width: 345px;
     .bookname {
       color: #333;
       font-weight: 700;

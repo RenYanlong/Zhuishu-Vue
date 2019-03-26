@@ -1,5 +1,5 @@
 <template>
-  <div class="bookListDetails">
+  <div class="bookListDetails" v-if="bookListInfo">
     <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
       <el-breadcrumb-item :to="{ path: '/booklist' }">书单</el-breadcrumb-item>
       <el-breadcrumb-item>{{bookListInfo.title}}</el-breadcrumb-item>
@@ -25,6 +25,7 @@
           :page-size="20"
           layout="prev, pager, next, jumper"
           :total="bookListInfo.books.length"
+          class="pag"
         ></el-pagination>
       </div>
     </div>
@@ -68,9 +69,10 @@ export default {
   margin: 0 auto;
 }
 .main {
-  width: 1200px;
+  width: 1000px;
   margin: 0 auto;
   background-color: @backgroundColor4;
+  border-radius: 6px;
 }
 .center {
   width: 930px;
@@ -79,5 +81,9 @@ export default {
   flex-flow: column nowrap;
   justify-content: left;
   align-items: center;
+  .pag{
+    align-self: flex-end;
+    padding: 30px 0;
+  }
 }
 </style>

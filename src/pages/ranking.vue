@@ -1,23 +1,27 @@
 <template>
   <div class="ranking">
     <div class="left">
-      <div class="sex">男生</div>
-      <div
-        v-for="(item,index) in maleinfo"
-        :key="index"
-        @click="id = item._id,currentPage = 1,clickleft()"
-        :class="[id == item._id ? 'isbut' : '']"
-      >
-        <span>{{item.title}}</span>
+      <div>
+        <div class="sex">男生</div>
+        <div
+          v-for="(item,index) in maleinfo"
+          :key="index"
+          @click="id = item._id,currentPage = 1,clickleft()"
+          :class="[id == item._id ? 'isbut' : '']"
+        >
+          <span>{{item.title}}</span>
+        </div>
       </div>
-      <div class="sex">女生</div>
-      <div
-        v-for="(item,index) in femaleinfo"
-        :key="index"
-        @click="id = item._id,currentPage = 1,clickleft()"
-        :class="[id == item._id ? 'isbut' : '']"
-      >
-        <span>{{item.title}}</span>
+      <div>
+        <div class="sex">女生</div>
+        <div
+          v-for="(item,index) in femaleinfo"
+          :key="index"
+          @click="id = item._id,currentPage = 1,clickleft()"
+          :class="[id == item._id ? 'isbut' : '']"
+        >
+          <span>{{item.title}}</span>
+        </div>
       </div>
     </div>
     <div class="right" v-if="booklist">
@@ -31,7 +35,6 @@
         ></Book>
       </div>
       <el-pagination
-        background
         class="pagination"
         :current-page.sync="currentPage"
         :page-size="20"
@@ -99,13 +102,17 @@ export default {
 }
 .ranking {
   display: flex;
-  flex-flow: row nowrap;
   justify-content: space-between;
+  align-items: flex-start;
   width: 1000px;
   margin: 0 auto;
   margin-top: 15px;
   .left {
-    width: 250px;
+    width: 230px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 20px;
     div {
       box-sizing: border-box;
       list-style: none;
@@ -120,22 +127,27 @@ export default {
     }
   }
   .right {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
     width: 750px;
-    background-color: @backgroundColor4;
+    margin-left: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 6px;
     .title {
-      width: 750px;
-      box-sizing: border-box;
+      height: 60px;
       line-height: 60px;
       font-size: 22px;
       font-weight: 700;
       color: @fontColor2;
-      padding-left: 15px;
+      border-bottom: 1px solid #dbdbdb;
     }
-    .main {
-      padding-left: 15px;
-    }
+
     .pagination {
-      margin: 20px 0;
+      padding: 30px;
+      align-self: flex-end;
     }
   }
 }
