@@ -51,6 +51,11 @@ export default {
       }
     };
   },
+  head:{
+    title:{
+      inner: '看网文，就用追书神器'
+    }
+  },
   components: {
     HotWords,
     chart,

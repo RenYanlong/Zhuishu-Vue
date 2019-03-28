@@ -1,5 +1,5 @@
 <template>
-  <div class="search">
+  <div class="search" v-if="sousuojieguo">
     <p>共搜索到与{{word}}相关{{sousuojieguo.length}}本书籍</p>
     <div v-if="sousuojieguo.length > 0">
       <div v-for="(item,index) in sousuojieguo" :key="index">

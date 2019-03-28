@@ -49,7 +49,6 @@ export default {
       ishow: true,
       maleData: "",
       femaleData: "",
-      input: "",
       isguding1: false,
       sexmale: {
         Egender: "male",
@@ -114,6 +113,7 @@ export default {
       padding: 0px 10px;
       border: 1px solid #dbdbdb;
       outline: none;
+      color: red;
     }
     .search-but {
       display: inline-block;

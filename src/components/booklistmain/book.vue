@@ -33,11 +33,11 @@ export default {
     img {
       width: 90px;
       height: 120px;
+      margin-right: 15px;
     }
     .info {
       color: @fontColor2;
       font-size: 12px;
-      margin-left: 10px;
       h4 {
         color: @fontColor;
         line-height: 22px;
