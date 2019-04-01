@@ -7,7 +7,7 @@
       <div class="input">
         <input type="text" placeholder="冥冥之中喜欢你" v-model="input">
         <router-link :to="{path:'/search',query:{keyword:input}}">
-          <div class="search-but"></div>
+          <div class="search-but" @click="input ? '':input = `冥冥之中喜欢你` "></div>
         </router-link>
       </div>
       <div class="bookshelf">我的书架</div>
@@ -45,7 +45,7 @@ import category from "../public/category";
 export default {
   data() {
     return {
-      input: "冥冥之中喜欢你",
+      input: "",
       ishow: true,
       maleData: "",
       femaleData: "",
@@ -64,6 +64,13 @@ export default {
     category
   },
   methods: {
+    sousuobut(bookname) {
+      if (this.input) {
+        console.log(this.input);
+      } else {
+        this.input = bookname;
+      }
+    },
     handleScroll() {
       var scrollTop =
         window.pageYOffset ||
@@ -113,7 +120,6 @@ export default {
       padding: 0px 10px;
       border: 1px solid #dbdbdb;
       outline: none;
-      color: red;
     }
     .search-but {
       display: inline-block;

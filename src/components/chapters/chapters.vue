@@ -1,7 +1,14 @@
 <template>
   <div class="chapters">
-    {{chapterslist}}
-    text:{{text}}
+    <div>
+      <h2>{{text.title}}</h2>
+      <p v-html="text1"></p>
+    </div>
+    <!-- <div v-else>
+      <p>关注我们浏览全部</p>
+      {{text1}}
+      <img src="./../../assets/images/fuwuhao.png">
+    </div> -->
   </div>
 </template>
 
@@ -17,6 +24,11 @@ export default {
       chapters: "",
       chapterslist: ""
     };
+  },
+  computed: {
+    text1() {
+      return `<p>${this.text.cpContent.replace(/\n/g, "<br>")}</p>`;
+    }
   },
   mounted() {
     this.$axios
@@ -43,4 +55,18 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.chapters {
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 60px;
+  line-height: 30px;
+  box-sizing: border-box;
+  h2 {
+    height: 40px;
+    line-height: 40px;
+  }
+}
 </style>

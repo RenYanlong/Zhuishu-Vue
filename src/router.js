@@ -9,6 +9,7 @@ import Book from "./components/book/book.vue";
 import Ranking from './pages/ranking.vue';
 import Chapters from './components/chapters/chapters.vue';
 import Search from './pages/search.vue';
+import Bookshelf from './pages/bookshelf.vue';
 
 Vue.use(Router);
 
@@ -19,6 +20,11 @@ export default new Router({
       path: "/",
       name: "home",
       component: Home
+    },
+    {
+      path:'/bookshelf',
+      name:'bookshelf',
+      component:Bookshelf
     },
     {
       path: '/search',
