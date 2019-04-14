@@ -1,13 +1,11 @@
 <template>
   <div class="myApp">
-    <Head></Head>
     <router-view/>
-    <Footer></Footer>
   </div>
 </template>
 <script>
-import Footer from './components/public/footer'
-import Customer from '@/components/public/customer.vue';
+import Footer from "./components/public/footer";
+import Customer from "@/components/public/customer.vue";
 import Head from "./components/public/head";
 export default {
   name: "myApp",

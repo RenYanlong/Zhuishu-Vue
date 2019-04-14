@@ -1,15 +1,34 @@
 <template>
   <div class="home">
-    <div class="bannerhot">
-      <banner :bannerData="bannerInfo"></banner>
-      <HotWords :hotwordsData="hotBooks"></HotWords>
-    </div>
+    <!-- head -->
+    <van-nav-bar
+      title="追书神器"
+      right-text="书架"
+      @click-left="onClickLeft"
+      @click-right="onClickRight"
+    />
+    <!-- swiper -->
+    <van-swipe class="swiper" :autoplay="5000" indicator-color="white" :show-indicators="false">
+      <van-swipe-item v-for="(item, index) in bannerInfo" :key="index">
+        <router-link :to="{path:'/book',query:{id:item.link}}">
+          <img :src="item.img">
+        </router-link>
+      </van-swipe-item>
+    </van-swipe>
+    <!-- 搜索 -->
+    <form action="/">
+      <van-search v-model="value" placeholder="请输入搜索关键词"/>
+    </form>
+    <!-- 导航 -->
+    <Nav></Nav>
+    <!-- 热门推荐 -->
     <div class="popular">
-      <p class="title">热门推荐</p>
+      <h4>热门推荐</h4>
       <div class="main">
         <Recommend :info="item" v-for="(item,index) in finish" :key="index"></Recommend>
       </div>
     </div>
+
     <div class="rank">
       <chart :bookData="potential"></chart>
       <chart :bookData="qidian"></chart>
@@ -22,9 +41,8 @@
 <script>
 import HotWords from "./../components/home/hotwords";
 import chart from "@/components/home/charts.vue";
-import banner from "@/components/home/banner.vue";
 import Recommend from "../components/home/recommend";
-
+import Nav from "@/components/home/nav.vue";
 export default {
   data() {
     return {
@@ -51,16 +69,16 @@ export default {
       }
     };
   },
-  head:{
-    title:{
-      inner: '看网文，就用追书神器'
+  head: {
+    title: {
+      inner: "看网文，就用追书神器"
     }
   },
   components: {
     HotWords,
     chart,
-    banner,
-    Recommend
+    Recommend,
+    Nav
   },
 
   mounted() {
@@ -105,33 +123,38 @@ export default {
     this.$axios
       .get("https://novel.juhe.im/rank/564eea0b731ade4d6c509493")
       .then(ov => {
-        this.finish = ov.data.ranking.books.slice(0, 12);
+        this.finish = ov.data.ranking.books.slice(0, 10);
       });
   }
 };
 </script>
 
 <style lang="less" scoped>
-.home {
-  width: 1000px;
-  margin: 0 auto;
-  margin-top: 15px;
-  .bannerhot {
+.swiper {
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.popular {
+  box-sizing: border-box;
+  background-color: #fff;
+  padding: 5px;
+  h4{
+    height: 40px;
+    line-height: 40px;
+  }
+  .main {
     display: flex;
     justify-content: space-between;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    .banner {
-      width: 780px;
-    }
+    overflow-x: scroll;
+    overflow-y: hidden;
   }
 }
 .rank {
   display: flex;
   justify-content: space-between;
-  width: 1000px;
   border-radius: 6px;
   padding: 20px;
   box-sizing: border-box;
@@ -140,28 +163,6 @@ export default {
   div {
     width: 250px;
     padding: 0 10px;
-  }
-}
-
-.popular {
-  width: 1000px;
-  box-sizing: border-box;
-  background-color: #fff;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  padding: 20px;
-  .title {
-    font-size: 20px;
-    line-height: 33px;
-    height: 33px;
-    font-weight: 600;
-    border-bottom: 1px solid #dbdbdb;
-  }
-  .main {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-between;
-    padding: 5px 0;
   }
 }
 </style>
