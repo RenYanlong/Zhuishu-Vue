@@ -4,8 +4,6 @@
     <van-nav-bar
       title="追书神器"
       right-text="书架"
-      @click-left="onClickLeft"
-      @click-right="onClickRight"
     />
     <!-- swiper -->
     <van-swipe class="swiper" :autoplay="5000" indicator-color="white" :show-indicators="false">
@@ -17,70 +15,53 @@
     </van-swipe>
     <!-- 搜索 -->
     <form action="/">
-      <van-search v-model="value" placeholder="请输入搜索关键词"/>
+      <van-search  placeholder="请输入搜索关键词"/>
     </form>
     <!-- 导航 -->
     <Nav></Nav>
     <!-- 热门推荐 -->
     <div class="popular">
-      <h4>热门推荐</h4>
-      <div class="main">
-        <Recommend :info="item" v-for="(item,index) in finish" :key="index"></Recommend>
-      </div>
+      <Recommend :info="finish">
+        <h4 slot="head">热门推荐</h4>
+      </Recommend>
     </div>
-
-    <div class="rank">
-      <chart :bookData="potential"></chart>
-      <chart :bookData="qidian"></chart>
-      <chart :bookData="qidianph"></chart>
-      <chart :bookData="vip"></chart>
+    <div class="charts">
+      <h4>排行榜</h4>
+      <van-tabs type="card" class="tabs">
+        <van-tab title="潜力榜">
+          <Recommend :info="potential.books"></Recommend>
+        </van-tab>
+        <van-tab title="票红榜">
+          <Recommend :info="qidianph.books"></Recommend>
+        </van-tab>
+        <van-tab title="起点榜">
+          <Recommend :info="qidian.books"></Recommend>
+        </van-tab>
+      </van-tabs>
     </div>
   </div>
 </template>
 
 <script>
 import HotWords from "./../components/home/hotwords";
-import chart from "@/components/home/charts.vue";
 import Recommend from "../components/home/recommend";
 import Nav from "@/components/home/nav.vue";
 export default {
   data() {
     return {
-      remen: "",
-      name: "home",
-      maleData: "",
-      femaleData: "",
-      pressData: "",
       bannerInfo: "",
       hotBooks: "",
       potential: "",
       qidian: "",
       qidianph: "",
-      vip: "",
-      finish: "",
-      nvrs: "",
-      sexmale: {
-        Egender: "male",
-        CName: "男生"
-      },
-      sexfemale: {
-        Egender: "female",
-        CName: "女生"
-      }
+      finish: ""
     };
-  },
-  head: {
-    title: {
-      inner: "看网文，就用追书神器"
-    }
   },
   components: {
     HotWords,
-    chart,
     Recommend,
     Nav
   },
-
   mounted() {
     //请求banner数据
     this.$axios.get("https://www.zhuishushenqi.com/spread").then(spread => {
@@ -107,18 +88,6 @@ export default {
       .then(ph => {
         this.qidianph = ph.data.ranking;
       });
-    //vip
-    this.$axios
-      .get("https://novel.juhe.im/rank/57eb86f0ef9e5a8f20543d7d")
-      .then(vipp => {
-        this.vip = vipp.data.ranking;
-      });
-    //
-    this.$axios
-      .get("https://novel.juhe.im/rank/5a684515fc84c2b8efaa9875")
-      .then(rs => {
-        this.nvrs = rs.data.ranking;
-      });
     //男生完结榜
     this.$axios
       .get("https://novel.juhe.im/rank/564eea0b731ade4d6c509493")
@@ -136,33 +105,28 @@ export default {
     height: 100%;
   }
 }
-
 .popular {
-  box-sizing: border-box;
   background-color: #fff;
   padding: 5px;
-  h4{
-    height: 40px;
-    line-height: 40px;
+  h4 {
+    margin: 10px 0;
   }
   .main {
     display: flex;
     justify-content: space-between;
     overflow-x: scroll;
     overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 }
-.rank {
-  display: flex;
-  justify-content: space-between;
-  border-radius: 6px;
-  padding: 20px;
-  box-sizing: border-box;
+.charts {
   background-color: #fff;
-  margin-bottom: 20px;
-  div {
-    width: 250px;
-    padding: 0 10px;
+  padding: 5px;
+  h4 {
+    margin: 10px 0;
+  }
+  .tabs {
+    padding-top: 40px;
   }
 }
 </style>

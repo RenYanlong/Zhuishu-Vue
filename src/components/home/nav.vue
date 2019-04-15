@@ -1,18 +1,18 @@
 <template>
   <div class="nav">
-    <div class="classify">
+    <router-link class="classify" :to="{path:'/category'}">
       <span></span>
       分类
-    </div>
-    <div class="charts">
+    </router-link>
+    <router-link class="charts" :to="{path:'/ranking'}">
       <span></span>排行榜
-    </div>
-    <div class="over">
+    </router-link>
+    <router-link class="over" :to="{path:'/ranking'}">
       <span></span>完本
-    </div>
-    <div class="bookslist">
+    </router-link>
+    <router-link class="bookslist" :to="{path:'/booklist'}">
       <span></span>书单
-    </div>
+    </router-link>
   </div>
 </template>
 
@@ -23,9 +23,10 @@ export default {};
 <style lang="less" scoped>
 .nav {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background-color: #fff;
-  div {
+  padding: 0 5px;
+  a {
     display: flex;
     flex-flow: column nowrap;
     align-items: center;

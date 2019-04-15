@@ -10,6 +10,8 @@ import Ranking from './pages/ranking.vue';
 import Chapters from './components/chapters/chapters.vue';
 import Search from './pages/search.vue';
 import Bookshelf from './pages/bookshelf.vue';
+import Catemain from './pages/Catemain.vue';
+import Rankmain from './pages/rankmain.vue';
 
 Vue.use(Router);
 
@@ -27,6 +29,11 @@ export default new Router({
       component:Bookshelf
     },
     {
+      path:'/rankmain',
+      name:'rankmain',
+      component:Rankmain
+    },
+    {
       path: '/search',
       name: 'search',
       component: Search
@@ -35,6 +42,11 @@ export default new Router({
       path: "/category",
       name: "category",
       component: Category
+    },
+    {
+      path: "/catemain",
+      name: "catemain",
+      component: Catemain
     },
     {
       path: "/booklist",

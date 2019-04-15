@@ -1,8 +1,13 @@
 <template>
-  <div class="tuijian">
-    <img :src="`http://statics.zhuishushenqi.com${info.cover}`">
-    <p class="title">{{info.title}}</p>
-    <p class="zuozhe">{{info.author}}</p>
+  <div class="books">
+    <slot name="head"></slot>
+    <div class="main">
+      <div class="tuijian" v-for="(item, index) in info" :key="index">
+        <img :src="`http://statics.zhuishushenqi.com${item.cover}`">
+        <p class="title">{{item.title}}</p>
+        <p class="zuozhe">{{item.author}}</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,6 +18,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.main {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
 .tuijian {
   display: flex;
   flex-flow: column nowrap;
