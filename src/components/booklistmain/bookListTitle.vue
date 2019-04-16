@@ -47,7 +47,6 @@ export default {
 <style lang='less' scoped>
 .title {
   display: inline-block;
-  width: 930px;
   margin: 0 auto;
   padding: 30px 0;
   background-color: @backgroundColor4;
@@ -60,7 +59,6 @@ export default {
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-  width: 730px;
   .cover {
     position: relative;
     width: 210px;

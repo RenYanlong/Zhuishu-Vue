@@ -1,10 +1,8 @@
 <template>
   <div class="book">
-    <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item :to="{ path:'/category'}">{{bookInfo.minorCate}}</el-breadcrumb-item>
-      <el-breadcrumb-item>{{bookInfo.title}}</el-breadcrumb-item>
-    </el-breadcrumb>
+    <van-nav-bar :title=bookInfo.title left-arrow @click-left="onClickLeft">
+      <van-icon name="search" slot="right"/>
+    </van-nav-bar>
     <div class="left">
       <BookTitle :bookinfo="bookInfo"></BookTitle>
       <div class="bookSection">
@@ -58,7 +56,7 @@
         </div>
       </div>
     </div>
-    <div class="right">
+    <!-- <div class="right">
       <div class="newApp"></div>
       <div class="like">
         <h4>喜欢这本书的也喜欢</h4>
@@ -72,7 +70,7 @@
           </router-link>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -162,10 +160,6 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.isheigth {
-  overflow: hidden;
-  height: 400px;
-}
 .bookall {
   position: relative;
 }
@@ -179,14 +173,7 @@ export default {
   cursor: pointer;
 }
 .book {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 1000px;
-  margin: 0 auto;
-  margin-top: 50px;
-  background-color: @backgroundColor4;
+  
 }
 .breadcrumb {
   position: absolute;
@@ -194,8 +181,6 @@ export default {
   left: 0px;
 }
 .left {
-  width: 690px;
-  margin-right: 30px;
   .bookSection > div {
     margin-bottom: 40px;
   }
@@ -260,7 +245,6 @@ export default {
 }
 
 .right {
-  width: 220px;
   h4 {
     line-height: 60px;
     color: #777;

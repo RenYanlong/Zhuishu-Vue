@@ -1,11 +1,10 @@
 <template>
   <div class="bookblock">
     <div class="bookImg">
-      <img :src="`https://statics.zhuishushenqi.com${book.cover}`">     
+      <img :src="`https://statics.zhuishushenqi.com${book.cover}`">
     </div>
     <div class="bookinfo">
       <p class="bookname">{{book.title}}</p>
-      <p class="author">{{book.author}}</p>
       <p class="brief">{{book.desc}}</p>
       <p class="popular">
         共
@@ -24,11 +23,11 @@ export default {
 .bookblock {
   display: flex;
   border-bottom: 1px solid #dbdbdb;
-  padding: 22px 0;
+  padding: 10px 0;
 }
 img {
-  height: 136px;
-  width: 102px;
+  height: 120px;
+  width: 90px;
 }
 .bookinfo {
   display: flex;
@@ -36,11 +35,11 @@ img {
   justify-content: space-between;
   margin-left: 15px;
   font-size: 13px;
-    color: @fontColor2;
+  color: @fontColor2;
   .bookname {
     color: @fontColor;
     font-weight: 600;
-    font-size: 18px;
+    font-size: 14px;
   }
   .brief {
     height: 40px;

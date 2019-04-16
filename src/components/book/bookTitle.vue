@@ -2,23 +2,18 @@
   <div class="bookTitle">
     <div class="bookinfo">
       <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`">
+      <h4>{{bookinfo.title}}</h4>
       <div class="info">
-        <h4>{{bookinfo.title}}</h4>
         <p class="tags" v-if="bookinfo.tags">
           <span class="one" v-if="bookinfo.tags[0]">{{bookinfo.tags[0]}}</span>
           <span class="two" v-if="bookinfo.tags[1]">{{bookinfo.tags[1]}}</span>
           <span class="san" v-if="bookinfo.tags[2]">{{bookinfo.tags[2]}}</span>
           <span class="si" v-if="bookinfo.tags[3]">{{bookinfo.tags[3]}}</span>
-          <span class="wu" v-if="bookinfo.tags[4]">{{bookinfo.tags[4]}}</span>
         </p>
         <p class="aut">
           <span class="author">{{bookinfo.author}}</span>
-          <span>|</span>
-          <span>{{bookinfo.minorCate}}</span>
-          <span>|</span>
           <span>{{Math.floor(bookinfo.wordCount / 10000)}}万字数</span>
         </p>
-        <p>{{bookinfo.updated}}</p>
         <p class="startlooking">开始阅读</p>
       </div>
     </div>
@@ -50,13 +45,11 @@ export default {
 </script>
 <style lang='less' scoped>
 .bookTitle {
-  margin-bottom: 20px;
-  margin-top: 30px;
+  padding: 10px;
   .bookinfo {
     display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-items: flex-start;
+    flex-flow: column nowrap;
+    align-items: center;
     img {
       height: 150px;
       width: 120px;
@@ -76,6 +69,7 @@ export default {
       }
 
       .tags {
+        display: flex;
         .one {
           background-color: #86bfec;
         }
@@ -92,12 +86,7 @@ export default {
           background-color: #b9a7cc;
         }
         span {
-          display: inline-block;
-          margin-right: 10px;
-          height: 24px;
-          line-height: 24px;
-          display: inline-block;
-          padding: 0 10px;
+          padding: 5px 10px;
           border: 1px solid;
           color: @fontColor5;
           background-color: blue;

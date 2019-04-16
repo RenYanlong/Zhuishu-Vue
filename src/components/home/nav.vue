@@ -23,7 +23,7 @@ export default {};
 <style lang="less" scoped>
 .nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   background-color: #fff;
   padding: 0 5px;
   a {

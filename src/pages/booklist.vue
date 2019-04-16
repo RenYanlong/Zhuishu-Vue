@@ -1,5 +1,8 @@
 <template>
   <div class="booklist">
+    <van-nav-bar title="书单" left-text="返回" left-arrow @click-left="onClickLeft">
+      <van-icon name="search" slot="right"/>
+    </van-nav-bar>
     <div class="title">
       <ul>
         <li @click="clickhot(),chengeurl()" :class="[defaultSort == '按本周热度'?'but':'']">
@@ -20,14 +23,6 @@
             <book :book="list"></book>
           </router-link>
         </li>
-        <el-pagination
-          @current-change="chengeurl,chengeurl()"
-          :current-page.sync="currentPage"
-          :page-size="20"
-          layout="prev, pager, next, jumper"
-          :total="bookListNum"
-          class="pag"
-        ></el-pagination>
       </ul>
     </div>
   </div>
@@ -62,6 +57,9 @@ export default {
     book
   },
   methods: {
+    onClickLeft: function() {
+      this.$router.push("/");
+    },
     clickhot: function() {
       (this.sort = "collectorCount"),
         (this.duration = "last-seven-days"),
@@ -117,21 +115,13 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.booklist {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-content: center;
-  width: 1000px;
-  margin: 0 auto;
-  padding: 15px 0;
-}
 .title {
-  width: 1000px;
-  font-size: 16px;
+  background-color: #fff;
+  font-size: 14px;
   height: 40px;
   line-height: 40px;
   border-bottom: 1px solid #dbdbdb;
+  padding: 0 10px;
   ul {
     display: flex;
     li {
@@ -151,8 +141,8 @@ export default {
   width: 100%;
   background-color: #fff;
   border-radius: 6px;
-  margin: 20px 0;
-  padding: 20px;
+  padding: 0 10px;
+  box-sizing: border-box;
   .pag {
     align-self: flex-end;
     padding: 30px 0;

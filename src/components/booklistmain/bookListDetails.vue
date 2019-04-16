@@ -1,13 +1,11 @@
 <template>
   <div class="bookListDetails" v-if="bookListInfo">
-    <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
-      <el-breadcrumb-item :to="{ path: '/booklist' }">书单</el-breadcrumb-item>
-      <el-breadcrumb-item>{{bookListInfo.title}}</el-breadcrumb-item>
-    </el-breadcrumb>
+    <van-nav-bar left-text="返回" left-arrow @click-left="onClickLeft">
+      <van-icon name="search" slot="right"/>
+    </van-nav-bar>
 
     <div class="main">
       <div class="center" v-if="bookListInfo">
-        <BookListTitle :info="bookListInfo"></BookListTitle>
         <div
           class="books"
           v-for="(list,index) in bookListInfo.books.slice(
@@ -47,6 +45,11 @@ export default {
     BookListTitle,
     Book
   },
+  methods: {
+    onClickLeft: function() {
+      history.go(-1);
+    }
+  },
   watch: {
     $route() {
       this.bookId = this.$route.query.id;
@@ -63,27 +66,11 @@ export default {
 </script>
 <style lang='less' scoped>
 .breadcrumb {
-  width: 1000px;
   height: 60px;
   line-height: 60px;
-  margin: 0 auto;
 }
 .main {
-  width: 1000px;
-  margin: 0 auto;
-  background-color: @backgroundColor4;
-  border-radius: 6px;
-}
-.center {
-  width: 930px;
-  margin: 0 auto;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: left;
-  align-items: center;
-  .pag{
-    align-self: flex-end;
-    padding: 30px 0;
-  }
+  background-color: #fff;
+  padding: 0 10px;
 }
 </style>
