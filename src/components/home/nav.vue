@@ -1,17 +1,53 @@
 <template>
   <div class="nav">
+    <h3>更多</h3>
     <router-link class="classify" :to="{path:'/category'}">
-      <span></span>
-      分类
+      <p>分类</p>
+      <svg
+        class="icon"
+        width="24px"
+        height="24.00px"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M439.456 755.2l-59.744-59.744L563.168 512l-183.456-183.456L439.456 268.8l243.2 243.2z"
+          fill="#dbdbdb"
+        ></path>
+      </svg>
     </router-link>
     <router-link class="charts" :to="{path:'/ranking'}">
-      <span></span>排行榜
-    </router-link>
-    <router-link class="over" :to="{path:'/ranking'}">
-      <span></span>完本
+      <p>排行榜</p>
+      <svg
+        class="icon"
+        width="24px"
+        height="24.00px"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M439.456 755.2l-59.744-59.744L563.168 512l-183.456-183.456L439.456 268.8l243.2 243.2z"
+          fill="#dbdbdb"
+        ></path>
+      </svg>
     </router-link>
     <router-link class="bookslist" :to="{path:'/booklist'}">
-      <span></span>书单
+      <p>书单</p>
+      <svg
+        class="icon"
+        width="24px"
+        height="24.00px"
+        viewBox="0 0 1024 1024"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M439.456 755.2l-59.744-59.744L563.168 512l-183.456-183.456L439.456 268.8l243.2 243.2z"
+          fill="#dbdbdb"
+        ></path>
+      </svg>
     </router-link>
   </div>
 </template>
@@ -21,24 +57,22 @@ export default {};
 </script>
 
 <style lang="less" scoped>
+h3 {
+    padding: 10px 0;
+    border-bottom: 1px solid #dbdbdb;
+  }
 .nav {
   display: flex;
-  justify-content: space-around;
+  flex-flow: column nowrap;
   background-color: #fff;
-  padding: 0 5px;
+  padding: 10px 10px 0px;
   a {
     display: flex;
-    flex-flow: column nowrap;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    span {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      background-size: 30px 30px;
-      background-repeat: no-repeat;
-      margin-bottom: 10px;
-    }
+    padding: 1vh 0;
+    border-bottom: 1px solid #dbdbdb;
+    font-weight: 600;
   }
 }
 .classify {

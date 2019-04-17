@@ -1,41 +1,38 @@
 <template>
   <div class="catemain">
-    <van-nav-bar :title="this.major" left-text="返回" left-arrow @click-left="onClickLeft">
-      <van-icon name="search" slot="right"/>
-    </van-nav-bar>
-    <div class="main">
+    <Head>分类</Head>
+    <div class="main" >
       <Book :bookinfo="item" v-for="(item, index) in books" :key="index"></Book>
     </div>
   </div>
 </template>
 
 <script>
+import Head from "@/components/public/head";
 import Book from "@/components/category/book.vue";
 export default {
   components: {
-    Book
+    Book,
+    Head
   },
   data() {
     return {
       gender: this.$route.query.gender,
       major: this.$route.query.major,
-      minor: this.$route.query.minor ? this.$route.query.minor : "",
-      type: "hot",
-      books: "",
-      start: 0
+      books: ""
     };
   },
   methods: {
-    onClickLeft: function() {
-      history.go(-1);
+    onScroll(e){
+      console.log(111)
     }
   },
   mounted() {
     this.$axios
       .get(
-        `https://novel.juhe.im/category-info?gender=${this.gender}&type=${
-          this.type
-        }&major=${this.major}&minor=${this.minor}&start=0&limit=20`
+        `https://novel.juhe.im/category-info?gender=${
+          this.gender
+        }&type=hot&major=${this.major}&minor=&start=0&limit=20`
       )
       .then(books => {
         this.books = books.data.books;
@@ -45,4 +42,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.catemain {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.main {
+  margin-top: 6vh;
+}
 </style>

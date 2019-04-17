@@ -1,66 +1,95 @@
 <template>
   <div class="home">
     <!-- head -->
-    <van-nav-bar
-      title="追书神器"
-      right-text="书架"
-    />
+    <Head></Head>
     <!-- swiper -->
-    <van-swipe class="swiper" :autoplay="5000" indicator-color="white" :show-indicators="false">
-      <van-swipe-item v-for="(item, index) in bannerInfo" :key="index">
+    <swiper :options="swiper" v-if="bannerInfo" class="swiper">
+      <swiper-slide v-for="(item, index) in bannerInfo" :key="index">
         <router-link :to="{path:'/book',query:{id:item.link}}">
           <img :src="item.img">
         </router-link>
-      </van-swipe-item>
-    </van-swipe>
-    <!-- 搜索 -->
-    <form action="/">
-      <van-search  placeholder="请输入搜索关键词"/>
-    </form>
-    <!-- 导航 -->
-    <Nav></Nav>
+      </swiper-slide>
+    </swiper>
     <!-- 热门推荐 -->
     <div class="popular">
-      <Recommend :info="finish">
-        <h4 slot="head">热门推荐</h4>
-      </Recommend>
+      <h3 slot="head">热门推荐</h3>
+      <swiper :options="hots" v-if="finish" class="hots">
+        <swiper-slide v-for="(item, index) in finish" :key="index">
+          <router-link :to="{path:'/book',query:{id:item.link}}">
+            <img :src="`http://statics.zhuishushenqi.com${item.cover}`">
+            <h4>{{item.title}}</h4>
+            <p>{{item.minorCate}}</p>
+          </router-link>
+        </swiper-slide>
+      </swiper>
     </div>
-    <div class="charts">
-      <h4>排行榜</h4>
-      <van-tabs type="card" class="tabs">
-        <van-tab title="潜力榜">
-          <Recommend :info="potential.books"></Recommend>
-        </van-tab>
-        <van-tab title="票红榜">
-          <Recommend :info="qidianph.books"></Recommend>
-        </van-tab>
-        <van-tab title="起点榜">
-          <Recommend :info="qidian.books"></Recommend>
-        </van-tab>
-      </van-tabs>
+    <!-- 导航 -->
+    <Nav></Nav>
+    <!-- 本周最热书单 -->
+    <div class="hotBooklist">
+      <h3>本周最热书单</h3>
+      <swiper :options="hotBooklist" v-if="bookLists" class="hots">
+        <swiper-slide v-for="(item, index) in bookLists" :key="index">
+          <router-link :to="{path:'/book',query:{id:item.link}}">
+            <img :src="`http://statics.zhuishushenqi.com${item.cover}`">
+            <h5>{{item.title}}</h5>
+            <p>{{item.minorCate}}</p>
+          </router-link>
+        </swiper-slide>
+      </swiper>
+    </div>
+    <!-- 起点推荐 -->
+    <div class="qidianlist">
+      <h3 slot="head">起点推荐</h3>
+      <swiper :options="hots" v-if="qidian" class="hots">
+        <swiper-slide v-for="(item, index) in qidian" :key="index">
+          <router-link :to="{path:'/book',query:{id:item.link}}">
+            <img :src="`http://statics.zhuishushenqi.com${item.cover}`">
+            <h4>{{item.title}}</h4>
+            <p>{{item.minorCate}}</p>
+          </router-link>
+        </swiper-slide>
+      </swiper>
     </div>
   </div>
 </template>
 
 <script>
-import HotWords from "./../components/home/hotwords";
-import Recommend from "../components/home/recommend";
+import Head from "@/components/home/head";
+import HotWords from "@/components/home/hotwords";
 import Nav from "@/components/home/nav.vue";
 export default {
   data() {
     return {
+      swiper: {
+        centeredSlides: true,
+        slidesPerView: 1.1,
+        spaceBetween: 10
+      },
+      qidians: {
+        slidesPerView: 3,
+        spaceBetween: 20
+      },
+      hots: {
+        slidesPerView: 3,
+        spaceBetween: 20
+      },
+      hotBooklist: {
+        slidesPerView: 3,
+        slidesPerColumn: 2,
+        spaceBetween: 20
+      },
       bannerInfo: "",
       hotBooks: "",
-      potential: "",
       qidian: "",
-      qidianph: "",
-      finish: ""
+      finish: "",
+      bookLists: ""
     };
   },
   components: {
     HotWords,
-    Recommend,
-    Nav
+    Nav,
+    Head
   },
   mounted() {
     //请求banner数据
@@ -70,23 +99,19 @@ export default {
     this.$axios.get("https://novel.juhe.im/hot-books").then(hot => {
       this.hotBooks = hot.data.newHotWords.slice(0, 6);
     });
-    //潜力榜
-    this.$axios
-      .get("https://novel.juhe.im/rank/54d42e72d9de23382e6877fb")
-      .then(pot => {
-        this.potential = pot.data.ranking;
-      });
     //起点榜
     this.$axios
       .get("https://novel.juhe.im/rank/54d4306c321052167dfb75e4")
       .then(qd => {
-        this.qidian = qd.data.ranking;
+        this.qidian = qd.data.ranking.books;
       });
-    //票红榜
+    //hotbooklist
     this.$axios
-      .get("https://novel.juhe.im/rank/550b836229cd462830ff4d1d")
-      .then(ph => {
-        this.qidianph = ph.data.ranking;
+      .get(
+        "https://novel.juhe.im/booklists?sort=collectorCount&duration=last-seven-days&start=1"
+      )
+      .then(hotbooklist => {
+        this.bookLists = hotbooklist.data.bookLists;
       });
     //男生完结榜
     this.$axios
@@ -99,31 +124,41 @@ export default {
 </script>
 
 <style lang="less" scoped>
+img {
+  width: 100%;
+  height: 100%;
+}
 .swiper {
+  margin: 10px 0;
+}
+.popular,.qidianlist {
+  background-color: #fff;
+  padding: 10px 10px 0px;
+  p {
+    font-size: 12px;
+  }
+  h3 {
+    padding: 10px 0;
+  }
   img {
-    width: 100%;
-    height: 100%;
+    width: 120px;
+    height: 160px;
+  }
+  h4 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 }
-.popular {
+.hotBooklist {
   background-color: #fff;
-  padding: 5px;
-  h4 {
-    margin: 10px 0;
+  padding: 10px 10px 0px;
+  img {
+    width: 120px;
+    height: 160px;
   }
-  .main {
-    display: flex;
-    justify-content: space-between;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-  }
-}
-.charts {
-  background-color: #fff;
-  padding: 5px;
-  h4 {
-    margin: 10px 0;
+  h3 {
+    padding: 10px 0;
   }
   .tabs {
     padding-top: 40px;

@@ -1,8 +1,6 @@
 <template>
   <div class="rankmain">
-    <van-nav-bar :title="info.title" left-text="返回" left-arrow @click-left="onClickLeft" fixed='true'>
-      <van-icon name="search" slot="right"/>
-    </van-nav-bar>
+    <Head>分类</Head>
     <div class="main">
       <Book :bookinfo="item" v-for="(item, index) in info.books" :key="index"></Book>
     </div>
@@ -10,10 +8,12 @@
 </template>
 
 <script>
+import Head from "@/components/public/head";
 import Book from "@/components/category/book.vue";
 export default {
   components: {
-    Book
+    Book,
+    Head
   },
   data() {
     return {
@@ -39,7 +39,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.main{
-  margin-top:46px;
-}
 </style>

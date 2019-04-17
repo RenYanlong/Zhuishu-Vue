@@ -172,9 +172,6 @@ export default {
   line-height: 24px;
   cursor: pointer;
 }
-.book {
-  
-}
 .breadcrumb {
   position: absolute;
   top: -30px;
