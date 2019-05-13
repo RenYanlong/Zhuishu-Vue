@@ -1,35 +1,20 @@
 <template>
   <div class="bookListDetails" v-if="bookListInfo">
-    <van-nav-bar left-text="返回" left-arrow @click-left="onClickLeft">
-      <van-icon name="search" slot="right"/>
-    </van-nav-bar>
-
+    <Head>书单</Head>
+    <BookListTitle :info="bookListInfo"></BookListTitle>
     <div class="main">
-      <div class="center" v-if="bookListInfo">
-        <div
-          class="books"
-          v-for="(list,index) in bookListInfo.books.slice(
-        (currentPage - 1) * pagesize,
-        currentPage * pagesize
-      )"
-          :key="index"
-        >
+      <ul>
+        <li v-for="(list,index) in bookListInfo.books" :key="index">
           <router-link :to="{path:'/book',query:{id:list.book._id}}">
             <Book :bookInfo="list"></Book>
           </router-link>
-        </div>
-        <el-pagination
-          :current-page.sync="currentPage"
-          :page-size="20"
-          layout="prev, pager, next, jumper"
-          :total="bookListInfo.books.length"
-          class="pag"
-        ></el-pagination>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 <script>
+import Head from "@/components/public/head";
 import BookListTitle from "@/components/booklistmain/bookListTitle.vue";
 import Book from "@/components/booklistmain/book.vue";
 export default {
@@ -43,12 +28,8 @@ export default {
   },
   components: {
     BookListTitle,
-    Book
-  },
-  methods: {
-    onClickLeft: function() {
-      history.go(-1);
-    }
+    Book,
+    Head
   },
   watch: {
     $route() {
@@ -65,12 +46,16 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.breadcrumb {
-  height: 60px;
-  line-height: 60px;
+.bookListDetails {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.title {
+  margin-top: 8vh;
+  padding-left: 6vw;
 }
 .main {
   background-color: #fff;
-  padding: 0 10px;
+  padding-left: 6vw;
 }
 </style>

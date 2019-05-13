@@ -1,9 +1,7 @@
 <template>
   <div class="book">
-    <van-nav-bar :title=bookInfo.title left-arrow @click-left="onClickLeft">
-      <van-icon name="search" slot="right"/>
-    </van-nav-bar>
-    <div class="left">
+    <Head>返回</Head>
+    <div class="main">
       <BookTitle :bookinfo="bookInfo"></BookTitle>
       <div class="bookSection">
         <div class="bookIntroduce">
@@ -74,10 +72,12 @@
   </div>
 </template>
 <script>
+import Head from "@/components/public/head";
 import BookTitle from "@/components/book/bookTitle.vue";
 export default {
   components: {
-    BookTitle
+    BookTitle,
+    Head
   },
   data() {
     return {
@@ -160,6 +160,11 @@ export default {
 };
 </script>
 <style lang='less' scoped>
+.book{
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: #fff;
+}
 .bookall {
   position: relative;
 }
@@ -172,12 +177,9 @@ export default {
   line-height: 24px;
   cursor: pointer;
 }
-.breadcrumb {
-  position: absolute;
-  top: -30px;
-  left: 0px;
-}
-.left {
+
+.main {
+  margin-top: 8vh;
   .bookSection > div {
     margin-bottom: 40px;
   }

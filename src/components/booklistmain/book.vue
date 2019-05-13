@@ -1,13 +1,12 @@
 <template>
-  <div class="book">
-    <div class="bookInfo" v-if="bookInfo">
+  <div class="bookInfo" v-if="bookInfo">
+    <div>
       <img :src="`http://statics.zhuishushenqi.com${bookInfo.book.cover}`">
-      <div class="info">
-        <h4>{{bookInfo.book.title}}</h4>
-        <p class="zuozhe">{{bookInfo.book.author}}</p>
-        <van-tag plain>{{bookInfo.book.cat}}</van-tag>
-        <!-- <p>{{bookInfo.comment}}</p> -->
-      </div>
+    </div>
+    <div class="info">
+      <h4>{{bookInfo.book.title}}</h4>
+      <p class="zuozhe">{{bookInfo.book.author}}</p>
+      <p class="comment">{{bookInfo.comment}}</p>
     </div>
   </div>
 </template>
@@ -17,38 +16,30 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.book {
-  margin: 0 auto;
-  box-sizing: border-box;
-  padding: 10px 0;
-  .bookInfo {
+.bookInfo {
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 1vw 0;
+  img {
+    height: 100px;
+    width: 75px;
+  }
+  .info {
     display: flex;
-    flex-flow: row nowrap;
-    background-color: @backgroundColor4;
-    img {
-      height: 120px;
-      width: 90px;
-      margin-right: 10px;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    padding-left: 2vw;
+    h4 {
+      color: @fontColor;
+      font-size: 16px;
     }
-    .info {
-      color: @fontColor2;
+    .zuozhe {
+      font-size: 14px;
+      line-height: 28px;
+      color: @fontColor;
+    }
+    .comment {
       font-size: 12px;
-      h4 {
-        color: @fontColor;
-        line-height: 22px;
-        font-size: 14px;
-      }
-      .zuozhe,
-      .leixing {
-        line-height: 28px;
-      }
-      .zuozhe {
-        color: @fontColor;
-      }
-      .latelyFollower {
-        line-height: 20px;
-        margin-top: 22px;
-      }
     }
   }
 }

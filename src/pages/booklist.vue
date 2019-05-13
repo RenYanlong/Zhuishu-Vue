@@ -1,21 +1,6 @@
 <template>
   <div class="booklist">
-    <van-nav-bar title="书单" left-text="返回" left-arrow @click-left="onClickLeft">
-      <van-icon name="search" slot="right"/>
-    </van-nav-bar>
-    <div class="title">
-      <ul>
-        <li @click="clickhot(),chengeurl()" :class="[defaultSort == '按本周热度'?'but':'']">
-          <span>按本周热度</span>
-        </li>
-        <li @click="clicknew(),chengeurl()" :class="[defaultSort == '按发布时间'?'but':'']">
-          <span>按发布时间</span>
-        </li>
-        <li @click="clicknum(),chengeurl()" :class="[defaultSort == '按收藏数量'?'but':'']">
-          <span>按收藏数量</span>
-        </li>
-      </ul>
-    </div>
+    <Head>为你推荐</Head>
     <div class="listghtmain">
       <ul>
         <li v-for="(list,index) in categorylist" :key="index" class="bookb">
@@ -28,6 +13,7 @@
   </div>
 </template>
 <script>
+import Head from "@/components/public/head";
 import book from "@/components/booklist/bookblock.vue";
 export default {
   name: "booklist",
@@ -54,7 +40,8 @@ export default {
     }
   },
   components: {
-    book
+    book,
+    Head
   },
   methods: {
     onClickLeft: function() {
@@ -115,45 +102,13 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.title {
-  background-color: #fff;
-  font-size: 14px;
-  height: 40px;
-  line-height: 40px;
-  border-bottom: 1px solid #dbdbdb;
-  padding: 0 10px;
-  ul {
-    display: flex;
-    li {
-      box-sizing: border-box;
-      list-style: none;
-      color: #999;
-      cursor: pointer;
-      padding: 0 10px;
-    }
-    .but {
-      font-weight: 600;
-      color: #ed4259;
-    }
-  }
+.booklist {
+  display: flex;
+  flex-flow: column nowrap;
 }
 .listghtmain {
-  width: 100%;
   background-color: #fff;
-  border-radius: 6px;
-  padding: 0 10px;
-  box-sizing: border-box;
-  .pag {
-    align-self: flex-end;
-    padding: 30px 0;
-  }
-  ul {
-    display: flex;
-    flex-flow: column nowrap;
-    li {
-      list-style: none;
-      cursor: pointer;
-    }
-  }
+  margin-top: 8vh;
+  padding-left: 6vw;
 }
 </style>

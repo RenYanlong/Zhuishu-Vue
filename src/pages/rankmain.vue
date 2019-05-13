@@ -1,6 +1,6 @@
 <template>
   <div class="rankmain">
-    <Head>分类</Head>
+    <Head>排行榜</Head>
     <div class="main">
       <Book :bookinfo="item" v-for="(item, index) in info.books" :key="index"></Book>
     </div>
@@ -21,11 +21,6 @@ export default {
       info:''
     };
   },
-  methods: {
-    onClickLeft: function() {
-      history.go(-1);
-    }
-  },
   mounted() {
     this.$axios
       .get(
@@ -39,4 +34,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.rankmain {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.main {
+  background-color: #fff;
+  margin-top: 8vh;
+  padding-left: 6vw;
+}
 </style>

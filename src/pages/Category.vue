@@ -14,7 +14,7 @@
       <router-link
         v-for="(item, index) in femaleCate"
         :key="index"
-        :to="{path:'/catemain',query:{gender:male,major:item.major}}"
+        :to="{path:'/catemain',query:{gender:female,major:item.major}}"
       >
         <Categorylist :info="item"></Categorylist>
       </router-link>
@@ -22,7 +22,7 @@
       <router-link
         v-for="(item, index) in pressCate"
         :key="index"
-        :to="{path:'/catemain',query:{gender:male,major:item.major}}"
+        :to="{path:'/catemain',query:{gender:press,major:item.major}}"
       >
         <Categorylist :info="item"></Categorylist>
       </router-link>
@@ -74,7 +74,6 @@ export default {
   h3 {
     font-size: 28px;
     position: sticky;
-    
     top: 7vh;
     background-color: #fff;
   }

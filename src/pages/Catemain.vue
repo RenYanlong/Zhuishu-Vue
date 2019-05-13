@@ -22,11 +22,6 @@ export default {
       books: ""
     };
   },
-  methods: {
-    onScroll(e){
-      console.log(111)
-    }
-  },
   mounted() {
     this.$axios
       .get(
@@ -47,6 +42,6 @@ export default {
   flex-flow: column nowrap;
 }
 .main {
-  margin-top: 6vh;
+  margin-top: 8vh;
 }
 </style>

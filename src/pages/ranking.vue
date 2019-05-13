@@ -1,24 +1,34 @@
 <template>
   <div class="ranking">
-    <van-nav-bar title="排行榜" left-text="返回" left-arrow @click-left="onClickLeft">
-      <van-icon name="search" slot="right"/>
-    </van-nav-bar>
-    <van-tabs v-model="active">
-      <van-tab title="男生">
-        <van-cell v-for="(item, index) in maleinfo" :key="index" :title="item.title" is-link :to="{path:'/rankmain',query:{id:item._id}}"/>
-      </van-tab>
-      <van-tab title="女生">
-        <van-cell v-for="(item, index) in femaleinfo" :key="index" :title="item.title" is-link :to="{path:'/rankmain',query:{id:item._id}}"/>
-      </van-tab>
-    </van-tabs>
+    <Head>为你推荐</Head>
+    <div class="ranklists">
+      <h3>男生排行榜</h3>
+      <router-link
+        v-for="(item, index) in maleinfo"
+        :key="index"
+        :to="{path:'/rankmain',query:{id:item._id}}"
+      >
+        <Categorylist :info="item"></Categorylist>
+      </router-link>
+      <h3>女生排行榜</h3>
+      <router-link
+        v-for="(item, index) in femaleinfo"
+        :key="index"
+        :to="{path:'/rankmain',query:{id:item._id}}"
+      >
+        <Categorylist :info="item"></Categorylist>
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
-import Book from "./../components/rank/book";
+import Categorylist from "@/components/rank/ranklists";
+import Head from "@/components/public/head";
 export default {
   components: {
-    Book
+    Categorylist,
+    Head
   },
   name: "ranking",
   data() {
@@ -27,11 +37,6 @@ export default {
       maleinfo: "",
       femaleinfo: ""
     };
-  },
-  methods: {
-    onClickLeft: function() {
-      history.go(-1);
-    }
   },
   mounted() {
     this.$axios.get("https://novel.juhe.im/rank-category").then(rank => {
@@ -43,5 +48,20 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.ranking {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.ranklists {
+  background-color: #fff;
+  margin-top: 8vh;
+  padding-left: 6vw;
+  h3 {
+    font-size: 28px;
+    position: sticky;
+    top: 8vh;
+    background-color: #fff;
+  }
+}
 
 </style>

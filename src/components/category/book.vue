@@ -20,7 +20,6 @@ export default {
 <style lang="less" scoped>
 .book {
   display: flex;
-  padding: 10px;
   background-color: #fff;
   .main {
     display: flex;
