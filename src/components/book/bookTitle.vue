@@ -1,14 +1,11 @@
 <template>
   <div class="bookTitle">
     <div class="bookinfo">
-      <div>
-        <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`">
+      <div class="img">
+        <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`" />
       </div>
-      <div>
-        <h4>{{bookinfo.title}}</h4>
-        <ul v-if="bookinfo.tags" class="tags">
-          <li v-for="(item, index) in bookinfo.tags" :key="index">{{item}}</li>
-        </ul>
+      <div class="info">
+        <h3>{{bookinfo.title}}</h3>
         <p class="author">{{bookinfo.author}}</p>
         <p>{{Math.floor(bookinfo.wordCount / 10000)}}万字数</p>
       </div>
@@ -43,49 +40,32 @@ export default {
 .bookTitle {
   display: flex;
   flex-flow: column nowrap;
-  padding: 0 6vw;
+  padding: 0 4vw;
   .bookinfo {
     display: flex;
     img {
-      height: 100px;
-      width: 75px;
+      height: 120px;
+      width: 90px;
+      margin-right: 4vw;
     }
-    .tags {
-      display: flex;
-      li{
-        line-height: 16px;
-        padding: 2px;
-      }
-    }
-
-    .aut {
-      span {
-        display: inline-block;
-        margin-right: 10px;
+    .info {
+      h3,
+      p {
+        margin-bottom: 1vh;
       }
       .author {
-        color: @fontColor3;
+        color: red;
       }
-    }
-    .startlooking {
-      width: 120px;
-      height: 30px;
-      line-height: 30px;
-      color: @fontColor5;
-      font-size: 14px;
-      background-color: @backgroundColor3;
-      text-align: center;
     }
   }
 }
-
 .bookdata {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
   text-align: center;
-  padding: 30px 0;
+  padding: 2vh 0;
   border-bottom: 1px solid #ddd;
   .title {
     color: @fontColor2;

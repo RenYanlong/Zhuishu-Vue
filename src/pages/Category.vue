@@ -1,38 +1,38 @@
 <template>
   <div class="category">
-      <Head>为你推荐</Head>
-      <div class="categorglists">
-        <h3>男生分类</h3>
-        <router-link
-          v-for="(item, index) in maleCate"
-          :key="index"
-          :to="{path:'/catemain',query:{gender:male,major:item.major}}"
-        >
-          <Categorylist :info="item"></Categorylist>
-        </router-link>
-        <h3>女生分类</h3>
-        <router-link
-          v-for="(item, index) in femaleCate"
-          :key="index"
-          :to="{path:'/catemain',query:{gender:female,major:item.major}}"
-        >
-          <Categorylist :info="item"></Categorylist>
-        </router-link>
-        <h3>出版社分类</h3>
-        <router-link
-          v-for="(item, index) in pressCate"
-          :key="index"
-          :to="{path:'/catemain',query:{gender:press,major:item.major}}"
-        >
-          <Categorylist :info="item"></Categorylist>
-        </router-link>
-      </div>
+    <Head>为你推荐</Head>
+    <div class="categorglists">
+      <h3>男生分类</h3>
+      <router-link
+        v-for="(item, index) in maleCate"
+        :key="index"
+        :to="{path:'/catemain',query:{gender:male,major:item.major}}"
+      >
+        <Categorylist :info="item"></Categorylist>
+      </router-link>
+      <h3>女生分类</h3>
+      <router-link
+        v-for="(item, index) in femaleCate"
+        :key="index"
+        :to="{path:'/catemain',query:{gender:female,major:item.major}}"
+      >
+        <Categorylist :info="item"></Categorylist>
+      </router-link>
+      <h3>出版社分类</h3>
+      <router-link
+        v-for="(item, index) in pressCate"
+        :key="index"
+        :to="{path:'/catemain',query:{gender:press,major:item.major}}"
+      >
+        <Categorylist :info="item"></Categorylist>
+      </router-link>
     </div>
-  
+  </div>
 </template>
 <script>
 import Categorylist from "@/components/public/categorylist";
 import Head from "@/components/public/head";
+import { constants } from "crypto";
 export default {
   components: {
     Head,
@@ -55,11 +55,18 @@ export default {
     }
   },
   mounted() {
-    this.$axios.get(`https://novel.juhe.im/sub-categories`).then(sub => {
-      this.maleCate = sub.data.male;
-      this.femaleCate = sub.data.female;
-      this.pressCate = sub.data.press;
-    });
+    if (localStorage.subb) {
+      this.maleCate = JSON.parse(localStorage.getItem("subb")).data.male;
+      this.femaleCate = JSON.parse(localStorage.getItem("subb")).data.female;
+      this.pressCate = JSON.parse(localStorage.getItem("subb")).data.press;
+    } else {
+      this.$axios.get(`https://novel.juhe.im/sub-categories`).then(sub => {
+        localStorage.setItem("subb", JSON.stringify(sub));
+        this.maleCate = JSON.parse(localStorage.subb).data.male;
+        this.femaleCate = JSON.parse(localStorage.subb).data.female;
+        this.pressCate = JSON.parse(localStorage.subb).data.press;
+      });
+    }
   }
 };
 </script>

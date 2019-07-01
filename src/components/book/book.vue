@@ -1,47 +1,33 @@
 <template>
   <div class="book">
-    <Head>返回</Head>
+    <Head>{{bookInfo.title}}</Head>
+
     <div class="main">
       <BookTitle :bookinfo="bookInfo"></BookTitle>
-      <div class="bookSection">
-        <div class="bookIntroduce">
-          <h3>《{{bookInfo.title}}》简介：</h3>
-          <p>{{bookInfo.longIntro}}</p>
-        </div>
-        <div class="booknew">
-          <h3>《{{bookInfo.title}}》最新章节</h3>
-          <div>
-            <ul v-if="chapterslist">
-              <li
-                v-for="(item,index) in chapterslist.chapters.slice(chapterslist.chapters.length - 6)"
-                :key="index"
-              >
-                <router-link
-                  :to="{path:'/chapters',query:{id:bookId,zhang:item.order}}"
-                >{{item.title}}</router-link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="bookall">
-          <h3>《{{bookInfo.title}}》目录</h3>
-          <div @click="isbut" class="all">显示全部</div>
-          <div :class="{isheigth:is}">
-            <ul>
-              <li v-for="(item,index) in chapterslist.chapters" :key="index">
-                <router-link
-                  :to="{path:'/chapters',query:{id:bookId,zhang:item.order}}"
-                >{{item.title}}</router-link>
-              </li>
-            </ul>
-          </div>
+      <!-- 简介 -->
+      <div class="bookIntroduce">
+        <h4>《{{bookInfo.title}}》简介：</h4>
+        <p>{{bookInfo.longIntro}}</p>
+      </div>
+      <!-- 目录 -->
+      <div class="bookall">
+        <h4>《{{bookInfo.title}}》目录</h4>
+        <div :class="{isheigth:is}">
+          <ul>
+            <li v-for="(item,index) in chapterslist.chapters" :key="index">
+              <router-link
+                :to="{path:'/chapters',query:{id:bookId,zhang:item.order}}"
+              >{{item.title}}</router-link>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="bookReviews">
-        <h3>《{{bookInfo.title}}》热门书评:</h3>
+
+      <!-- <div class="bookReviews">
+        <h4>《{{bookInfo.title}}》热门书评:</h4>
         <div class="shuping">
           <div v-for="(item,index) in short.docs" :key="index" class="shupinglist">
-            <img :src="`https://statics.zhuishushenqi.com${item.author.avatar}`">
+            <img :src="`https://statics.zhuishushenqi.com${item.author.avatar}`" />
             <div class="shortright">
               <p>
                 <span class="nickname">{{item.author.nickname}}</span>
@@ -52,23 +38,8 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
-    <!-- <div class="right">
-      <div class="newApp"></div>
-      <div class="like">
-        <h4>喜欢这本书的也喜欢</h4>
-        <div v-for="(item,index) in bookSection.books" :key="index" class="likebook">
-          <router-link :to="{path:'/book',query:{id:item._id}}">
-            <img :src="`https://statics.zhuishushenqi.com${item.cover}`">
-            <div class="info">
-              <p class="bookname">{{item.title}}</p>
-              <p class="bookanthor">{{item.author}}</p>
-            </div>
-          </router-link>
-        </div>
-      </div>
-    </div> -->
   </div>
 </template>
 <script>
@@ -83,12 +54,10 @@ export default {
     return {
       bookId: this.$route.query.id,
       bookInfo: "",
-      bookSection: "",
       chapters: "",
       chapterslist: "",
       like: "",
       short: "",
-      is: true
     };
   },
   methods: {
@@ -101,11 +70,6 @@ export default {
       .get(`https://novel.juhe.im/book-info/${this.bookId}`)
       .then(info => {
         this.bookInfo = info.data;
-      });
-    this.$axios
-      .get(`https://novel.juhe.im/recommend/${this.bookId}`)
-      .then(section => {
-        this.bookSection = section.data;
       });
     this.$axios
       .get(`https://novel.juhe.im/book/short-reviews?book=${this.bookId}`)
@@ -134,11 +98,6 @@ export default {
           this.bookInfo = info.data;
         });
       this.$axios
-        .get(`https://novel.juhe.im/recommend/${this.bookId}`)
-        .then(section => {
-          this.bookSection = section.data;
-        });
-      this.$axios
         .get(`https://novel.juhe.im/book/short-reviews?book=${this.bookId}`)
         .then(shorts => {
           this.short = shorts.data;
@@ -160,58 +119,40 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.book{
+.book {
   display: flex;
   flex-flow: column nowrap;
   background-color: #fff;
 }
-.bookall {
-  position: relative;
-}
-.all {
-  position: absolute;
-  right: 5px;
-  top: 0;
-  font-size: 14px;
-  height: 24px;
-  line-height: 24px;
-  cursor: pointer;
-}
 
 .main {
   margin-top: 8vh;
-  .bookSection > div {
-    margin-bottom: 40px;
+  .bookIntroduce,.bookall {
+    padding: 1vh 2vw;
   }
-  h3 {
-    font-size: 16px;
+  h4 {
     color: #666;
-    border-left: 3px solid #cab389;
-    padding-left: 5px;
-    margin-bottom: 20px;
   }
-  p,
-  li {
-    font-size: 13px;
+  p {
+    padding: 1vh 2vw;
+    font-size: 14px;
     color: #666;
     line-height: 25px;
     list-style: none;
-    padding-left: 40px;
     box-sizing: border-box;
   }
+  ul {
+    padding: 1vh 2vw;
+  }
   li {
-    line-height: 40px;
-    height: 40px;
-    display: inline-block;
-    width: 50%;
-    border-bottom: 1px solid #eee;
-    padding-left: 40px;
-    box-sizing: border-box;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
+    line-height: 5vh;
+    height: 5vh;
+    padding-left: 2vw;
 
+  }
   .shupinglist {
     display: flex;
     justify-content: flex-start;
@@ -223,7 +164,7 @@ export default {
     }
     div {
       padding: 0 10px;
-      .nickname{
+      .nickname {
         font-weight: 600;
       }
       p {
@@ -242,7 +183,6 @@ export default {
     padding: 0 10px;
   }
 }
-
 .right {
   h4 {
     line-height: 60px;
