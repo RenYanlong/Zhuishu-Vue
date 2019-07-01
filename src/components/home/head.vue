@@ -25,13 +25,12 @@
 export default {};
 </script>
 
-
 <style lang="less" scoped>
 header{
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: 15px 10px 5px;
+  padding: 1vh 2vw;
 }
 </style>

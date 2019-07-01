@@ -57,20 +57,20 @@ export default {};
 </script>
 
 <style lang="less" scoped>
-h3 {
-    padding: 10px 0;
-    border-bottom: 1px solid #dbdbdb;
-  }
 .nav {
   display: flex;
   flex-flow: column nowrap;
   background-color: #fff;
-  padding: 10px 10px 0px;
+  h3 {
+  height: 8vh;
+  line-height: 8vh;
+}
   a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1vh 0;
+    height: 5vh;
+    line-height: 5vh;
     border-bottom: 1px solid #dbdbdb;
     font-weight: 600;
   }
