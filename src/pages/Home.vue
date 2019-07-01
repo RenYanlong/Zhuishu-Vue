@@ -95,6 +95,7 @@ h3 {
     display: flex;
     flex-flow: row nowrap;
     overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
     li {
       width: 120px;
       list-style: none;

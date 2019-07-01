@@ -109,6 +109,11 @@ export default {
 .listghtmain {
   background-color: #fff;
   margin-top: 8vh;
-  padding-left: 6vw;
+  padding: 0 2vw;
+  ul{
+    li{
+      list-style: none;
+    }
+  }
 }
 </style>

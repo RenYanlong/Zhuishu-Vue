@@ -1,7 +1,7 @@
 <template>
   <div class="catemain">
-    <Head>分类</Head>
-    <div class="main" >
+    <Head>{{major}}</Head>
+    <div class="main">
       <Book :bookinfo="item" v-for="(item, index) in books" :key="index"></Book>
     </div>
   </div>
@@ -25,9 +25,7 @@ export default {
   mounted() {
     this.$axios
       .get(
-        `https://novel.juhe.im/category-info?gender=${
-          this.gender
-        }&type=hot&major=${this.major}&minor=&start=0&limit=20`
+        `https://novel.juhe.im/category-info?gender=${this.gender}&type=hot&major=${this.major}&minor=&start=0&limit=20`
       )
       .then(books => {
         this.books = books.data.books;
@@ -43,5 +41,7 @@ export default {
 }
 .main {
   margin-top: 8vh;
+  padding: 0 2vw;
+  background-color: #fff;
 }
 </style>

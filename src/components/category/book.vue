@@ -1,12 +1,12 @@
 <template>
-  <div class="book">
-    <div>
-       <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`">
-    </div> 
+  <div class="book" v-if="bookinfo">
+    <div class="img">
+      <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`" />
+    </div>
     <div class="main">
-      <div class="head">{{bookinfo.title}}</div>
-      <div class="jianjie">{{bookinfo.shortIntro}}</div>
+      <h4>{{bookinfo.title}}</h4>
       <div class="zuozhe">{{bookinfo.author}}</div>
+      <div class="jianjie">{{bookinfo.shortIntro}}</div>
     </div>
   </div>
 </template>
@@ -21,19 +21,24 @@ export default {
 .book {
   display: flex;
   background-color: #fff;
+  .img {
+    img {
+      width: 90px;
+      height: 120px;
+      margin-right: 2vw;
+    }
+  }
   .main {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-between;
-    .head {
-      font-size: 14px;
-      font-weight: 600;
+    .head,.zuozhe,jianjie{
+      margin-bottom: 1vh;
     }
     .jianjie {
-      font-size: 12px;
+      font-size: 14px;
       overflow: hidden;
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
     }
     .zuozhe {
@@ -41,10 +46,5 @@ export default {
       color: red;
     }
   }
-}
-img {
-  height: 120px;
-  width: 90px;
-  margin-right: 5px;
 }
 </style>

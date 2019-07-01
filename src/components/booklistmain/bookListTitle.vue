@@ -1,11 +1,11 @@
 <template>
   <div class="title">
     <h3>{{info.title}}</h3>
-    <p class="desc">{{info.desc}}</p>
     <div class="authorInfo">
-      <img :src="`https://statics.zhuishushenqi.com${info.author.avatar}`">
+      <img :src="`https://statics.zhuishushenqi.com${info.author.avatar}`" />
       <p class="authorName">{{info.author.nickname}}</p>
     </div>
+    <p class="desc">{{info.desc}}</p>
   </div>
 </template>
 
@@ -21,10 +21,12 @@ export default {
 <style lang="less" scoped>
 .title {
   background-color: #fff;
-  padding-bottom: 1vh;
+  padding: 1vh 0;
+  h3,.desc,.authorInfo{
+    margin-bottom: 1vh;
+  }
   .desc {
     font-size: 14px;
-    padding: 1.5vh 0 2vh;
   }
   .authorInfo {
     display: flex;

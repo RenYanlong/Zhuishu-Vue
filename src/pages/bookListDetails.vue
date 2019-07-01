@@ -1,15 +1,17 @@
 <template>
   <div class="bookListDetails" v-if="bookListInfo">
-    <Head>书单</Head>
-    <BookListTitle :info="bookListInfo"></BookListTitle>
+    <Head>{{bookListInfo.title}}</Head>
     <div class="main">
-      <ul>
-        <li v-for="(list,index) in bookListInfo.books" :key="index">
-          <router-link :to="{path:'/book',query:{id:list.book._id}}">
-            <Book :bookInfo="list"></Book>
-          </router-link>
-        </li>
-      </ul>
+      <BookListTitle :info="bookListInfo"></BookListTitle>
+      <div class="main">
+        <ul>
+          <li v-for="(list,index) in bookListInfo.books" :key="index">
+            <router-link :to="{path:'/book',query:{id:list.book._id}}">
+              <Book :bookInfo="list"></Book>
+            </router-link>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -49,13 +51,15 @@ export default {
 .bookListDetails {
   display: flex;
   flex-flow: column nowrap;
-}
-.title {
-  margin-top: 8vh;
-  padding-left: 6vw;
-}
-.main {
-  background-color: #fff;
-  padding-left: 6vw;
+  .main {
+    background-color: #fff;
+    padding: 0 2vw;
+    .title {
+      margin-top: 8vh;
+    }
+  }
+  li{
+    list-style: none;
+  }
 }
 </style>

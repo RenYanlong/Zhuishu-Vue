@@ -1,15 +1,15 @@
 <template>
   <div class="bookblock">
     <div class="bookImg">
-      <img :src="`https://statics.zhuishushenqi.com${book.cover}`">
+      <img :src="`https://statics.zhuishushenqi.com${book.cover}`" />
     </div>
     <div class="bookinfo">
-      <p class="bookname">{{book.title}}</p>
-      <p class="brief">{{book.desc}}</p>
+      <h4 class="bookname">{{book.title}}</h4>
       <p class="popular">
         <span>{{book.bookCount}}</span>本书
         <span>{{book.collectorCount}}</span>人收藏
       </p>
+      <p class="brief">{{book.desc}}</p>
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@ export default {
 .bookblock {
   display: flex;
   border-bottom: 1px solid #dbdbdb;
-  padding: 10px 0;
+  padding: 1vh 0;
 }
 img {
   height: 120px;
@@ -32,16 +32,16 @@ img {
 .bookinfo {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-between;
-  .bookname {
-    font-weight: 600;
-    font-size: 14px;
+  .bookname,
+  .brief,
+  .popular {
+    margin-bottom: 2vh;
   }
   .brief {
-    font-size: 12px;
+    font-size: 14px;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
   }
   .popular {

@@ -1,33 +1,34 @@
 <template>
   <div class="category">
-    <Head>为你推荐</Head>
-    <div class="categorglists">
-      <h3>男生分类</h3>
-      <router-link
-        v-for="(item, index) in maleCate"
-        :key="index"
-        :to="{path:'/catemain',query:{gender:male,major:item.major}}"
-      >
-        <Categorylist :info="item"></Categorylist>
-      </router-link>
-      <h3>女生分类</h3>
-      <router-link
-        v-for="(item, index) in femaleCate"
-        :key="index"
-        :to="{path:'/catemain',query:{gender:female,major:item.major}}"
-      >
-        <Categorylist :info="item"></Categorylist>
-      </router-link>
-      <h3>出版社分类</h3>
-      <router-link
-        v-for="(item, index) in pressCate"
-        :key="index"
-        :to="{path:'/catemain',query:{gender:press,major:item.major}}"
-      >
-        <Categorylist :info="item"></Categorylist>
-      </router-link>
+      <Head>为你推荐</Head>
+      <div class="categorglists">
+        <h3>男生分类</h3>
+        <router-link
+          v-for="(item, index) in maleCate"
+          :key="index"
+          :to="{path:'/catemain',query:{gender:male,major:item.major}}"
+        >
+          <Categorylist :info="item"></Categorylist>
+        </router-link>
+        <h3>女生分类</h3>
+        <router-link
+          v-for="(item, index) in femaleCate"
+          :key="index"
+          :to="{path:'/catemain',query:{gender:female,major:item.major}}"
+        >
+          <Categorylist :info="item"></Categorylist>
+        </router-link>
+        <h3>出版社分类</h3>
+        <router-link
+          v-for="(item, index) in pressCate"
+          :key="index"
+          :to="{path:'/catemain',query:{gender:press,major:item.major}}"
+        >
+          <Categorylist :info="item"></Categorylist>
+        </router-link>
+      </div>
     </div>
-  </div>
+  
 </template>
 <script>
 import Categorylist from "@/components/public/categorylist";
@@ -69,7 +70,7 @@ export default {
 }
 .categorglists {
   background-color: #fff;
-  margin-top: 8vh;
+  margin-top: 7vh;
   padding-left: 6vw;
   h3 {
     font-size: 28px;

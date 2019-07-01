@@ -1,7 +1,7 @@
 <template>
   <div class="bookInfo" v-if="bookInfo">
     <div>
-      <img :src="`http://statics.zhuishushenqi.com${bookInfo.book.cover}`">
+      <img :src="`http://statics.zhuishushenqi.com${bookInfo.book.cover}`" />
     </div>
     <div class="info">
       <h4>{{bookInfo.book.title}}</h4>
@@ -18,28 +18,31 @@ export default {
 <style lang='less' scoped>
 .bookInfo {
   display: flex;
-  flex-flow: row nowrap;
-  padding: 1vw 0;
+  margin-bottom: 1vh;
   img {
-    height: 100px;
-    width: 75px;
+    height: 120px;
+    width: 90px;
   }
   .info {
     display: flex;
     flex-flow: column nowrap;
-    justify-content: space-around;
+    
     padding-left: 2vw;
-    h4 {
-      color: @fontColor;
-      font-size: 16px;
+    h4,
+    .zuozhe,
+    .comment {
+      margin-bottom: 1vh;
     }
     .zuozhe {
-      font-size: 14px;
-      line-height: 28px;
-      color: @fontColor;
+      font-size: 12px;
+      color: red;
     }
     .comment {
-      font-size: 12px;
+      font-size: 14px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
   }
 }

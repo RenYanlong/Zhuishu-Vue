@@ -41,6 +41,6 @@ export default {
 .main {
   background-color: #fff;
   margin-top: 8vh;
-  padding-left: 6vw;
+  padding:0 2vw;
 }
 </style>
