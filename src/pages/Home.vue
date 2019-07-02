@@ -4,7 +4,6 @@
     <Head></Head>
     <!-- 热门推荐 -->
     <div class="popular">
-      <h3 slot="head">热门推荐</h3>
       <div class="hotsbooks">
         <ul>
           <li v-for="(item, index) in finish" :key="index">
@@ -54,7 +53,7 @@ export default {
   },
   mounted() {
     this.$axios.get("https://novel.juhe.im/hot-books").then(hot => {
-      this.hotBooks = hot.data.newHotWords.slice(0, 7);
+      this.hotBooks = hot.data.newHotWords.slice(0, 9);
     });
     //热门书单
     this.$axios
@@ -68,16 +67,13 @@ export default {
     this.$axios
       .get("https://novel.juhe.im/rank/564eea0b731ade4d6c509493")
       .then(ov => {
-        this.finish = ov.data.ranking.books.slice(0, 7);
+        this.finish = ov.data.ranking.books.slice(0, 9);
       });
   }
 };
 </script>
 
 <style lang="less" scoped>
-.swiper {
-  margin: 10px 0;
-}
 .popular,
 .qidianlist,
 .nav,
@@ -85,12 +81,11 @@ export default {
   background-color: #fff;
   padding: 1vh 2vw;
 }
-h3 {
-  height: 8vh;
-  line-height: 8vh;
-}
 .popular,
 .hotBooklist {
+  h3{
+    margin-bottom: 1vh;
+  }
   ul {
     display: flex;
     flex-flow: row nowrap;
@@ -99,7 +94,7 @@ h3 {
     li {
       width: 120px;
       list-style: none;
-      margin-right: 1vw;
+      margin-right: 2vw;
     }
   }
   p {

@@ -62,8 +62,8 @@ export default {};
   flex-flow: column nowrap;
   background-color: #fff;
   h3 {
-  height: 8vh;
-  line-height: 8vh;
+  height: 6vh;
+  line-height: 6vh;
 }
   a {
     display: flex;

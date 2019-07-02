@@ -1,6 +1,6 @@
 <template>
 <header class="head">
-  <h1>为你推荐</h1>
+  <h1>热门推荐</h1>
   <svg
     class="icon"
     width="32px"
@@ -31,6 +31,6 @@ header{
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: 1vh 2vw;
+  padding: 3vh 2vw 1vh 2vw;
 }
 </style>

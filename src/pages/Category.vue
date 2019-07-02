@@ -6,7 +6,7 @@
       <router-link
         v-for="(item, index) in maleCate"
         :key="index"
-        :to="{path:'/catemain',query:{gender:male,major:item.major}}"
+        :to="{path:'/catemain',query:{gender:male,major:item.major,minor:'全部'}}"
       >
         <Categorylist :info="item"></Categorylist>
       </router-link>
@@ -14,7 +14,7 @@
       <router-link
         v-for="(item, index) in femaleCate"
         :key="index"
-        :to="{path:'/catemain',query:{gender:female,major:item.major}}"
+        :to="{path:'/catemain',query:{gender:female,major:item.major,minor:'全部'}}"
       >
         <Categorylist :info="item"></Categorylist>
       </router-link>
@@ -22,7 +22,7 @@
       <router-link
         v-for="(item, index) in pressCate"
         :key="index"
-        :to="{path:'/catemain',query:{gender:press,major:item.major}}"
+        :to="{path:'/catemain',query:{gender:press,major:item.major,minor:'全部'}}"
       >
         <Categorylist :info="item"></Categorylist>
       </router-link>
