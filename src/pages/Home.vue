@@ -92,17 +92,16 @@ export default {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     li {
-      width: 120px;
       list-style: none;
-      margin-right: 2vw;
+      margin-right: 2vmin;
     }
   }
   p {
     font-size: 12px;
   }
   img {
-    width: 120px;
-    height: 160px;
+    width: 28vmin;
+    height: 40vmin;
   }
   h4 {
     overflow: hidden;
