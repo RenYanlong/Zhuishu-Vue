@@ -1,6 +1,8 @@
 <template>
   <div class="bookblock">
-    <img :src="`https://statics.zhuishushenqi.com${book.cover}`" />
+    <div>
+      <img :src="`https://statics.zhuishushenqi.com${book.cover}`" />
+    </div>
     <div class="bookinfo">
       <p class="bookname">{{book.title}}</p>
       <p class="popular">{{book.author}} | {{book.bookCount}}本书</p>
@@ -18,27 +20,28 @@ export default {
   display: flex;
   margin-bottom: 3vmin;
   img {
-  height: 25vmin;
-  width: 18vmin;
-  border-radius: 4px;
-  margin-right: 2vmin;
-}
+    height: 25vmin;
+    width: 18vmin;
+    border-radius: 4px;
+    margin-right: 2vmin;
+  }
 }
 .bookinfo {
   display: flex;
   flex-flow: column nowrap;
-  .bookname{
+  .bookname {
     font-size: 14px;
     font-weight: 600;
   }
-  .popular{
+  .popular {
     font-size: 13px;
     color: #666;
   }
-  .desc,.popular{
+  .desc,
+  .popular {
     margin-top: 1vmin;
   }
-  .desc{
+  .desc {
     font-size: 14px;
   }
 }
