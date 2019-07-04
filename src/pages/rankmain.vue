@@ -1,4 +1,5 @@
 <template>
+<!-- 排行榜详情页面 -->
   <div class="rankmain">
     <Head>排行榜</Head>
     <div class="main">
@@ -9,7 +10,7 @@
 
 <script>
 import Head from "@/components/public/head";
-import Book from "@/components/category/book.vue";
+import Book from "@/components/public/Book.vue";
 export default {
   components: {
     Book,

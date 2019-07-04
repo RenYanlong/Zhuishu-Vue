@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+  <section class="nav">
     <h3>更多</h3>
     <router-link class="classify" :to="{path:'/category'}">
       <p>分类</p>
@@ -14,7 +14,7 @@
         <path
           d="M439.456 755.2l-59.744-59.744L563.168 512l-183.456-183.456L439.456 268.8l243.2 243.2z"
           fill="#dbdbdb"
-        ></path>
+        />
       </svg>
     </router-link>
     <router-link class="charts" :to="{path:'/ranking'}">
@@ -30,7 +30,7 @@
         <path
           d="M439.456 755.2l-59.744-59.744L563.168 512l-183.456-183.456L439.456 268.8l243.2 243.2z"
           fill="#dbdbdb"
-        ></path>
+        />
       </svg>
     </router-link>
     <router-link class="bookslist" :to="{path:'/booklist'}">
@@ -46,10 +46,10 @@
         <path
           d="M439.456 755.2l-59.744-59.744L563.168 512l-183.456-183.456L439.456 268.8l243.2 243.2z"
           fill="#dbdbdb"
-        ></path>
+        />
       </svg>
     </router-link>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -60,20 +60,15 @@ export default {};
 .nav {
   display: flex;
   flex-flow: column nowrap;
-  background-color: #fff;
-  h3 {
-  height: 6vh;
-  line-height: 6vh;
 }
-  a {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 5vh;
-    line-height: 5vh;
-    border-bottom: 1px solid #dbdbdb;
-    font-weight: 600;
-  }
+a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5vh;
+  line-height: 5vh;
+  border-bottom: 1px solid #dbdbdb;
+  font-weight: 600;
 }
 .classify {
   span {

@@ -1,18 +1,21 @@
 <template>
+  <!-- 书籍详情 -->
   <div class="book">
+    <!-- 置顶头部 -->
     <Head>{{bookInfo.title}}</Head>
-
+    <!-- 页面主体 -->
     <div class="main">
+      <!-- 图书详情头部 -->
       <BookTitle :bookinfo="bookInfo"></BookTitle>
       <!-- 简介 -->
-      <div class="bookIntroduce">
-        <h4>《{{bookInfo.title}}》简介：</h4>
+      <section class="bookIntroduce">
+        <h4>简介：</h4>
         <p>{{bookInfo.longIntro}}</p>
-      </div>
+      </section>
       <!-- 目录 -->
-      <div class="bookall">
-        <h4>《{{bookInfo.title}}》目录</h4>
-        <div :class="{isheigth:is}">
+      <section class="bookall">
+        <h4>目录:</h4>
+        <div>
           <ul>
             <li v-for="(item,index) in chapterslist.chapters" :key="index">
               <router-link
@@ -21,24 +24,7 @@
             </li>
           </ul>
         </div>
-      </div>
-
-      <!-- <div class="bookReviews">
-        <h4>《{{bookInfo.title}}》热门书评:</h4>
-        <div class="shuping">
-          <div v-for="(item,index) in short.docs" :key="index" class="shupinglist">
-            <img :src="`https://statics.zhuishushenqi.com${item.author.avatar}`" />
-            <div class="shortright">
-              <p>
-                <span class="nickname">{{item.author.nickname}}</span>
-                <span>{{item.updated.slice(0,10)}}</span>
-              </p>
-              <el-rate v-model="item.rating" disabled text-color="#ff9900"></el-rate>
-              <p class="content">{{item.content}}</p>
-            </div>
-          </div>
-        </div>
-      </div>-->
+      </section>
     </div>
   </div>
 </template>
@@ -57,7 +43,7 @@ export default {
       chapters: "",
       chapterslist: "",
       like: "",
-      short: "",
+      short: ""
     };
   },
   methods: {
@@ -127,89 +113,20 @@ export default {
 
 .main {
   margin-top: 8vh;
-  .bookIntroduce,.bookall {
-    padding: 1vh 2vw;
-  }
-  h4 {
-    color: #666;
-  }
   p {
-    padding: 1vh 2vw;
     font-size: 14px;
     color: #666;
     line-height: 25px;
     list-style: none;
     box-sizing: border-box;
   }
-  ul {
-    padding: 1vh 2vw;
-  }
   li {
+    font-size: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    line-height: 5vh;
-    height: 5vh;
-    padding-left: 2vw;
-
-  }
-  .shupinglist {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-bottom: 40px;
-    img {
-      width: 40px;
-      height: 40px;
-    }
-    div {
-      padding: 0 10px;
-      .nickname {
-        font-weight: 600;
-      }
-      p {
-        font-size: 14px;
-        padding: 0;
-      }
-      .content {
-        line-height: 25px;
-        padding-left: 10px;
-        margin: 5px 0;
-      }
-    }
-  }
-  span {
-    display: inline-block;
-    padding: 0 10px;
-  }
-}
-.right {
-  h4 {
-    line-height: 60px;
-    color: #777;
-  }
-  .likebook a {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
-    align-content: flex-start;
-    margin-bottom: 30px;
-    img {
-      width: 96px;
-      height: 118px;
-    }
-    .info {
-      color: #666;
-      margin-left: 10px;
-      .bookname {
-        font-size: 14px;
-        font-weight: 600;
-        margin-bottom: 10px;
-      }
-      .bookanthor {
-        font-size: 13px;
-      }
-    }
+    line-height: 8vmin;
+    height: 8vmin;
   }
 }
 </style>

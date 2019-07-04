@@ -1,11 +1,12 @@
 <template>
+<!-- 书单页面 -->
   <div class="booklist">
-    <Head>为你推荐</Head>
+    <Head>书单</Head>
     <div class="listghtmain">
       <ul>
         <li v-for="(list,index) in categorylist" :key="index" class="bookb">
           <router-link :to="{path:'/bookListDetails',query:{id:list._id}}">
-            <book :book="list"></book>
+            <Booklist :book="list"></Booklist>
           </router-link>
         </li>
       </ul>
@@ -14,7 +15,7 @@
 </template>
 <script>
 import Head from "@/components/public/head";
-import book from "@/components/booklist/bookblock.vue";
+import Booklist from "@/components/public/booklist.vue";
 export default {
   name: "booklist",
   data() {
@@ -40,7 +41,7 @@ export default {
     }
   },
   components: {
-    book,
+    Booklist,
     Head
   },
   methods: {

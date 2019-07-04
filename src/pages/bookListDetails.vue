@@ -1,4 +1,5 @@
 <template>
+  <!-- 书单详情页面 -->
   <div class="bookListDetails" v-if="bookListInfo">
     <Head>{{bookListInfo.title}}</Head>
     <div class="main">
@@ -7,7 +8,7 @@
         <ul>
           <li v-for="(list,index) in bookListInfo.books" :key="index">
             <router-link :to="{path:'/book',query:{id:list.book._id}}">
-              <Book :bookInfo="list"></Book>
+              <Book :bookinfo="list"></Book>
             </router-link>
           </li>
         </ul>

@@ -1,33 +1,39 @@
 <template>
+<!-- 排行榜页面 -->
   <div class="ranking">
-    <Head>为你推荐</Head>
-    <div class="ranklists">
+    <Head>排行榜</Head>
+    <section class="ranklists">
       <h3>男生排行榜</h3>
       <router-link
         v-for="(item, index) in maleinfo"
         :key="index"
         :to="{path:'/rankmain',query:{id:item._id}}"
       >
-        <Categorylist :info="item"></Categorylist>
+        <div class="categorylist">
+          <p>{{item.title}}</p>
+        </div>
       </router-link>
+    </section>
+    <section>
       <h3>女生排行榜</h3>
       <router-link
         v-for="(item, index) in femaleinfo"
         :key="index"
         :to="{path:'/rankmain',query:{id:item._id}}"
       >
-        <Categorylist :info="item"></Categorylist>
+        <div class="categorylist">
+          <p>{{item.title}}</p>
+        </div>
       </router-link>
-    </div>
+    </section>
   </div>
 </template>
 
 <script>
-import Categorylist from "@/components/rank/ranklists";
 import Head from "@/components/public/head";
+
 export default {
   components: {
-    Categorylist,
     Head
   },
   name: "ranking",
@@ -48,20 +54,24 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.ranking {
-  display: flex;
-  flex-flow: column nowrap;
-}
 .ranklists {
-  background-color: #fff;
-  margin-top: 8vh;
-  padding-left: 6vw;
+  padding-top: 8vh;
+}
+section {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  padding: 0 0 8vmin;
+
   h3 {
     font-size: 28px;
-    position: sticky;
-    top: 8vh;
-    background-color: #fff;
   }
 }
-
+.categorylist {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh 0;
+  color: #666;
+  font-size: 16px;
+}
 </style>

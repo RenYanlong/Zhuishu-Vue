@@ -31,6 +31,6 @@ header{
   justify-content: space-between;
   align-items: center;
   background-color: #fff;
-  padding: 3vh 2vw 1vh 2vw;
+  padding: 4vmin 3vmin 2vmin;
 }
 </style>

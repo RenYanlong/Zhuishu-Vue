@@ -5,11 +5,10 @@ import Home from "./pages/Home.vue";
 import Booklist from "./pages/booklist.vue";
 import Category from "./pages/Category.vue";
 import BookListDetails from "./pages/bookListDetails.vue";
-import Book from "./components/book/book.vue";
+import Book from "./pages/Book.vue";
 import Ranking from './pages/ranking.vue';
 import Chapters from './components/chapters/chapters.vue';
 import Search from './pages/search.vue';
-import Bookshelf from './pages/bookshelf.vue';
 import Catemain from './pages/Catemain.vue';
 import Rankmain from './pages/rankmain.vue';
 
@@ -23,11 +22,7 @@ export default new Router({
       name: "home",
       component: Home
     },
-    {
-      path:'/bookshelf',
-      name:'bookshelf',
-      component:Bookshelf
-    },
+    
     {
       path:'/rankmain',
       name:'rankmain',

@@ -1,12 +1,12 @@
 <template>
-  <div class="title">
+  <section class="title">
     <h3>{{info.title}}</h3>
     <div class="authorInfo">
       <img :src="`https://statics.zhuishushenqi.com${info.author.avatar}`" />
       <p class="authorName">{{info.author.nickname}}</p>
     </div>
     <p class="desc">{{info.desc}}</p>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -20,10 +20,8 @@ export default {
 
 <style lang="less" scoped>
 .title {
-  background-color: #fff;
-  padding: 1vh 0;
   h3,.desc,.authorInfo{
-    margin-bottom: 1vh;
+    margin-bottom: 2vmin;
   }
   .desc {
     font-size: 14px;

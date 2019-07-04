@@ -1,6 +1,6 @@
 <template>
-  <div class="myApp" >
-    <router-view/>
+  <div class="myApp">
+    <router-view />
   </div>
 </template>
 <script>
@@ -20,7 +20,23 @@ export default {
 * {
   padding: 0;
   margin: 0;
+  background-color: #fff;
 }
+section {
+  padding: 1vmin 3vmin;
+}
+h3 {
+  height: 10vmin;
+  line-height: 10vmin;
+}
+h4 {
+  height: 8vmin;
+  line-height: 8vmin;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 a {
   text-decoration: none;
 }
