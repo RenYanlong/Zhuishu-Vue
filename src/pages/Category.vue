@@ -1,47 +1,34 @@
 <template>
-<!-- 分类页面 -->
+  <!-- 分类页面 -->
   <div class="category">
-    <Head>全部分类</Head>
-    <section class="categorglists">
-      <h3>男生分类</h3>
-      <router-link
-        v-for="(item, i) in maleCate"
-        :key="i"
-        :to="{path:'/catemain',query:{gender:male,major:item.major}}"
-      >
-        <Categorylist :info="item"></Categorylist>
-      </router-link>
+    <section>
+      <h3>男生小说</h3>
+      <ul>
+        <li v-for="(item, i) in maleCate" :key="i">
+          <router-link :to="{path:'/catemain',query:{gender:male}}">{{item.major}}</router-link>
+        </li>
+      </ul>
     </section>
     <section>
-      <h3>女生分类</h3>
-      <router-link
-        v-for="(item, index) in femaleCate"
-        :key="index"
-        :to="{path:'/catemain',query:{gender:female,major:item.major}}"
-      >
-        <Categorylist :info="item"></Categorylist>
-      </router-link>
+      <h3>女生小说</h3>
+      <ul>
+        <li v-for="(item, i) in femaleCate" :key="i">
+          <router-link :to="{path:'/catemain',query:{gender:female}}">{{item.major}}</router-link>
+        </li>
+      </ul>
     </section>
     <section>
-      <h3>出版社分类</h3>
-      <router-link
-        v-for="(item, index) in pressCate"
-        :key="index"
-        :to="{path:'/catemain',query:{gender:press,major:item.major}}"
-      >
-        <Categorylist :info="item"></Categorylist>
-      </router-link>
+      <h3>图书图库</h3>
+      <ul>
+        <li v-for="(item, i) in pressCate" :key="i">
+          <router-link :to="{path:'/catemain',query:{gender:press}}">{{item.major}}</router-link>
+        </li>
+      </ul>
     </section>
   </div>
 </template>
 <script>
-import Categorylist from "@/components/category/categorylist.vue";
-import Head from "@/components/public/head";
 export default {
-  components: {
-    Head,
-    Categorylist
-  },
   data() {
     return {
       male: "male",
@@ -51,11 +38,6 @@ export default {
       femaleCate: "",
       pressCate: ""
     };
-  },
-  methods: {
-    onClickLeft: function() {
-      history.go(-1);
-    }
   },
   mounted() {
     if (localStorage.subb) {
@@ -74,12 +56,28 @@ export default {
 };
 </script>
 <style lang='less' scoped>
-.category {
-  display: flex;
-  flex-flow: column nowrap;
+section {
+  padding: 3vmin 2vmin;
+  border-bottom: 8px solid #f5f5f5;
 }
-.categorglists {
-  background-color: #fff;
-  margin-top: 8vh;
+h3{
+  margin-bottom: 3vmin;
+}
+ul {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  li {
+    width: 31vmin;
+    line-height: 26px;
+    text-align: center;
+    margin-bottom: 3vmin;
+    a{
+      display: inline-block;
+      width: 20vmin;
+      background-color: #f5f5f5;
+      border-radius: 1vmin;
+    }
+  }
 }
 </style>

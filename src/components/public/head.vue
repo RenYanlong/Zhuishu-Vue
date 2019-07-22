@@ -2,8 +2,8 @@
   <div class="returnbut">
     <svg
       class="icon"
-      width="20px"
-      height="20.00px"
+      width="6vmin"
+      height="6vmin"
       viewBox="0 0 1024 1024"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -13,31 +13,24 @@
         fill="#e0620d"
       />
     </svg>
-    <p @click="click">
-      <slot></slot>
-    </p>
+    <p>书籍详情</p>
+    <p>首页</p>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {
-    click() {
-      history.go(-1);
-    }
-  }
+  methods: {}
 };
 </script>
 <style lang="less" scoped>
 .returnbut {
   display: flex;
-  position: fixed;
-  width: 100vw;
+  justify-content: space-between;
   align-items: center;
-  height: 8vh;
-  line-height: 8vh;
   font-size: 16px;
+  height: 10vmin;
+  line-height: 10vmin;
   padding: 0 3vmin;
-  color: #e0620d;
 }
 </style>

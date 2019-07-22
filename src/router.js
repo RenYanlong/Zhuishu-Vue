@@ -8,35 +8,54 @@ import BookListDetails from "./pages/bookListDetails.vue";
 import Book from "./pages/Book.vue";
 import Ranking from './pages/ranking.vue';
 import Chapters from './components/chapters/chapters.vue';
-import Search from './pages/search.vue';
 import Catemain from './pages/Catemain.vue';
 import Rankmain from './pages/rankmain.vue';
+import Male from './components/home/male.vue';
+import Female from './components/home/female.vue';
+import Press from './components/home/press.vue';
 
 Vue.use(Router);
 
 export default new Router({
-  mode: "history",
+  mode: "hash",
   routes: [
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: "",
+          name: "male",
+          component: Male
+        },
+        {
+          path: "female",
+          name: "female",
+          component: Female
+        },
+        {
+          path: "press",
+          name: "press",
+          component: Press
+        },
+        {
+          path: "category",
+          name: "category",
+          component: Category
+        },
+        {
+          path: 'ranking',
+          name: 'ranking',
+          component: Ranking
+        }
+      ]
     },
-    
+
     {
-      path:'/rankmain',
-      name:'rankmain',
-      component:Rankmain
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: Search
-    },
-    {
-      path: "/category",
-      name: "category",
-      component: Category
+      path: '/rankmain',
+      name: 'rankmain',
+      component: Rankmain
     },
     {
       path: "/catemain",
@@ -59,15 +78,9 @@ export default new Router({
       component: Book
     },
     {
-      path: '/ranking',
-      name: 'ranking',
-      component: Ranking
-    },
-    {
       path: '/chapters',
       name: 'chapters',
       component: Chapters
     }
-
   ]
 });

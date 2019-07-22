@@ -1,13 +1,15 @@
 <template>
   <div class="book" v-if="bookinfo">
-    <div class="tupian">
-      <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`" />
-    </div>
-    <div class="main">
-      <p class="bookname">{{bookinfo.title}}</p>
-      <p class="jianjie">{{bookinfo.shortIntro}}</p>
-      <p class="zuozhe">{{bookinfo.author}}</p>
-    </div>
+    <router-link class="tobook" :to="{path:'/book',query:{id:bookinfo._id}}">
+      <div class="cover">
+        <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`" :alt="`${bookinfo.title}`" />
+      </div>
+      <div class="bookinfo">
+        <h3>{{bookinfo.title}}</h3>
+        <p class="author">{{bookinfo.author}}</p>
+        <p class="introduction">{{bookinfo.shortIntro}}</p>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -19,35 +21,38 @@ export default {
 
 <style lang="less" scoped>
 .book {
-  display: flex;
-  margin: 2vmin 0;
-  .tupian {
-    img {
-      height: 25vmin;
-      width: 18vmin;
-      border-radius: 4px;
-      margin-right: 2vmin;
-    }
+  margin: 3vmin 0;
+}
+.cover {
+  height: 27vmin;
+  width: 20vmin;
+  margin-right: 2vmin;
+  img {
+    height: 27vmin;
+    width: 20vmin;
+    border-radius: 1vmin;
   }
-  .main {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-between;
-    .bookname {
-      font-size: 14px;
-      font-weight: 600;
-    }
-    .jianjie {
-      font-size: 12px;
-      overflow: hidden;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
-    .zuozhe {
-      font-size: 12px;
-      color: #666;
-    }
+}
+.tobook {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  h3 {
+    margin-bottom: 1vmin;
+  }
+  .author,
+  .introduction {
+    font-size: 12px;
+    line-height: 20px;
+    color: #666;
+    margin-bottom: 1vmin;
+  }
+  .introduction {
+    padding-right: 5vmin;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 }
 </style>
