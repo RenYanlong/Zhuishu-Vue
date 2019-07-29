@@ -1,116 +1,175 @@
 <template>
   <div class="male">
-    <!-- 推荐 -->
-    <div class="recommend">
-      <h2>重磅推荐</h2>
+    <!-- 重磅推荐 -->
+    
+    <section class="recommend_2">
+      <div class="title">
+        <h2>重磅推荐</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
       <ul>
         <li v-for="(item, index) in hot1" :key="index">
+          <Book_2 :bookinfo="item"></Book_2>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 最爱榜单 -->
+    <section class="toplist">
+      <div class="title">
+        <h2>最爱榜单</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
+      <ul>
+        <li>
+          <Toplist :info="over">热门榜</Toplist>
+        </li>
+        <li>
+          <Toplist :info="hot2">热搜榜</Toplist>
+        </li>
+        <li>
+          <Toplist :info="top100">最top榜</Toplist>
+        </li>
+      </ul>
+    </section>
+
+    <section class="booklist">
+      <div class="title">
+        <h2>热门书单</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
+      <div>
+        <ul>
+          <li v-for="(item, index) in booklist.slice(0,5)" :key="index">
+            <Booklist :book="item"></Booklist>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section class="recommend">
+      <div class="title">
+        <h2>畅销图书</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
+      <ul>
+        <li v-for="(item, index) in sellwell" :key="index">
           <Book_1 :bookinfo="item"></Book_1>
         </li>
       </ul>
-    </div>
-    <section class="recommend_2">
-      <ul>
-        <li v-for="(item, index) in hot2" :key="index">
-          <Book :bookinfo="item"></Book>
-        </li>
-      </ul>
     </section>
-    <section class="recommend_2">
-      <h2>奇幻世界</h2>
-      <ul>
-        <li v-for="(item, index) in fantastic" :key="index">
-          <Book :bookinfo="item"></Book>
-        </li>
-      </ul>
-    </section>
-    <section class="recommend_2">
-      <h2>完本精选</h2>
-      <ul>
-        <li v-for="(item, index) in over" :key="index">
-          <Book :bookinfo="item"></Book>
-        </li>
-      </ul>
-    </section>
-    <div class="recommend">
-      <h2>热搜榜</h2>
-      <ul>
-        <li v-for="(item, index) in hotsearch" :key="index">
-          <Book_1 :bookinfo="item"></Book_1>
-        </li>
-      </ul>
-    </div>
   </div>
 </template>
 
 <script>
 import Book from "@/components/public/Book.vue";
 import Book_1 from "@/components/public/Book_1.vue";
+import Book_2 from "@/components/public/Book_2.vue";
+import Toplist from "@/components/public/Toplist.vue";
+import Booklist from "@/components/public/booklist.vue";
 
 export default {
   data() {
     return {
+      loading: true,
+      top100: "",
       hot1: "",
       hot2: "",
-      fantastic: "",
       over: "",
-      hotsearch: ""
+      booklist: "",
+      sellwell: ""
     };
   },
   components: {
     Book,
-    Book_1
+    Book_1,
+    Book_2,
+    Toplist,
+    Booklist
   },
   mounted() {
+    this.loading = false;
     //热门推荐
     this.$axios
       .get("https://novel.juhe.im/rank/564d8494fe996c25652644d2")
       .then(ov => {
         this.hot1 = ov.data.ranking.books.slice(0, 3);
-        this.hot2 = ov.data.ranking.books.slice(3, 6);
-      });
-    // 玄幻世界
-    this.$axios
-      .get(
-        "https://novel.juhe.im/category-info?gender=male&type=hot&major=奇幻&minor=&start=0&limit=20"
-      )
-      .then(ov => {
-        this.fantastic = ov.data.books.slice(0, 3);
+        this.sellwell = ov.data.ranking.books.slice(3, 6);
       });
     // 完本精选
     this.$axios
-      .get("https://novel.juhe.im/rank/564eea0b731ade4d6c509493")
+      .get("https://novel.juhe.im/rank/5a6844aafc84c2b8efaa6b6e")
       .then(ov => {
-        this.over = ov.data.ranking.books.slice(0, 3);
+        this.hot2 = ov.data.ranking.books;
       });
     this.$axios
-      .get("https://novel.juhe.im/rank/5a6844f8fc84c2b8efaa8bc5")
+      .get("https://novel.juhe.im/rank/564eb878efe5b8e745508fde")
       .then(ov => {
-        this.hotsearch = ov.data.ranking.books.slice(0, 3);
+        this.over = ov.data.ranking.books;
+      });
+    this.$axios
+      .get("https://novel.juhe.im/rank/54d42d92321052167dfb75e3")
+      .then(ov => {
+        this.top100 = ov.data.ranking.books;
+      });
+    this.$axios
+      .get(
+        "https://novel.juhe.im/booklists?sort=collectorCount&duration=last-seven-days&start=0&gender=male"
+      )
+      .then(ov => {
+        this.booklist = ov.data.bookLists;
       });
   }
 };
 </script>
 
 <style lang="less" scoped>
-.male {
-  padding: 2vmin 3vmin;
-}
 section {
+  padding: 2vmin 3vmin;
   margin: 2vmin 0 4vmin;
-  border-bottom: 1px solid #ededed;
-}
-h2 {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 28px;
-  margin-bottom: 2vmin;
 }
 .recommend {
   ul {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
+  }
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3vw;
+  line-height: 26px;
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  i {
+    vertical-align: -2px;
+  }
+}
+
+.toplist,.recommend_2  {
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    li {
+      margin-right: 3vw;
+      font-size: 0;
+    }
   }
 }
 </style>

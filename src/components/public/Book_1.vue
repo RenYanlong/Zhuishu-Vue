@@ -19,17 +19,18 @@ export default {
 
 <style lang="less" scoped>
 .book_1 {
-  width: 30vmin;
+  width: 30vw;
+  margin-bottom: 3vw;
   img {
-    width: 30vmin;
-    height: 40vmin;
-    border-radius: 2vmin;
-  }
-  h3 {
-    margin: 1vmin 0;
+    width: 30vw;
+    height: 40vw;
+    border-radius: 1vw;
+    margin-bottom: 2vw;
   }
   p {
-    font-size: 12px;
+    font-size: 13px;
+    line-height: 24px;
+    color: #666;
   }
 }
 </style>

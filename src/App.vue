@@ -59,7 +59,7 @@ td {
 }
 body {
   background: #fff;
-  color: #555;
+  color: #2e2e2e;
   font-size: 14px;
   font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -92,11 +92,14 @@ var {
   font-weight: normal;
 }
 a {
-  color: #555;
+  color: #2e2e2e;
   text-decoration: none;
 }
-a:hover {
-  text-decoration: underline;
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
 }
 img {
   border: none;
@@ -128,8 +131,21 @@ h3 {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.el-rate__icon {
-  font-size: 12px !important;
-  margin-right: 2px !important;
+section {
+  padding: 2vmin 3vmin;
+  margin: 2vmin 0 4vmin;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 3vw;
+  line-height: 26px;
+  h2 {
+    font-size: 20px;
+    font-weight: 500;
+  }
+  i {
+    vertical-align: -2px;
+  }
 }
 </style>

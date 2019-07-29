@@ -1,22 +1,34 @@
 <template>
   <div class="press">
     <!-- 推荐 -->
-    <div class="recommend">
-      <h2>重磅推荐</h2>
+    <section class="recommend_2">
+      <div class="title">
+        <h2>重磅推荐</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
       <ul>
         <li v-for="(item, index) in hot1" :key="index">
           <Book_1 :bookinfo="item"></Book_1>
         </li>
       </ul>
-    </div>
-    <div class="recommend">
-      <h2>人文社科</h2>
+    </section>
+    <section class="recommend">
+      <div class="title">
+        <h2>人文社科</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
       <ul>
         <li v-for="(item, index) in hot2" :key="index">
           <Book_1 :bookinfo="item"></Book_1>
         </li>
       </ul>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -53,24 +65,23 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.press {
-  padding: 2vmin 3vmin;
-}
-section {
-  margin: 2vmin 0 4vmin;
-  border-bottom: 1px solid #ededed;
-}
-h2 {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 28px;
-  margin-bottom: 2vmin;
-}
 .recommend {
   ul {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
+  }
+}
+.toplist,.recommend_2  {
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    li {
+      margin-right: 3vw;
+      font-size: 0;
+    }
   }
 }
 </style>

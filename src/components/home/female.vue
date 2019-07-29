@@ -1,73 +1,110 @@
 <template>
   <div class="female">
     <!-- 推荐 -->
-    <div class="recommend">
-      <h2>重磅推荐</h2>
+    <section class="recommend_2">
+      <div class="title">
+        <h2>重磅推荐</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
       <ul>
         <li v-for="(item, index) in hot1" :key="index">
-          <Book_1 :bookinfo="item"></Book_1>
-        </li>
-      </ul>
-    </div>
-    <section class="recommend_2">
-      <ul>
-        <li v-for="(item, index) in hot2" :key="index">
           <Book :bookinfo="item"></Book>
         </li>
       </ul>
     </section>
+    <!-- 热门搜索 -->
+    <section class="recommend">
+      <div class="title">
+        <h2>女生热门</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
+      <ul>
+        <li v-for="(item, index) in hotsearch" :key="index">
+          <Book_1 :bookinfo="item"></Book_1>
+        </li>
+      </ul>
+    </section>
+    <!-- 最爱榜单 -->
+    <section class="toplist">
+      <div class="title">
+        <h2>最爱榜单</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
+      <ul>
+        <li>
+          <Toplist :info="over1">完结榜</Toplist>
+        </li>
+        <li>
+          <Toplist :info="hot1">热搜榜</Toplist>
+        </li>
+      </ul>
+    </section>
     <section class="recommend_2">
-      <h2>现代言情</h2>
+      <div class="title">
+        <h2>重磅推荐</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
       <ul>
         <li v-for="(item, index) in fantastic" :key="index">
           <Book :bookinfo="item"></Book>
         </li>
       </ul>
     </section>
-    <section class="recommend_2">
-      <h2>完本精选</h2>
+    <section class="recommend">
+      <div class="title">
+        <h2>重磅推荐</h2>
+        <p>
+          更多
+          <van-icon name="arrow" size="14" />
+        </p>
+      </div>
       <ul>
         <li v-for="(item, index) in over" :key="index">
           <Book :bookinfo="item"></Book>
         </li>
       </ul>
     </section>
-    <div class="recommend">
-      <h2>热搜榜</h2>
-      <ul>
-        <li v-for="(item, index) in hotsearch" :key="index">
-          <Book_1 :bookinfo="item"></Book_1>
-        </li>
-      </ul>
-    </div>
   </div>
 </template>
 
 <script>
 import Book from "@/components/public/Book.vue";
 import Book_1 from "@/components/public/Book_1.vue";
+import Toplist from "@/components/public/Toplist.vue";
 
 export default {
   data() {
     return {
       hot1: "",
-      hot2: "",
       fantastic: "",
       over: "",
-      hotsearch: ""
+      hotsearch: "",
+      over1: ""
     };
   },
   components: {
     Book,
-    Book_1
+    Book_1,
+    Toplist
   },
   mounted() {
     //热门推荐
     this.$axios
       .get("https://novel.juhe.im/rank/54d43437d47d13ff21cad58b")
       .then(ov => {
-        this.hot1 = ov.data.ranking.books.slice(0, 3);
-        this.hot2 = ov.data.ranking.books.slice(3, 6);
+        this.hot1 = ov.data.ranking.books.slice(0, 4);
       });
     // 玄幻世界
     this.$axios
@@ -87,31 +124,36 @@ export default {
     this.$axios
       .get("https://novel.juhe.im/rank/5a684515fc84c2b8efaa9875")
       .then(ov => {
-        this.hotsearch = ov.data.ranking.books.slice(0, 3);
+        this.hotsearch = ov.data.ranking.books.slice(0, 6);
+      });
+    this.$axios
+      .get("https://novel.juhe.im/rank/564eb8a9cf77e9b25056162d")
+      .then(ov => {
+        this.over1 = ov.data.ranking.books;
       });
   }
 };
 </script>
 
 <style lang="less" scoped>
-.female {
-  padding: 2vmin 3vmin;
-}
-section {
-  margin: 2vmin 0 4vmin;
-  border-bottom: 1px solid #ededed;
-}
-h2 {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 28px;
-  margin-bottom: 2vmin;
-}
 .recommend {
   ul {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: space-between;
+  }
+}
+.toplist,
+.recommend_2 {
+  ul {
+    display: flex;
+    justify-content: flex-start;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    li {
+      margin-right: 3vw;
+      font-size: 0;
+    }
   }
 }
 </style>
