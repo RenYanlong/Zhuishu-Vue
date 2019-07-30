@@ -102,7 +102,7 @@ export default {
   }
 };
 </script>
-<style lang='less' scoped>
+<style lang='scss' scoped>
 .booklist {
   display: flex;
   flex-flow: column nowrap;

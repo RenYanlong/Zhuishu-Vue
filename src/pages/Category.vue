@@ -55,7 +55,7 @@ export default {
   }
 };
 </script>
-<style lang='less' scoped>
+<style lang='scss' scoped>
 section {
   padding: 3vmin 2vmin;
   border-bottom: 8px solid #f5f5f5;

@@ -13,7 +13,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 footer {
   line-height: 8vmin;
   text-align: center;

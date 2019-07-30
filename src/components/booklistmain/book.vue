@@ -19,7 +19,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .book {
   display: flex;
   margin: 2vmin 0;

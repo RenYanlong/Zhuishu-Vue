@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .catemain {
   display: flex;
   flex-flow: column nowrap;

@@ -8,9 +8,9 @@ import Chapters from './components/chapters/chapters.vue';
 import Catemain from './pages/Catemain.vue';
 import Rankmain from './pages/rankmain.vue';
 
-import Male from './components/home/male.vue';
-import Female from './components/home/female.vue';
-import Press from './components/home/press.vue';
+// import Male from './components/home/male.vue';
+// import Female from './components/home/female.vue';
+// import Press from './components/home/press.vue';
 
 Vue.use(Router);
 
@@ -20,29 +20,7 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home,
-      children: [
-        {
-          path: '',
-          name: 'male',
-          component: Male
-        },
-        {
-          path: 'female',
-          name: 'female',
-          component: Female
-        },
-        {
-          path: 'press',
-          name: 'press',
-          component: Press
-        },
-        {
-          path: '',
-          name: 'male1',
-          component: Male
-        }
-      ]
+      component: Home
     },
 
     {

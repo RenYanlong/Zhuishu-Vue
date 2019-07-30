@@ -6,7 +6,6 @@
         <h2>重磅推荐</h2>
         <p>
           更多
-          <van-icon name="arrow" size="14" />
         </p>
       </div>
       <ul>
@@ -21,7 +20,6 @@
         <h2>女生热门</h2>
         <p>
           更多
-          <van-icon name="arrow" size="14" />
         </p>
       </div>
       <ul>
@@ -36,7 +34,6 @@
         <h2>最爱榜单</h2>
         <p>
           更多
-          <van-icon name="arrow" size="14" />
         </p>
       </div>
       <ul>
@@ -53,7 +50,6 @@
         <h2>重磅推荐</h2>
         <p>
           更多
-          <van-icon name="arrow" size="14" />
         </p>
       </div>
       <ul>
@@ -67,7 +63,6 @@
         <h2>重磅推荐</h2>
         <p>
           更多
-          <van-icon name="arrow" size="14" />
         </p>
       </div>
       <ul>
@@ -135,7 +130,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .recommend {
   ul {
     display: flex;

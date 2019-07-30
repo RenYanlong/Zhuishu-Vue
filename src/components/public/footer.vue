@@ -56,7 +56,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .footer {
   width: 1000px;
   margin: 0 auto;

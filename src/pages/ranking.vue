@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .ranklists {
   padding-top: 8vh;
 }

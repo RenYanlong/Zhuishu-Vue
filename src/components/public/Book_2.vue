@@ -1,11 +1,8 @@
 <template>
   <div class="book" v-if="bookinfo">
-    <router-link class="tobook" :to="{path:'/book',query:{id:bookinfo._id}}">
+    <router-link :to="{path:'/book',query:{id:bookinfo._id}}">
       <div class="cover">
-        <img
-          :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`"
-          :alt="`${bookinfo.title}`"
-        />
+        <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`" :alt="`${bookinfo.title}`" />
       </div>
       <div class="bookinfo">
         <h3>{{bookinfo.title}}</h3>
@@ -25,37 +22,42 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .book {
   width: 80vw;
+  a {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    margin-right: 3vw;
+  }
 }
 .cover {
-  height: 27vw;
-  width: 20vw;
+  height: 30vw;
+  width: 21vw;
   margin-right: 3vw;
   img {
-    height: 27vmin;
-    width: 20vmin;
-    border-radius: 1vmin;
+    height: 30vw;
+    width: 21vw;
+    border-radius: 1vw;
   }
 }
-.tobook {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: flex-start;
-  padding-right: 3vw;
-  .author,
-  .introduction {
-    line-height: 24px;
-    color: #666;
-    margin-bottom: 1vmin;
-    font-size: 13px;
+.bookinfo {
+  p,
+  h3 {
+    padding: 0;
+    margin: 0 0 2vw;
+  }
+  h3{
+    font-size: 4.27vw;
+  }
+  .author {
+    font-size: 3.2vw;
+    color: #2E294E;
   }
   .introduction {
-    display: inline-block;
-    background-color: #eee;
-    border-radius: 1vw;
-    padding: 1vmin;
+    font-size: 3.47vw;
+    line-height: 6.4vw;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;

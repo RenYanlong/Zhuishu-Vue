@@ -43,9 +43,9 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .customer {
-  background-color: @backgroundColor1;
+  background-color: #fff;
   border-bottom: 1px solid #e5e5e5;
   .center {
     position: relative;
@@ -54,7 +54,7 @@ export default {
     justify-content: flex-end;
     width: 1000px;
     line-height: 35px;
-    color: @fontColor1;
+    color: #fff;
     font-size: 13px;
     .follow,
     .contact {
@@ -73,13 +73,13 @@ export default {
     }
     .ground {
       top: -15px;
-      border-bottom: 15px solid @backgroundColor3;
+      border-bottom: 15px solid #fff;
       border-right: 15px solid transparent;
       border-left: 15px solid transparent;
     }
     .cover {
       top: -12px;
-      border-bottom: 15px solid @backgroundColor4;
+      border-bottom: 15px solid #fff;
       border-right: 15px solid transparent;
       border-left: 15px solid transparent;
     }
@@ -92,8 +92,8 @@ export default {
       z-index: 200;
       padding: 20px 10px;
       margin-top: 13px;
-      border: 2px solid @backgroundColor3;
-      background-color: @backgroundColor4;
+      border: 2px solid #fff;
+      background-color: #fff;
       text-align: center;
       img {
         vertical-align: top;

@@ -1,14 +1,13 @@
 <template>
   <div class="male">
     <!-- 重磅推荐 -->
-    
-    <section class="recommend_2">
+    <section class="recommend">
       <div class="title">
         <h2>重磅推荐</h2>
-        <p>
+        <span>
           更多
-          <van-icon name="arrow" size="14" />
-        </p>
+          <i></i>
+        </span>
       </div>
       <ul>
         <li v-for="(item, index) in hot1" :key="index">
@@ -18,13 +17,13 @@
     </section>
 
     <!-- 最爱榜单 -->
-    <section class="toplist">
+    <section class="recommend">
       <div class="title">
         <h2>最爱榜单</h2>
-        <p>
+        <span>
           更多
-          <van-icon name="arrow" size="14" />
-        </p>
+          <i></i>
+        </span>
       </div>
       <ul>
         <li>
@@ -38,14 +37,14 @@
         </li>
       </ul>
     </section>
-
-    <section class="booklist">
+    <!-- 热门书单 -->
+    <section class="vertical">
       <div class="title">
         <h2>热门书单</h2>
-        <p>
+        <span>
           更多
-          <van-icon name="arrow" size="14" />
-        </p>
+          <i></i>
+        </span>
       </div>
       <div>
         <ul>
@@ -58,10 +57,7 @@
     <section class="recommend">
       <div class="title">
         <h2>畅销图书</h2>
-        <p>
-          更多
-          <van-icon name="arrow" size="14" />
-        </p>
+        <span>更多</span>
       </div>
       <ul>
         <li v-for="(item, index) in sellwell" :key="index">
@@ -134,42 +130,55 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
-section {
-  padding: 2vmin 3vmin;
-  margin: 2vmin 0 4vmin;
-}
-.recommend {
-  ul {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-  }
-}
+<style lang="scss" scoped>
+// 块标题
 .title {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 3vw;
-  line-height: 26px;
   h2 {
-    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    font-size: 4.8vw;
     font-weight: 500;
   }
-  i {
-    vertical-align: -2px;
+  span {
+    display: flex;
+    align-items: center;
+    font-size: 3.47vw;
+    i {
+      width: 3vw;
+      height: 3vw;
+      background-image: url("./../../assets/images/iconfontjiantou6.svg");
+      background-size: 3vw 3vw;
+      background-repeat: no-repeat;
+    }
   }
 }
-
-.toplist,.recommend_2  {
+.recommend {
+  padding: 3vw 3vw 0;
+  margin-bottom: 4vw;
   ul {
     display: flex;
     justify-content: flex-start;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
     li {
+      list-style: none;
       margin-right: 3vw;
-      font-size: 0;
     }
+  }
+}
+.vertical {
+  padding: 3vw 3vw 0;
+  margin-bottom: 4vw;
+  ul {
+    padding: 0;
+    margin: 0;
   }
 }
 </style>

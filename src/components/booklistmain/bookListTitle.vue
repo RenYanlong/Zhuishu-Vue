@@ -18,7 +18,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .title {
   h3,.desc,.authorInfo{
     margin-bottom: 2vmin;

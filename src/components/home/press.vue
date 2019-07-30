@@ -4,10 +4,7 @@
     <section class="recommend_2">
       <div class="title">
         <h2>重磅推荐</h2>
-        <p>
-          更多
-          <van-icon name="arrow" size="14" />
-        </p>
+        <p>更多</p>
       </div>
       <ul>
         <li v-for="(item, index) in hot1" :key="index">
@@ -18,10 +15,7 @@
     <section class="recommend">
       <div class="title">
         <h2>人文社科</h2>
-        <p>
-          更多
-          <van-icon name="arrow" size="14" />
-        </p>
+        <p>更多</p>
       </div>
       <ul>
         <li v-for="(item, index) in hot2" :key="index">
@@ -40,7 +34,7 @@ export default {
   data() {
     return {
       hot1: "",
-      hot2: "",
+      hot2: ""
     };
   },
   components: {
@@ -50,21 +44,25 @@ export default {
   mounted() {
     //热门推荐
     this.$axios
-      .get("https://novel.juhe.im/category-info?gender=press&type=hot&major=出版小说&minor=&start=0&limit=20")
+      .get(
+        "https://novel.juhe.im/category-info?gender=press&type=hot&major=出版小说&minor=&start=0&limit=20"
+      )
       .then(ov => {
         this.hot1 = ov.data.books.slice(0, 6);
-      }); 
-      //生活时尚
+      });
+    //生活时尚
     this.$axios
-      .get("https://novel.juhe.im/category-info?gender=press&type=hot&major=人文社科&minor=&start=0&limit=20")
+      .get(
+        "https://novel.juhe.im/category-info?gender=press&type=hot&major=人文社科&minor=&start=0&limit=20"
+      )
       .then(ov => {
         this.hot2 = ov.data.books.slice(0, 6);
-      }); 
+      });
   }
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .recommend {
   ul {
     display: flex;
@@ -72,7 +70,8 @@ export default {
     justify-content: space-between;
   }
 }
-.toplist,.recommend_2  {
+.toplist,
+.recommend_2 {
   ul {
     display: flex;
     justify-content: flex-start;

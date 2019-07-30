@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .rankmain {
   display: flex;
   flex-flow: column nowrap;

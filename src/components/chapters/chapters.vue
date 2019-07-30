@@ -54,7 +54,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .chapters {
   width: 1000px;
   margin: 0 auto;

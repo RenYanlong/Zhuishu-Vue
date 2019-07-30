@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .book_1 {
   width: 30vw;
   margin-bottom: 3vw;

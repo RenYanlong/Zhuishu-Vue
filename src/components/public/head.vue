@@ -23,7 +23,7 @@ export default {
   methods: {}
 };
 </script>
-<style lang="less" scoped>
+<style lang="scss" scoped>
 .returnbut {
   display: flex;
   justify-content: space-between;

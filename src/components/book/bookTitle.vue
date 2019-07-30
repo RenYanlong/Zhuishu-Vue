@@ -22,7 +22,7 @@ export default {
   props: ["bookinfo"]
 };
 </script>
-<style lang='less' scoped>
+<style lang='scss' scoped>
 .bookinfo {
   display: flex;
   flex-flow: row nowrap;

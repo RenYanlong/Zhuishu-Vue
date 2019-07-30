@@ -52,7 +52,7 @@
 export default {};
 </script>
 
-<style lang="less" scoped>
+<style lang="scss" scoped>
 header {
   display: flex;
   justify-content: space-between;

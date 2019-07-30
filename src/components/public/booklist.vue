@@ -1,11 +1,11 @@
 <template>
-  <div class="bookblock">
-    <div class="imgs">
-      <img :src="`https://statics.zhuishushenqi.com${book.covers[0]}`"/>
+  <div class="book">
+    <div class="img">
+      <img :src="`https://statics.zhuishushenqi.com${book.covers[0]}`" />
     </div>
     <div class="bookinfo">
       <h3>{{book.title}}</h3>
-      <p class="popular">{{book.bookCount}}本 / {{book.author}} </p>
+      <p class="popular">共{{book.bookCount}}本 / {{book.author}}</p>
     </div>
   </div>
 </template>
@@ -14,29 +14,34 @@ export default {
   props: ["book"]
 };
 </script>
-<style lang='less' scoped>
-.bookblock {
+<style lang='scss' scoped>
+.book {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   margin-bottom: 3vw;
-  .imgs {
-    height: 27vw;
-    width: 20vw;
-    margin-right: 2vw;
+  .img {
+    height: 30vw;
+    width: 21vw;
+    margin-right: 3vw;
     img {
-      height: 27vw;
-      width: 20vw;
+      height: 30vw;
+      width: 21vw;
       border-radius: 1vw;
     }
   }
-}
-.bookinfo {
-  h3{
-    margin-bottom: 3vw;
-  }
-  .popular{
-    font-size: 13px;
-    color: #666;
+  .bookinfo {
+    h3 {
+      margin: 0;
+      padding: 0;
+      font-size: 4.27vw;
+      margin-bottom: 3vw;
+    }
+    .popular {
+      margin: 0;
+      padding: 0;
+      font-size: 3.47vw;
+      color: #2E294E;
+    }
   }
 }
 </style>
