@@ -15,32 +15,41 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+@function pxtovw($n) {
+  @return ($n / 375) * 100vw;
+}
 .book {
+  box-sizing: border-box;
   display: flex;
   flex-flow: row nowrap;
   margin-bottom: 3vw;
   .img {
-    height: 30vw;
-    width: 21vw;
-    margin-right: 3vw;
+    height: pxtovw(120);
+    width: pxtovw(90);
+    margin-right: pxtovw(10);
     img {
-      height: 30vw;
-      width: 21vw;
-      border-radius: 1vw;
+      height: pxtovw(120);
+      width: pxtovw(90);
     }
   }
   .bookinfo {
+    flex: 1;
+    max-width: pxtovw(245);
     h3 {
       margin: 0;
       padding: 0;
-      font-size: 4.27vw;
-      margin-bottom: 3vw;
+      font-size: pxtovw(14);
+      font-weight: 400;
+      margin-bottom: pxtovw(10);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .popular {
       margin: 0;
       padding: 0;
-      font-size: 3.47vw;
-      color: #2E294E;
+      font-size: pxtovw(12);
+      color: #d499b9;
     }
   }
 }

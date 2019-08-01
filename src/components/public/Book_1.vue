@@ -3,7 +3,6 @@
     <router-link :to="{path:'/book',query:{id:bookinfo._id}}">
       <img :src="`http://statics.zhuishushenqi.com${bookinfo.cover}`" />
       <h3>{{bookinfo.title}}</h3>
-      <p>{{bookinfo.author}}</p>
     </router-link>
   </div>
 </template>
@@ -18,19 +17,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@function pxtovw($n) {
+  @return ($n / 375) * 100vw;
+}
 .book_1 {
-  width: 30vw;
-  margin-bottom: 3vw;
+  width: pxtovw(90);
   img {
-    width: 30vw;
-    height: 40vw;
-    border-radius: 1vw;
-    margin-bottom: 2vw;
+    width: pxtovw(90);
+    height: pxtovw(120);
+    margin-bottom: pxtovw(10);
   }
-  p {
-    font-size: 13px;
-    line-height: 24px;
-    color: #666;
+  h3 {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 </style>

@@ -2,31 +2,19 @@
   <!-- 书籍详情 -->
   <div class="book">
     <!-- 置顶头部 -->
-    <Head></Head>
+    <Head>图书</Head>
     <!-- 页面主体 -->
     <div class="main">
       <!-- 图书详情头部 -->
       <BookTitle :bookinfo="bookInfo"></BookTitle>
-      <!-- 最近更新 -->
-      <div class="new" v-if="bookInfo">
-        <p class="new1">
-          <span>最新</span>
-          {{bookInfo.lastChapter}}
-        </p>
-        <p class="newtime">{{bookInfo.updated.slice(0,10)}}更新</p>
-      </div>
-      <!-- 目录 -->
-      <div class="chapters">
-        <div>更多目录</div>
-      </div>
       <!-- 简介 -->
-      <section class="bookIntroduce">
-        <h4>内容简介</h4>
+      <section class="introduce">
+        <h3>简介</h3>
         <p>{{bookInfo.longIntro}}</p>
       </section>
       <!-- 评论 -->
       <section class="review">
-        <h4>精彩评论<span>12</span></h4>
+        <h3>评论</h3>
         <ul>
           <li v-for="(item, index) in short" :key="index"></li>
         </ul>
@@ -35,8 +23,8 @@
   </div>
 </template>
 <script>
-import Head from "@/components/public/head";
-import BookTitle from "@/components/book/bookTitle.vue";
+import Head from "@/components/public/Head";
+import BookTitle from "@/components/Book/BookTitle";
 export default {
   components: {
     BookTitle,
@@ -49,109 +37,57 @@ export default {
       chapters: "",
       chapterslist: "",
       like: "",
-      short: ""
+      reviews: ""
     };
   },
   mounted() {
+    // 书籍详情
     this.$axios
       .get(`https://novel.juhe.im/book-info/${this.bookId}`)
       .then(info => {
         this.bookInfo = info.data;
       });
+    // 书评
     this.$axios
       .get(`https://novel.juhe.im/book/short-reviews?book=${this.bookId}`)
       .then(shorts => {
-        this.short = shorts.data.docs;
+        this.reviews = shorts.data.docs;
       });
-    // this.$axios
-    //   .get(
-    //     `https://novel.juhe.im/book-sources?view=summary&book=${this.bookId}`
-    //   )
-    //   .then(cha => {
-    //     this.chapters = cha.data[0]._id;
-    //     this.$axios
-    //       .get(`https://novel.juhe.im/book-chapters/${this.chapters}`)
-    //       .then(cha => {
-    //         this.chapterslist = cha.data;
-    //       });
-    //   });
-  },
-  watch: {
-    $route: function() {
-      this.bookId = this.$route.query.id;
-      this.$axios
-        .get(`https://novel.juhe.im/book-info/${this.bookId}`)
-        .then(info => {
-          this.bookInfo = info.data;
-        });
-      this.$axios
-        .get(`https://novel.juhe.im/book/short-reviews?book=${this.bookId}`)
-        .then(shorts => {
-          this.short = shorts.data.docs;
-        });
-    }
   }
 };
 </script>
 <style lang='scss' scoped>
-.book {
-  display: flex;
-  flex-flow: column nowrap;
+@function pxtovw($n) {
+  @return ($n / 375) * 100vw;
 }
-
 .main {
-  .bookIntroduce {
-    padding: 3vmin 3vmin 4vmin;
-    background-color: #faf7f5;
-    border-top: 1px solid #e8e7e6;
-    h4 {
-      font-size: 16px;
-      line-height: 20px;
-      font-weight: 600;
-      margin-bottom: 2vmin;
+  padding-top: pxtovw(55);
+  .introduce {
+    padding: 0 pxtovw(15);
+    margin-bottom: pxtovw(15);
+    h3 {
+      margin: 0;
+      padding: 0;
+      font-size: pxtovw(16);
+      font-weight: 400;
+      margin-bottom: pxtovw(10);
     }
     p {
-      font-size: 14px;
-      color: #666;
-      line-height: 20px;
-      list-style: none;
-      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-size: pxtovw(13);
+      line-height: pxtovw(24);
     }
   }
-  .chapters {
-    padding: 4vmin 3vmin;
-    background-color: #ebe8e6;
-    div {
-      border: 1px solid #666;
-      line-height: 30px;
-      text-align: center;
-    }
-  }
-  .new {
-    padding: 4vmin 3vmin;
-    background-color: #ebe8e6;
-    border-top: 1px solid #e8e7e6;
-    p {
-      line-height: 20px;
-      span {
-        display: inline-block;
-        font-size: 12px;
-        width: 40px;
-        height: 20px;
-        text-align: center;
-        line-height: 20px;
-        background-color: #666;
-        color: #fff;
-        box-sizing: border-box;
-        border-radius: 10px;
-        margin-right: 5px;
-      }
-    }
-    .new1 {
-      color: #3a98c9;
-    }
-    .newtime {
-      padding-left: 45px;
+  .review {
+    padding: 0 pxtovw(15);
+    margin-bottom: pxtovw(15);
+    h3 {
+      margin: 0;
+      padding: 0;
+      font-size: pxtovw(16);
+      font-weight: 400;
+      margin-bottom: pxtovw(10);
     }
   }
 }

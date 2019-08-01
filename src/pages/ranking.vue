@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import Head from "@/components/public/head";
+import Head from "@/components/public/Head";
 
 export default {
   components: {

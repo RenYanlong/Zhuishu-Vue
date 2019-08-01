@@ -1,12 +1,13 @@
 <template>
-<!-- 书单页面 -->
+  <!-- 书单页面 -->
   <div class="booklist">
     <Head>书单</Head>
     <div class="listghtmain">
+      <p>{{bookListNum}}个书单</p>
       <ul>
         <li v-for="(list,index) in categorylist" :key="index" class="bookb">
           <router-link :to="{path:'/bookListDetails',query:{id:list._id}}">
-            <Booklist :book="list"></Booklist>
+            <Book :bookinfo="list"></Book>
           </router-link>
         </li>
       </ul>
@@ -14,105 +15,52 @@
   </div>
 </template>
 <script>
-import Head from "@/components/public/head";
-import Booklist from "@/components/public/booklist.vue";
+import Head from "@/components/public/Head";
+import Book from "@/components/public/BookforBooklist";
 export default {
   name: "booklist",
+  components: {
+    Book,
+    Head
+  },
   data() {
     return {
       bookListNum: "",
-      currentPage: this.$route.query.start ? this.$route.query.start : 1,
-      sort: this.$route.query.sort ? this.$route.query.sort : "collectorCount",
-      duration: this.$route.query.duration
-        ? this.$route.query.duration
-        : "last-seven-days",
       categorylist: ""
     };
-  },
-  computed: {
-    defaultSort: function() {
-      if (this.sort == "collectorCount" && this.duration == "last-seven-days") {
-        return "按本周热度";
-      } else if (this.sort == "created" && this.duration == "all") {
-        return "按发布时间";
-      } else if (this.sort == "collectorCount" && this.duration == "all") {
-        return "按收藏数量";
-      }
-    }
-  },
-  components: {
-    Booklist,
-    Head
-  },
-  methods: {
-    onClickLeft: function() {
-      this.$router.push("/");
-    },
-    clickhot: function() {
-      (this.sort = "collectorCount"),
-        (this.duration = "last-seven-days"),
-        (this.currentPage = 1);
-    },
-    clicknew: function() {
-      (this.sort = "created"), (this.duration = "all"), (this.currentPage = 1);
-    },
-    clicknum: function() {
-      (this.sort = "collectorCount"),
-        (this.duration = "all"),
-        (this.currentPage = 1);
-    },
-    //根据需要传入url的参数改变url
-    chengeurl: function() {
-      this.$router.push({
-        push: "/booklist",
-        query: {
-          sort: this.sort,
-          duration: this.duration,
-          start: this.currentPage
-        }
-      });
-    }
   },
   mounted() {
     this.$axios
       .get(
-        `https://novel.juhe.im/booklists?sort=${this.sort}&duration=${
-          this.duration
-        }&start=${this.currentPage}`
+        `https://novel.juhe.im/booklists?sort=collectorCount&duration=last-seven-days&start=0`
       )
       .then(response => {
         this.bookListNum = response.data.total;
         this.categorylist = response.data.bookLists;
       });
-  },
-  watch: {
-    //监听url
-    $route: function() {
-      this.$axios
-        .get(
-          `https://novel.juhe.im/booklists?sort=${this.sort}&duration=${
-            this.duration
-          }&start=${this.currentPage}`
-        )
-        .then(response => {
-          this.bookListNum = response.data.total;
-          this.categorylist = response.data.bookLists;
-        });
-    }
   }
 };
 </script>
 <style lang='scss' scoped>
-.booklist {
-  display: flex;
-  flex-flow: column nowrap;
+@function pxtovw($n) {
+  @return ($n / 375) * 100vw;
 }
 .listghtmain {
-  background-color: #fff;
-  margin-top: 8vh;
-  padding: 0 2vw;
-  ul{
-    li{
+  padding: pxtovw(55) pxtovw(15) 0;
+  & > p {
+    margin: 0;
+    padding: 0;
+    font-size: pxtovw(12);
+    color: #9DC8C8;
+    margin-bottom: pxtovw(15);
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    li {
       list-style: none;
     }
   }

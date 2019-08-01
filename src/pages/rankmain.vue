@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import Head from "@/components/public/head";
-import Book from "@/components/public/Book.vue";
+import Head from "@/components/public/Head";
+import Book from "@/components/public/Book_2.vue";
 export default {
   components: {
     Book,

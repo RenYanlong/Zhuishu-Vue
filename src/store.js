@@ -5,8 +5,13 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    isActivate: false
     
   },
-  mutations: {},
+  mutations: {
+    changeisActivate(state){
+      state.isActivate = !state.isActivate;
+    }
+  },
   actions: {}
 });

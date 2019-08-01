@@ -1,16 +1,13 @@
 import Vue from "vue";
 import Router from "vue-router";
+
 import Home from "./pages/Home.vue";
-import Booklist from "./pages/booklist.vue";
-import BookListDetails from "./pages/bookListDetails.vue";
+import Booklist from "./pages/Booklist.vue";
+import BookListDetails from "./pages/BookListDetails.vue";
 import Book from "./pages/Book.vue";
 import Chapters from './components/chapters/chapters.vue';
 import Catemain from './pages/Catemain.vue';
 import Rankmain from './pages/rankmain.vue';
-
-// import Male from './components/home/male.vue';
-// import Female from './components/home/female.vue';
-// import Press from './components/home/press.vue';
 
 Vue.use(Router);
 
@@ -53,5 +50,13 @@ export default new Router({
       name: 'chapters',
       component: Chapters
     }
-  ]
+  ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+
+    }
+  }
 });

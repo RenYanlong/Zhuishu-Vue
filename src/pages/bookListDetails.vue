@@ -1,10 +1,10 @@
 <template>
   <!-- 书单详情页面 -->
   <div class="bookListDetails" v-if="bookListInfo">
-    <Head>{{bookListInfo.title}}</Head>
-    <div class="main">
+    <Head>书单详情</Head>
+    <div class="details">
       <BookListTitle :info="bookListInfo"></BookListTitle>
-      <div class="main">
+      <div class="books">
         <ul>
           <li v-for="(list,index) in bookListInfo.books" :key="index">
             <router-link :to="{path:'/book',query:{id:list.book._id}}">
@@ -17,9 +17,9 @@
   </div>
 </template>
 <script>
-import Head from "@/components/public/head";
-import BookListTitle from "@/components/booklistmain/bookListTitle.vue";
-import Book from "@/components/booklistmain/book.vue";
+import Head from "@/components/public/Head";
+import BookListTitle from "@/components/BookListDetails/BookListTitle";
+import Book from "@/components/BookListDetails/Book";
 export default {
   data() {
     return {
@@ -49,18 +49,21 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-.bookListDetails {
-  display: flex;
-  flex-flow: column nowrap;
-  .main {
-    background-color: #fff;
-    padding: 0 2vw;
-    .title {
-      margin-top: 8vh;
+@function pxtovw($n) {
+  @return ($n / 375) * 100vw;
+}
+.details{
+  padding-top: pxtovw(55);
+}
+.books{
+  margin: 0;
+  padding: 0;
+  ul{
+    margin: 0;
+    padding: 0;
+    li{
+      list-style: none;
     }
-  }
-  li{
-    list-style: none;
   }
 }
 </style>

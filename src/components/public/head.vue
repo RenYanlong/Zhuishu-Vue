@@ -1,36 +1,50 @@
 <template>
   <div class="returnbut">
-    <svg
-      class="icon"
-      width="6vmin"
-      height="6vmin"
-      viewBox="0 0 1024 1024"
-      version="1.1"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <path
-        d="M274.510074 461.204104c130.168642-125.846196 260.332167-251.684206 390.490575-377.400442 53.595662-51.864228 133.49848 32.354895 79.653131 84.346013-115.838262 112.008027-231.6755 223.893256-347.450317 335.904353C513.596358 619.888196 629.989251 735.852324 746.444567 851.690586c52.978609 52.733015-26.921139 136.953162-79.712483 84.282568C535.946388 805.873074 405.233348 675.710572 274.510074 545.546024 252.90194 523.93789 252.342192 482.563574 274.510074 461.204104L274.510074 461.204104zM274.510074 461.204104"
-        fill="#e0620d"
-      />
-    </svg>
-    <p>书籍详情</p>
-    <p>首页</p>
+    <span @click="goBack"></span>
+    <p>
+      <slot></slot>
+    </p>
   </div>
 </template>
 
 <script>
 export default {
-  methods: {}
+  methods: {
+    goBack() {
+      window.history.length > 1 ? this.$router.go(-1) : this.$router.push("/");
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
+@function pxtovw($n) {
+  @return ($n / 375) * 100vw;
+}
 .returnbut {
+  position: fixed;
+  margin: 0;
+  padding: 0 pxtovw(15);
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 16px;
-  height: 10vmin;
-  line-height: 10vmin;
-  padding: 0 3vmin;
+  line-height: pxtovw(40);
+  margin-bottom: pxtovw(15);
+  background-color: #fff;
+  width: 100vw;
+  box-shadow: 0px 1px 1px 0px #d7fff1;
+  span {
+    width: pxtovw(25);
+    height: pxtovw(25);
+    background: url("./../../assets/images/zuojiantou.svg") no-repeat;
+    background-size: pxtovw(25) pxtovw(25);
+  }
+  p {
+    flex: 1;
+    margin: 0;
+    padding: 0;
+    padding-right: pxtovw(25);
+    text-align: center;
+  }
 }
 </style>

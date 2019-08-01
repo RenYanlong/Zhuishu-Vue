@@ -16,6 +16,7 @@ export default {
 };
 </script>
 <style lang="scss">
+
 .myApp {
   color: #011638;
   a,
