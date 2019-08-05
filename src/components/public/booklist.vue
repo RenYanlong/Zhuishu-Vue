@@ -1,5 +1,5 @@
 <template>
-  <div class="book">
+  <router-link :to="{path:'/bookListDetails',query:{id:book._id}}" class="book">
     <div class="img">
       <img :src="`https://statics.zhuishushenqi.com${book.covers[0]}`" />
     </div>
@@ -7,7 +7,7 @@
       <h3>{{book.title}}</h3>
       <p class="popular">共{{book.bookCount}}本 / {{book.author}}</p>
     </div>
-  </div>
+  </router-link>
 </template>
 <script>
 export default {

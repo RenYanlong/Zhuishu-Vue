@@ -2,15 +2,12 @@
   <div class="book">
     <div class="info" v-if="bookinfo">
       <div class="imgs">
-        <img :src="`https://statics.zhuishushenqi.com${bookinfo.book.cover}`" />
+        <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`" />
       </div>
       <div class="main">
-        <p class="bookname">{{bookinfo.book.title}}</p>
-        <p class="author">{{bookinfo.book.author}}</p>
+        <p class="bookname">{{bookinfo.title}}</p>
+        <p class="author">{{bookinfo.author}}</p>
       </div>
-    </div>
-    <div class="comment" v-if="bookinfo.comment">
-      <p>{{bookinfo.comment}}</p>
     </div>
   </div>
 </template>
@@ -56,24 +53,9 @@ export default {
     }
     .author {
       font-size: 12px;
+      color: #9dc8c8;
     }
   }
 }
-.comment {
-  margin: 0;
-  padding: pxtovw(10);
-  background-color: #d7fff1;
-  color: #9dc8c8;
-  border-radius: pxtovw(3);
-  p {
-    margin: 0;
-    padding: 0;
-    font-size: pxtovw(12);
-    line-height: pxtovw(18);
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-}
+
 </style>

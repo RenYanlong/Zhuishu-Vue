@@ -23,8 +23,6 @@ import Book from "@/components/BookListDetails/Book";
 export default {
   data() {
     return {
-      currentPage: 1,
-      pagesize: 20,
       bookListInfo: "",
       bookId: this.$route.query.id
     };

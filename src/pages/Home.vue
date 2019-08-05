@@ -1,7 +1,9 @@
 <template>
   <div class="home">
     <!-- input -->
+    <transition name="cat" enter-active-class='animated fadeIn-0.1s'  leave-active-class='animated fadeOut faster'>
     <Category v-show="isActivate"></Category>
+    </transition>
     <div>
       <header>
         <div class="logo">
@@ -80,6 +82,7 @@ import Book_1 from "@/components/public/Book_1.vue";
 import Toplist from "@/components/public/Toplist.vue";
 import Booklist from "@/components/public/booklist.vue";
 import Category from "@/components/home/Category.vue";
+
 
 export default {
   components: {
@@ -171,6 +174,7 @@ header {
   padding: 0 pxtovw(15);
   background-color: #fff;
   box-shadow: 0px 1px 1px 0px #d7fff1;
+  z-index: 20;
   .logo {
     display: flex;
     flex-flow: row nowrap;

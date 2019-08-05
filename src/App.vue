@@ -19,13 +19,14 @@ export default {
 
 .myApp {
   color: #011638;
-  a,
-  a:link,
-  a:visited,
-  a:hover,
-  a:active {
-    text-decoration: none;
-    color: #011638;
+  a{
+    &:link,&:visited,&:hover,&:active{
+      text-decoration: none;
+      color: #011638;
+      outline:none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
   }
 }
 </style>

@@ -6,7 +6,7 @@
     <div class="info">
       <div class="name">
         <h3>{{bookinfo.title}}</h3>
-        <p>{{bookinfo.rating.score}}</p>
+        <p>{{bookinfo.rating.score.toFixed(1)}}</p>
       </div>
       <p class="author">{{bookinfo.author}} / {{bookinfo.updated.slice(0,10)}}更新</p>
       <p class="Desc">{{bookinfo.copyrightDesc}}</p>

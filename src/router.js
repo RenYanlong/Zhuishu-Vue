@@ -8,6 +8,7 @@ import Book from "./pages/Book.vue";
 import Chapters from './components/chapters/chapters.vue';
 import Catemain from './pages/Catemain.vue';
 import Rankmain from './pages/rankmain.vue';
+import Comment from './pages/Comment.vue'
 
 Vue.use(Router);
 
@@ -49,6 +50,11 @@ export default new Router({
       path: '/chapters',
       name: 'chapters',
       component: Chapters
+    },
+    {
+      path: '/comment',
+      name: 'comment',
+      component: Comment
     }
   ],
   scrollBehavior(to, from, savedPosition) {

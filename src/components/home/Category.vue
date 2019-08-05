@@ -1,44 +1,45 @@
 <template>
   <!-- 分类页面 -->
   <div class="category" @touchmove.prevent>
-    <div class="title">
-      <p @click="activate">关闭</p>
-      <input type="text" placeholder="想看点什么？" />
+    <div class="main">
+      <div class="title">
+        <p @click="activate">关闭</p>
+        <input type="text" placeholder="想看点什么？" />
+      </div>
+      <section class="male">
+        <h3>男生小说</h3>
+        <ul>
+          <li v-for="(item, i) in maleCate" :key="i">
+            <router-link
+              :to="{path:'/catemain',query:{gender:male}}"
+              :style="{color:`${col[i+1]}`}"
+            >{{item.major}}</router-link>
+          </li>
+        </ul>
+      </section>
+      <section class="female">
+        <h3>女生小说</h3>
+        <ul>
+          <li v-for="(item, i) in femaleCate" :key="i">
+            <router-link
+              :to="{path:'/catemain',query:{gender:female}}"
+              :style="{color:`${col[i+2]}`}"
+            >{{item.major}}</router-link>
+          </li>
+        </ul>
+      </section>
+      <section class="press">
+        <h3>图书图库</h3>
+        <ul>
+          <li v-for="(item, i) in pressCate" :key="i">
+            <router-link
+              :to="{path:'/catemain',query:{gender:press}}"
+              :style="{color:`${col[i]}`}"
+            >{{item.major}}</router-link>
+          </li>
+        </ul>
+      </section>
     </div>
-
-    <section class="male">
-      <h3>男生小说</h3>
-      <ul>
-        <li v-for="(item, i) in maleCate" :key="i">
-          <router-link
-            :to="{path:'/catemain',query:{gender:male}}"
-            :style="{color:`${col[i+1]}`}"
-          >{{item.major}}</router-link>
-        </li>
-      </ul>
-    </section>
-    <section class="female">
-      <h3>女生小说</h3>
-      <ul>
-        <li v-for="(item, i) in femaleCate" :key="i">
-          <router-link
-            :to="{path:'/catemain',query:{gender:female}}"
-            :style="{color:`${col[i+2]}`}"
-          >{{item.major}}</router-link>
-        </li>
-      </ul>
-    </section>
-    <section class="press">
-      <h3>图书图库</h3>
-      <ul>
-        <li v-for="(item, i) in pressCate" :key="i">
-          <router-link
-            :to="{path:'/catemain',query:{gender:press}}"
-            :style="{color:`${col[i]}`}"
-          >{{item.major}}</router-link>
-        </li>
-      </ul>
-    </section>
   </div>
 </template>
 <script>
@@ -99,7 +100,10 @@ export default {
   background-color: #fff;
   width: 100vw;
   height: 100vh;
-  z-index: 300;
+  z-index: 50;
+  .main{
+    overflow: scroll;
+  }
   .title {
     padding: 0 pxtovw(15);
     display: flex;
@@ -135,8 +139,8 @@ section {
   h3 {
     margin: 0;
     padding: 0;
-    line-height: pxtovw(25);
-    font-size: pxtovw(14);
+    line-height: pxtovw(20);
+    font-size: pxtovw(12);
     color: #e53a40;
   }
 }
@@ -150,8 +154,8 @@ ul {
     list-style: none;
     width: pxtovw(115);
     text-align: center;
-    line-height: pxtovw(35);
-    font-size: pxtovw(16);
+    line-height: pxtovw(30);
+    font-size: pxtovw(14);
     font-weight: 400;
   }
 }

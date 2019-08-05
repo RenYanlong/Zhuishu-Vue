@@ -1,10 +1,8 @@
 <template>
-  <div class="book_1">
-    <router-link :to="{path:'/book',query:{id:bookinfo._id}}">
-      <img :src="`http://statics.zhuishushenqi.com${bookinfo.cover}`" />
-      <h3>{{bookinfo.title}}</h3>
-    </router-link>
-  </div>
+  <router-link :to="{path:'/book',query:{id:bookinfo._id}}" class="book_1">
+    <img :src="`http://statics.zhuishushenqi.com${bookinfo.cover}`" />
+    <h3>{{bookinfo.title}}</h3>
+  </router-link>
 </template>
 
 <script>
@@ -22,6 +20,7 @@ export default {
 }
 .book_1 {
   width: pxtovw(90);
+  display: block;
   img {
     width: pxtovw(90);
     height: pxtovw(120);

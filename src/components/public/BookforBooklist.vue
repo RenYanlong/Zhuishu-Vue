@@ -1,7 +1,8 @@
 <template>
   <div class="book" v-if="bookinfo">
     <div class="cover">
-      <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`" />
+      <img :src="`https://statics.zhuishushenqi.com${bookinfo.cover}`" v-if="bookinfo.cover" />
+      <img :src="`./../../assets/img-bk.png`" v-else>
     </div>
     <div class="bookinfo">
       <h3>{{bookinfo.title}}</h3>
