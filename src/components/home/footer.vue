@@ -1,7 +1,6 @@
 <template>
   <footer>
     <p>该项目仅供学习使用</p>
-    <p>end</p>
   </footer>
 </template>
 
@@ -14,12 +13,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@function pxtovw($n) {
+  @return ($n / 375) * 100vw;
+}
 footer {
-  line-height: 8vmin;
+  line-height: pxtovw(40);
   text-align: center;
+  color: #58c9b9;
 }
 p {
-  font-size: 12px;
+  font-size: pxtovw(12);
 }
 </style>
 

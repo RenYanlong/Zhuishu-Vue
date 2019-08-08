@@ -8,17 +8,44 @@ import Book from "./pages/Book.vue";
 import Chapters from './components/chapters/chapters.vue';
 import Catemain from './pages/Catemain.vue';
 import Rankmain from './pages/rankmain.vue';
-import Comment from './pages/Comment.vue'
+import Comment from './pages/Comment.vue';
+import moreBooks from './pages/moreBooks.vue'
 
+import allBooks from "./pages/AllBooks.vue";
+import Male from "./pages/Home-male.vue";
+import Female from "./pages/Home-female.vue";
+import Press from "./pages/Home-press.vue";
 Vue.use(Router);
 
 export default new Router({
-  mode: "hash",
+  mode: "history",
   routes: [
     {
       path: "/",
       name: "home",
-      component: Home
+      component: Home,
+      children: [
+        {
+          path: '',
+          name: 'allBooks',
+          component: allBooks
+        },
+        {
+          path: 'male',
+          name: 'male',
+          component: Male
+        },
+        {
+          path: 'female',
+          name: 'female',
+          component: Female
+        },
+        {
+          path: 'press',
+          name: 'press',
+          component: Press
+        }
+      ]
     },
 
     {
@@ -55,6 +82,11 @@ export default new Router({
       path: '/comment',
       name: 'comment',
       component: Comment
+    },
+    {
+      path: '/moreBooks',
+      name: 'moreBooks',
+      component: moreBooks
     }
   ],
   scrollBehavior(to, from, savedPosition) {

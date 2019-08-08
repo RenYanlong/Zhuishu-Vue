@@ -7,9 +7,8 @@
 
 <script>
 export default {
-  props: ["bookinfo"],
-  data() {
-    return {};
+  props: {
+    bookinfo: Object
   }
 };
 </script>
@@ -19,19 +18,18 @@ export default {
   @return ($n / 375) * 100vw;
 }
 .book_1 {
-  width: pxtovw(90);
+  width: pxtovw(75);
   display: block;
   img {
-    width: pxtovw(90);
-    height: pxtovw(120);
-    margin-bottom: pxtovw(10);
+    width: pxtovw(75);
+    height: pxtovw(100);
+    margin-bottom: pxtovw(6);
+    border-radius: pxtovw(2);
+    box-shadow: 0px 0px 6px 2px rgba(212, 153, 185, 0.40);
   }
   h3 {
-    padding: 0;
-    margin: 0;
-    font-size: 14px;
+    font-size: pxtovw(14);
     font-weight: 400;
-    text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

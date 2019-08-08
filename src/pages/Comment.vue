@@ -4,28 +4,6 @@
     <div class="bookinfo">
       <Book :bookinfo="book"></Book>
     </div>
-    <van-tabs v-model="active" sticky>
-      <van-tab title="短评">
-        <div class="tab1">
-          <div class="paixu">
-            <span>{{duan.docs.length}}条短评</span>
-          </div>
-          <div>
-            <Comment v-for="(item, index) in duan.docs" :key="index" :info=item></Comment>
-          </div>
-        </div>
-      </van-tab>
-      <van-tab title="书评">
-        <div class="tab2">
-          <div class="paixu">
-            <span>{{chang.total}}条长评</span>
-          </div>
-          <div>
-            <Comment v-for="(item, index) in chang.reviews" :key="index" :info=item></Comment>
-          </div>
-        </div>
-      </van-tab>
-    </van-tabs>
   </div>
 </template>
 

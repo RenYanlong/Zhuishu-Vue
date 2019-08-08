@@ -1,15 +1,18 @@
 <template>
   <!-- 书单页面 -->
   <div class="booklist">
-    <Head>书单</Head>
+    <Head>主题书单</Head>
     <div class="sequence">
       <ul>
-        <li @click="chan(0),iis = 'hot'" :class="[0 === num ? 'is' : '']">最热</li>
-        <li @click="chan(1),iis = 'new'" :class="[1 === num ? 'is' : '']">最新</li>
-        <li @click="chan(2),iis = 'most'" :class="[2 === num ? 'is' : '']">收藏</li>
+        <li @click="chan(0),iis = 'hot'" :class="[0 === num ? 'is' : '']">推荐</li>
+        <li @click="chan(1),iis = 'new'" :class="[1 === num ? 'is' : '']">男频</li>
+        <li @click="chan(2),iis = 'most'" :class="[2 === num ? 'is' : '']">女频</li>
+        <li @click="chan(3),iis = 'most'" :class="[3 === num ? 'is' : '']">出版</li>
       </ul>
     </div>
-    <component :is="iis"></component>
+    <!-- <keep-alive>
+      <component :is="iis"></component>
+    </keep-alive> -->
   </div>
 </template>
 <script>
@@ -29,7 +32,6 @@ export default {
     return {
       bookListNum: "",
       categorylist: "",
-      seq: ["最热", "最新", "收藏"],
       num: 0,
       iis: "Hot"
     };
@@ -56,34 +58,30 @@ export default {
   @return ($n / 375) * 100vw;
 }
 .sequence {
-  position: fixed;
+  position:fixed;
   top: pxtovw(55);
-  font-size: pxtovw(12);
-  padding: pxtovw(15) pxtovw(15);
-  margin: pxtovw(-15) 0 pxtovw(15);
-  background-color: #fff;
   width: 100vw;
-  z-index: 50;
-  box-shadow: 0px 1px 1px 0px #d7fff1;
+  box-sizing: border-box;
+  font-size: pxtovw(12);
+  background-color: #fff;
   ul {
-    margin: 0;
-    padding: 0;
     display: flex;
     flex-flow: row nowrap;
+    justify-content: space-around;
   }
   li {
     box-sizing: border-box;
-    list-style: none;
-    padding: 0 pxtovw(10);
-    line-height: pxtovw(20);
-    border: #9dc8c8 1px solid;
+    height: pxtovw(26);
+    line-height: pxtovw(26);
     color: #9dc8c8;
-    margin-right: pxtovw(10);
-    border-radius: pxtovw(10);
+    border-bottom: 2px solid #fff;
+    transition: all .3s;
   }
   .is {
+    box-sizing: border-box;
     color: #011638;
-    border: #011638 1px solid;
+    border-bottom: 2px solid #011638;
+    transition: all .3s;
   }
 }
 .listghtmain {

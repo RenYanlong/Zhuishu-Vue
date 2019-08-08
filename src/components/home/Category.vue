@@ -7,7 +7,6 @@
         <input type="text" placeholder="想看点什么？" />
       </div>
       <section class="male">
-        <h3>男生小说</h3>
         <ul>
           <li v-for="(item, i) in maleCate" :key="i">
             <router-link
@@ -18,7 +17,7 @@
         </ul>
       </section>
       <section class="female">
-        <h3>女生小说</h3>
+        <!-- <h3>女生小说</h3> -->
         <ul>
           <li v-for="(item, i) in femaleCate" :key="i">
             <router-link
@@ -29,7 +28,7 @@
         </ul>
       </section>
       <section class="press">
-        <h3>图书图库</h3>
+        <!-- <h3>图书图库</h3> -->
         <ul>
           <li v-for="(item, i) in pressCate" :key="i">
             <router-link
@@ -137,16 +136,12 @@ section {
   margin-bottom: pxtovw(15);
   box-shadow: 0px 1px 1px 0px #d7fff1;
   h3 {
-    margin: 0;
-    padding: 0;
     line-height: pxtovw(20);
     font-size: pxtovw(12);
     color: #e53a40;
   }
 }
 ul {
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -154,7 +149,7 @@ ul {
     list-style: none;
     width: pxtovw(115);
     text-align: center;
-    line-height: pxtovw(30);
+    line-height: pxtovw(36);
     font-size: pxtovw(14);
     font-weight: 400;
   }
