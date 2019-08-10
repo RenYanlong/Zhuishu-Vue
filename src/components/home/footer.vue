@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <p>该项目仅供学习使用</p>
+    <p>- 到底啦 -</p>
   </footer>
 </template>
 
@@ -17,9 +17,9 @@ export default {
   @return ($n / 375) * 100vw;
 }
 footer {
-  line-height: pxtovw(40);
+  line-height: pxtovw(50);
   text-align: center;
-  color: #58c9b9;
+  color: #548687;
 }
 p {
   font-size: pxtovw(12);

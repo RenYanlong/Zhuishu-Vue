@@ -11,7 +11,7 @@
 <script>
 import BookSection_1 from "@/components/home/BookSection_1";
 import BookSection_2 from "@/components/home/BookSection_2";
-
+import { getCategory, getRank } from "./../api/api";
 import { mapState } from "vuex";
 export default {
   components: {
@@ -27,35 +27,37 @@ export default {
   }),
   mounted() {
     // 完结经典
-    this.$axios
-      .get("https://novel.juhe.im/rank/564d820bc319238a644fb408")
-      .then(ov => {
-        this.$store.commit("changeHot", ov.data.ranking.books);
-      });
+    getRank("564d820bc319238a644fb408").then(ov => {
+      this.$store.commit("changeHot", ov.data.ranking.books);
+    });
     // 好评榜
-    this.$axios
-      .get("https://novel.juhe.im/rank/5a6844aafc84c2b8efaa6b6e")
-      .then(ov => {
-        this.$store.commit("changehighOpinion", ov.data.ranking.books);
-      });
+    getRank("5a6844aafc84c2b8efaa6b6e").then(ov => {
+      this.$store.commit("changehighOpinion", ov.data.ranking.books);
+    });
 
     // 都市
-    this.$axios
-      .get(
-        "https://novel.juhe.im/category-info?gender=male&type=hot&major=都市&minor=&start=0&limit=12"
-      )
-      .then(ov => {
-        this.$store.commit("changeCity", ov.data.books);
-      });
-
+    getCategory({
+      gender: "male",
+      type: "hot",
+      major: "都市",
+      minor: "",
+      start: 0,
+      limit: 12
+    }).then(ov => {
+      this.$store.commit("changeCity", ov.data.books);
+    });
     // 逆天玄幻
-    this.$axios
-      .get(
-        "https://novel.juhe.im/category-info?gender=male&type=hot&major=玄幻&minor=&start=0&limit=12"
-      )
-      .then(ov => {
-        this.$store.commit("changexuanhuan", ov.data.books);
-      });
+    getCategory({
+      gender: "male",
+      type: "hot",
+      major: "玄幻",
+      minor: "",
+      start: 0,
+      limit: 12
+    }).then(ov => {
+      this.$store.commit("changexuanhuan", ov.data.books);
+    });
+
     // 科幻
     this.$axios
       .get(

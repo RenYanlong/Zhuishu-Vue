@@ -37,7 +37,7 @@ export default {
   @return ($n / 375) * 100vw;
 }
 .recommend {
-  border-bottom: pxtovw(5) solid #58c9ba20;
+  border-top: pxtovw(5) solid #58c9ba20;
   .main {
     padding: pxtovw(15);
   }

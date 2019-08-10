@@ -11,7 +11,7 @@ import Rankmain from './pages/rankmain.vue';
 import Comment from './pages/Comment.vue';
 import moreBooks from './pages/moreBooks.vue'
 
-import allBooks from "./pages/AllBooks.vue";
+import Choice from "./pages/Home-choice.vue";
 import Male from "./pages/Home-male.vue";
 import Female from "./pages/Home-female.vue";
 import Press from "./pages/Home-press.vue";
@@ -27,8 +27,8 @@ export default new Router({
       children: [
         {
           path: '',
-          name: 'allBooks',
-          component: allBooks
+          name: 'choice',
+          component: Choice
         },
         {
           path: 'male',
@@ -47,7 +47,6 @@ export default new Router({
         }
       ]
     },
-
     {
       path: '/rankmain',
       name: 'rankmain',

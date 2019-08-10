@@ -48,7 +48,8 @@ td {
 }
 /* 默认字体和字号 */
 body {
-  color: #011638;
+  -webkit-overflow-scrolling: touch;
+  color: #383A3F;
   font-size: 14px;
   font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC",
     "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei",
@@ -83,7 +84,7 @@ a:visited,
 a:hover,
 a:active {
   text-decoration: none;
-  color: #011638;
+  color: #383A3F;
   outline: none;
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);

@@ -5,7 +5,6 @@
       <span>{{info.author.nickname}}</span>
       <span class="lv">Lv.{{info.author.lv}}</span>
     </p>
-    <van-rate v-model="info.rating" readonly class="star" :size="12" :gutter="2" />
     <p class="content">{{info.content}}</p>
   </div>
 </template>

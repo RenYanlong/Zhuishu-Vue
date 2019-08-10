@@ -3,34 +3,11 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
+import allbooks from './store/allbooks';
+
 export default new Vuex.Store({
   modules: {
-    allbooks: {
-      state: {
-        hotsnovel: '',
-        cross: '',
-        over: '',
-        young: '',
-        movies: ''
-      },
-      mutations: {
-        changehotsnovel(state, n) {
-          state.hotsnovel = n;
-        },
-        changecross(state, n) {
-          state.cross = n;
-        },
-        changeover(state, n) {
-          state.over = n;
-        },
-        changeyoung(state, n) {
-          state.young = n;
-        },
-        changemovies(state, n) {
-          state.movies = n;
-        }
-      }
-    },
+    allbooks,
     male: {
       state: {
         hot: '',

@@ -1,15 +1,19 @@
 <template>
   <header>
-    <div class="logo">
-      <h1></h1>
-      <i @click="activate"></i>
+    <div class="head-fixed">
+      <h1 href="#">youstory</h1>
+      <span @click="activate"></span>
     </div>
-    <p class="toplist">书架</p>
   </header>
 </template>
 
 <script>
+import Cat from "@/components/home/Category";
+
 export default {
+  components: {
+    Cat
+  },
   methods: {
     activate() {
       this.$store.commit("changeisActivate");
@@ -23,32 +27,32 @@ export default {
   @return ($n / 375) * 100vw;
 }
 header {
+  position: sticky;
+  top: 0;
+  padding: 0 pxtovw(15);
+  background-color: #fff;
+  border-bottom: 0.5px solid #58c9ba40;
+}
+
+.head-fixed {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  width: 100vw;
-  padding: 0 pxtovw(15);
-  box-sizing: border-box;
-  background-color: #fff;
-  // box-shadow: 0px 1px 1px 0px #d7fff1;
-}
-.logo {
-  display: flex;
-  align-items: center;
+  height: pxtovw(50);
   h1 {
-    width: pxtovw(40);
-    height: pxtovw(40);
-    margin-right: pxtovw(10);
-    background: url("./../../assets/images/logo.svg") no-repeat;
-    background-size: pxtovw(40) pxtovw(40);
+    display: inline-block;
+    height: pxtovw(20);
+    width: pxtovw(90);
+    background-image: url("./../../assets/images/youstory.svg");
+    background-repeat: no-repeat;
+    background-size: pxtovw(90) pxtovw(20);
+    background-position: center center;
+    text-indent: -99999px;
   }
-  i {
+  span {
     width: pxtovw(20);
     height: pxtovw(20);
-    background: url("./../../assets/images/sousuo-F-2.svg") no-repeat;
+    background: url("./../../assets/images/caidan.svg") no-repeat;
     background-size: pxtovw(20) pxtovw(20);
   }
 }
@@ -56,7 +60,7 @@ header {
   line-height: pxtovw(25);
   color: #e53a40;
   font-size: pxtovw(16);
-  &::after{
+  &::after {
     width: pxtovw(20);
     height: pxtovw(20);
     background-color: red;

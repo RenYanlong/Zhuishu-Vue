@@ -57,7 +57,7 @@ export default {
   .introduction {
     line-height: pxtovw(20);
     font-size: pxtovw(12);
-    color: #58c9b9;
+    color: #548687;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -67,7 +67,7 @@ export default {
     display: flex;
     align-items: center;
     font-size: pxtovw(12);
-    color: #58c9b9;
+    color: #548687;
     i {
       display: inline-block;
       height: pxtovw(12);
